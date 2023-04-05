@@ -1,0 +1,119 @@
+@charset "UTF-8";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  font-size: 100%;
+}
+
+@font-face {
+  font-family: 'Roboto-Bold';
+  src: url('../fonts/Roboto-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'Roboto-Light';
+  src: url('../fonts/Roboto-Light.ttf');
+}
+
+@font-face {
+  font-family: 'Roboto-Regular';
+  src: url('../fonts/Roboto-Regular.ttf');
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+a:hover,
+button:hover {
+  opacity: .7;
+}
+
+button:active {
+  transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transform: translate(0, -3px);
+}
+
+:root {
+  --danger: #dc3545;
+  --warning: #ffc107;
+  --success: #28a745;
+  --info: #17a2b8;
+  --light: #f8f9fa;
+  --dark: #343a40;
+
+  --font_bold: 'Roboto-Bold', sans-serif;
+  --font_regular: 'Roboto-Regular', sans-serif;
+  --font_light: 'Roboto-Light', sans-serif;
+
+  --border_rad: 6px;
+
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  font-family: var(--font_light);
+  font-size: 16px;
+  color: var(--dark);
+
+  overflow-y: hidden;
+}
+.left_menu{
+  width: 11.3em;
+  height: 100vh;
+  background-color:#8C7B26;
+
+  padding: 2.5em 10px 10px;
+}
+
+li.menu_item{
+ display: block;
+ margin-bottom: .5em;
+}
+
+li.menu_item a {
+  display: block;
+  padding: 2px;
+  font-size: 1.3em;
+  color: #fff;
+ }
+
+.dropdown_item {
+  display: none;
+  font-size: .7em ;
+  margin-top: .9em;
+}
+
+.my_dropdown:hover .dropdown_item {
+  display: block;
+}
+
+.profile-container {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 20px;
+}
+
+.profile-container .icon-text{
+ font-size: 2em;
+}
+
+/*ToDo dar espacamento entre o icone e o texto de login*/
+.profile-container .icon {
+  padding-right: 10px;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+
+    <link rel='stylesheet' href='/stylesheets/style.css'>
+    <link rel='stylesheet' href='/stylesheets/fontawesome/css/all.css'>
+    <link rel='stylesheet' href='/stylesheets/login.css'>
+</head>
+
+<body>
+    <main class="container">
+        <section class="hero">
+        </section>
+
+        <section class="formLogin_container">
+            <form action="/login" method="post" class="form">
+                <h1 class="title_page">Gestão LAB</h1>
+                <h3 class="login_title">Acesse sua conta</h3>
+
+                <label for="username">
+                    <i class="fa fa-user"></i>
+                    <input type="text" id="username" name="username" maxlength="50" placeholder="Digite o username"
+                        class="campo">
+                </label>
+                <label for="senha">
+                    <i class="fa fa-key"></i>
+                    <input type="password" id="senha" name="senha" maxlength="50" placeholder="Digite a senha"
+                        class="campo">
+                </label>
+                <button type="button" id="btnEntrar" class="btn">Entrar</button>
+                <a href="#" class="btnFogSenha">Esqueci minha senha</a>
+            </form>
+        </section>
+    </main>
+</body>
+
+</html>

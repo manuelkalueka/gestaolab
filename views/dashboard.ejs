@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+
+    <link rel='stylesheet' href='/stylesheets/style.css'>
+    <link rel='stylesheet' href='/stylesheets/fontawesome/css/all.css'>
+    <link rel="stylesheet" href="/stylesheets/bulma/css/bulma.min.css">
+    <link rel='stylesheet' href='/stylesheets/dashboard.css'>
+</head>
+
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                <h1 class="title"><strong>GestaoLAB</strong></h1>
+            </a>
+        </div>
+
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="buttons">
+                    <a>
+                        <strong><i class="fa fa-gear"></i> Configurações</strong>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+        </div>
+    </nav>
+
+    <div class="left_menu">
+        <ul class="list_menu">
+            <li class="menu_item">
+                <a href="#"><span class="icon-text">
+                        <span class="icon"><i class="fa fa-chart-line"></i></span>
+                        <span>Estatísticas</span>
+                    </span></a>
+            </li>
+
+            <li class="menu_item">
+                <a href="#"><span class="icon-text">
+                        <span class="icon"><i class="fa fa-screwdriver-wrench"></i></span>
+                        <span>Materiais</span>
+                    </span></a>
+            </li>
+            <li class="menu_item">
+                <a href="#">
+                    <span class="icon-text">
+                        <span class="icon"><i class="fa fa-desktop"></i></span>
+                        <span>Mesas</span>
+                    </span></a>
+            </li>
+            <li class="menu_item">
+                <a href="#">
+                    <span class="icon-text">
+                        <span class="icon"><i class="fa fa-file"></i></span>
+                        <span>Relatórios</span>
+                    </span></a>
+            </li>
+            <li class="menu_item">
+                <a href="#"><span class="icon-text">
+                        <span class="icon"><i class="fa fa-book"></i></span>
+                        <span>Disciplinas</span>
+                    </span></a>
+            </li>
+
+            <li class="menu_item my_dropdown">
+                <a href="#">
+                    <span class="icon-text">
+                        <span class="icon"><i class="fa fa-circle-info"></i></span>
+                        <span>Sobre</span>
+                    </span></a>
+
+                <span class="dropdown_item">
+                    <a href="#">Baixar User Guide</a>
+                </span>
+            </li>
+
+            <li class="profile-container">
+                <a href="#">
+                    <span class="icon-text">
+                        <span href="#" class="icon btn-profile btn">
+                            <i class="fa fa-user"></i>
+                        </span>
+                        <span>Sair</span>
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+</body>
+
+</html>
