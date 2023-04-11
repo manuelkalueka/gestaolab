@@ -1,3 +1,16 @@
+@font-face {
+  font-family: "Nice-Sugar";
+  src: url("../fonts/Nice-Sugar.otf");
+}
+
+:root {
+  --natureza-1-hex: #8c7b26;
+  --natureza-2-hex: #40352c;
+  --natureza-3-hex: #f2ceae;
+  --natureza-4-hex: #8c6954;
+  --natureza-5-hex: #d9a78b;
+}
+
 .container {
   display: flex;
   width: 100%;
@@ -27,9 +40,14 @@
   justify-content: center;
 }
 
+.title_page {
+  font-family: "Nice-Sugar", sans-serif;
+}
+
 h1,
 h3 {
   color: var(--light);
+  text-align: center;
 }
 
 input,
@@ -72,7 +90,7 @@ a.btnFogSenha {
   font-weight: bold;
 }
 
-@media (max-width: 820px) {
+@media (max-width: 840px) {
   .hero {
     display: none;
   }
@@ -101,23 +119,3 @@ a.btnFogSenha {
     padding: 35% 5%;
   }
 }
-
-/*
-
-.Natureza-1-hex { color: #8C7B26; }
-.Natureza-2-hex { color: #40352C; }
-.Natureza-3-hex { color: #F2CEAE; }
-.Natureza-4-hex { color: #8C6954; }
-.Natureza-5-hex { color: #D9A78B; }
-
-.Natureza-1-rgba { color: rgba(140, 123, 37, 1); }
-.Natureza-2-rgba { color: rgba(63, 53, 43, 1); }
-.Natureza-3-rgba { color: rgba(242, 206, 174, 1); }
-.Natureza-4-rgba { color: rgba(140, 104, 84, 1); }
-.Natureza-5-rgba { color: rgba(216, 167, 138, 1); }
-
-.Natureza-1-hsla { color: hsla(50, 57, 34, 1); }
-.Natureza-2-hsla { color: hsla(28, 18, 21, 1); }
-.Natureza-3-hsla { color: hsla(28, 72, 81, 1); }
-.Natureza-4-hsla { color: hsla(22, 25, 44, 1); }
-.Natureza-5-hsla { color: hsla(22, 50, 69, 1); } */

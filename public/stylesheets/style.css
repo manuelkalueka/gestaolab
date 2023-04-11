@@ -10,18 +10,18 @@
 }
 
 @font-face {
-  font-family: 'Roboto-Bold';
-  src: url('../fonts/Roboto-Bold.ttf');
+  font-family: "Roboto-Bold";
+  src: url("../fonts/Roboto-Bold.ttf");
 }
 
 @font-face {
-  font-family: 'Roboto-Light';
-  src: url('../fonts/Roboto-Light.ttf');
+  font-family: "Roboto-Light";
+  src: url("../fonts/Roboto-Light.ttf");
 }
 
 @font-face {
-  font-family: 'Roboto-Regular';
-  src: url('../fonts/Roboto-Regular.ttf');
+  font-family: "Roboto-Regular";
+  src: url("../fonts/Roboto-Regular.ttf");
 }
 
 img {
@@ -34,7 +34,7 @@ a {
 
 a:hover,
 button:hover {
-  opacity: .7;
+  opacity: 0.7;
 }
 
 button:active {
@@ -50,9 +50,9 @@ button:active {
   --light: #f8f9fa;
   --dark: #343a40;
 
-  --font_bold: 'Roboto-Bold', sans-serif;
-  --font_regular: 'Roboto-Regular', sans-serif;
-  --font_light: 'Roboto-Light', sans-serif;
+  --font_bold: "Roboto-Bold", sans-serif;
+  --font_regular: "Roboto-Regular", sans-serif;
+  --font_light: "Roboto-Light", sans-serif;
 
   --border_rad: 6px;
 
@@ -71,17 +71,47 @@ body {
 
   overflow-y: hidden;
 }
-.left_menu{
-  width: 11.3em;
-  height: 100vh;
-  background-color:#8C7B26;
 
-  padding: 2.5em 10px 10px;
+.navbar {
+  float: right;
+  width: 85%;
+
+  box-shadow: -1px 1px 7px #0000003a;
 }
 
-li.menu_item{
- display: block;
- margin-bottom: .5em;
+.left_menu {
+  float: left;
+  width: 11.8em;
+  height: 100vh;
+  background-color: #8c7b26;
+
+  padding: 0.9em 0.625em 0.625em;
+}
+
+/*
+.left_menuMini {
+  float: left;
+  width: 3em;
+  height: 100vh;
+  background-color: #8c7b26;
+
+  padding: 0.9em 0.625em 0.625em;
+}
+*/
+
+li.menu_item {
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+div.logo {
+  width: 90%;
+  margin: 0 auto 0.3em;
+}
+
+.menu-icon .fa {
+  font-size: 1.5em;
+  color: #ce9d53;
 }
 
 li.menu_item a {
@@ -89,12 +119,12 @@ li.menu_item a {
   padding: 2px;
   font-size: 1.3em;
   color: #fff;
- }
+}
 
 .dropdown_item {
   display: none;
-  font-size: .7em ;
-  margin-top: .9em;
+  font-size: 0.7em;
+  margin-top: 0.9em;
 }
 
 .my_dropdown:hover .dropdown_item {
@@ -109,11 +139,26 @@ li.menu_item a {
   padding: 20px;
 }
 
-.profile-container .icon-text{
- font-size: 2em;
+.profile-container .icon-text {
+  font-size: 2em;
 }
 
 /*ToDo dar espacamento entre o icone e o texto de login*/
 .profile-container .icon {
   padding-right: 10px;
+}
+
+.profile {
+  padding: 1.5em 2em;
+}
+
+.right-menu a {
+  color: #ce9d53;
+}
+
+.main {
+  background-color: #f0fcff;
+  height: 100vh;
+
+  padding: 2em 5em;
 }
