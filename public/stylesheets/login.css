@@ -10,6 +10,19 @@
   --natureza-4-hex: #8c6954;
   --natureza-5-hex: #d9a78b;
 }
+@keyframes coming {
+  75% {
+    width: 120px;
+    height: 0;
+    padding: 0;
+    color: transparent;
+    opacity: 0.7;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
 
 .my-container {
   display: flex;
@@ -94,20 +107,24 @@ a.btnFogSenha {
   width: 300px;
   height: auto;
   background-color: rgb(255, 220, 216);
-  color: red;
+  color: var(--danger);
 
-  text-align:  center;
+  text-align: center;
   padding: 10px;
   border-radius: var(--border_rad);
+}
+
+.message-alert {
+  animation: coming 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .alert-success {
   width: 300px;
   height: auto;
-  background-color: rgb(255, 220, 216);
-  color: red;
+  background-color: rgb(233, 255, 216);
+  color: var(--success);
 
-  text-align:  center;
+  text-align: center;
   padding: 10px;
   border-radius: var(--border_rad);
 }

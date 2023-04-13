@@ -17,7 +17,11 @@ function validarSenha() {
 
         userNameElement.focus();
         return;
-    };
+    } else {
+        alerMessage.classList.remove('hide');
+        alerMessage.classList.add('alert-success');
+        alerMessage.textContent = message.sucess;
+    }
 }
 
 document.querySelector('#senha').addEventListener('focus', () => {
