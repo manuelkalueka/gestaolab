@@ -7,6 +7,6 @@ router.get('/login', (req, res, next) => {
 
 router.get('/', (req, res, next) => {
     res.render('login', { title: 'GESTAOLAB | Área de Acesso' });
-})
+});
 
 module.exports = router;

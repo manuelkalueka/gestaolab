@@ -11,7 +11,7 @@
   --natureza-5-hex: #d9a78b;
 }
 
-.container {
+.my-container {
   display: flex;
   width: 100%;
   height: 100%;
@@ -88,6 +88,32 @@ a.btnFogSenha {
   padding: 10px;
   color: #d2d6d9;
   font-weight: bold;
+}
+
+.alert-err {
+  width: 300px;
+  height: auto;
+  background-color: rgb(255, 220, 216);
+  color: red;
+
+  text-align:  center;
+  padding: 10px;
+  border-radius: var(--border_rad);
+}
+
+.alert-success {
+  width: 300px;
+  height: auto;
+  background-color: rgb(255, 220, 216);
+  color: red;
+
+  text-align:  center;
+  padding: 10px;
+  border-radius: var(--border_rad);
+}
+
+.hide {
+  display: none;
 }
 
 @media (max-width: 840px) {

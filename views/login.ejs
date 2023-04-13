@@ -13,16 +13,17 @@
 
     <link rel='stylesheet' href='/stylesheets/style.css'>
     <link rel='stylesheet' href='/stylesheets/fontawesome/css/all.css'>
+    <link rel="stylesheet" href="/stylesheets/bulma/css/bulma.min.css">
     <link rel='stylesheet' href='/stylesheets/login.css'>
 </head>
 
 <body>
-    <main class="container">
+    <main class="my-container">
         <section class="hero">
         </section>
 
         <section class="formLogin_container">
-            <form action="/login" method="post" class="form">
+            <form action="/dashboard" method="post" class="form">
                 <h1 class="title_page">Gestão LAB</h1>
                 <h3 class="login_title">Acesse sua conta</h3>
 
@@ -36,11 +37,18 @@
                     <input type="password" id="senha" name="senha" maxlength="50" placeholder="Digite a senha"
                         class="campo">
                 </label>
-                <button type="button" id="btnEntrar" class="btn">Entrar</button>
+                <button type="submit" id="btnEntrar" class="btn">Entrar</button>
+
+                <div class="message-alert hide">
+                </div>
+
                 <a href="#" class="btnFogSenha">Esqueci minha senha</a>
+
             </form>
         </section>
     </main>
+
+    <script src="/javascripts/login.js"></script>
 </body>
 
 </html>

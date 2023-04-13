@@ -1,6 +1,8 @@
 @charset "UTF-8";
 
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -69,6 +71,8 @@ body {
   font-size: 16px;
   color: var(--dark);
 
+  background-color: #f0fcff;
+
   overflow-y: hidden;
 }
 
@@ -87,17 +91,6 @@ body {
 
   padding: 0.9em 0.625em 0.625em;
 }
-
-/*
-.left_menuMini {
-  float: left;
-  width: 3em;
-  height: 100vh;
-  background-color: #8c7b26;
-
-  padding: 0.9em 0.625em 0.625em;
-}
-*/
 
 li.menu_item {
   display: block;
@@ -157,8 +150,12 @@ li.menu_item a {
 }
 
 .main {
+  margin: auto;
   background-color: #f0fcff;
   height: 100vh;
+}
 
-  padding: 2em 5em;
+h3.title {
+  padding: 20px;
+  border-bottom: 2px solid #ccc;
 }
