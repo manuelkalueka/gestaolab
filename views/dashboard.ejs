@@ -11,78 +11,85 @@
 
     <link rel='stylesheet' href='/stylesheets/style.css'>
     <link rel='stylesheet' href='/stylesheets/fontawesome/css/all.css'>
+    <link rel="stylesheet" href="../public/stylesheets/fontawesome/css/solid.min.css">
     <link rel="stylesheet" href="/stylesheets/bulma/css/bulma.min.css">
     <link rel='stylesheet' href='/stylesheets/dashboard.css'>
 </head>
 
 <body>
-    <div class="columns">
-        <div class="column">
-            <nav>
-                <div class="sidebar-top">
-                    <span class="shrink-btn">
-                        <i class='fa fa-chevron-left'></i>
+    <input type="checkbox" id="ckToggleMenu">
+    <header>
+        <div class="left-area">
+            <h3>Gestão <span>LAB</span></h3>
+        </div>
+
+
+        <label for="ckToggleMenu">
+            <i class="fa fa-bars" id="sidebar-btn"></i>
+        </label>
+
+        <div class="right-area">
+            <a href="#" class="logout-btn">Terminar Sessão</a>
+        </div>
+    </header>
+
+    <!-- SiDEBAR   -->
+    <nav class="sidebar">
+        <div class="profile-container">
+            <span class="profile-avatar">
+                <i class="fa-solid fa-user-tie"></i>
+            </span>
+            <span class="profile-title">Administrador</span>
+        </div>
+
+        <ul class="list_menu">
+            <li class="menu_item">
+                <a href="#">
+                    <span class="icon-text" title="Dashboard">
+                        <span class="icon"><i class="fa fa-chart-line"></i></span>
+                        <span class="menu-text">Dashboard</span>
                     </span>
-                    <img src="/images/logo_mini.png" class="logo" alt="Logo do Sistema">
-                    <h3 class="hide">Gestão LAB</h3>
-                </div>
-                <hr>
-                <div class="active-tab"></div>
-                <ul class="sidebar-links">
-                    <li class="link-item">
-                        <a href="#"><span class="icon-text" title="Estatísticas">
-                                <span class="icon"><i class="fa fa-chart-line"></i></span>
-                                <span class="menu-text">Estatísticas</span>
-                            </span>
-                        </a>
-                    </li>
+                </a>
+            </li>
 
-                    <li class="link-item">
-                        <a href="#"><span class="icon-text" title="Materiais">
-                                <span class="icon"><i class="fa fa-screwdriver-wrench"></i></span>
-                                <span class="menu-text">Materiais</span>
-                            </span></a>
-                    </li>
-                    <li class="link-item">
-                        <a href="#">
-                            <span class="icon-text" title="Mesas">
-                                <span class="icon"><i class="fa fa-desktop"></i></span>
-                                <span class="menu-text">Mesas</span>
-                            </span></a>
-                    </li>
-                    <li class="link-item">
-                        <a href="#">
-                            <span class="icon-text" title="Relatórios">
-                                <span class="icon"><i class="fa fa-file"></i></span>
-                                <span class="menu-text">Relatórios</span>
-                            </span></a>
-                    </li>
-                    <li class="link-item">
-                        <a href="#"><span class="icon-text" title="Disciplinas">
-                                <span class="icon"><i class="fa fa-book"></i></span>
-                                <span class="menu-text">Disciplinas</span>
-                            </span></a>
-                    </li>
+            <li class="menu_item">
+                <a href="#"><span class="icon-text" title="Materiais">
+                        <span class="icon"><i class="fa fa-screwdriver-wrench"></i></span>
+                        <span class="menu-text">Materiais</span>
+                    </span></a>
+            </li>
+            <li class="menu_item">
+                <a href="#">
+                    <span class="icon-text" title="Mesas">
+                        <span class="icon"><i class="fa fa-desktop"></i></span>
+                        <span class="menu-text">Mesas</span>
+                    </span></a>
+            </li>
+            <li class="menu_item">
+                <a href="#">
+                    <span class="icon-text" title="Relatórios">
+                        <span class="icon"><i class="fa fa-file"></i></span>
+                        <span class="menu-text">Relatórios</span>
+                    </span></a>
+            </li>
+            <li class="menu_item">
+                <a href="#"><span class="icon-text" title="Disciplinas">
+                        <span class="icon"><i class="fa fa-book"></i></span>
+                        <span class="menu-text">Disciplinas</span>
+                    </span></a>
+            </li>
 
-                    <li class="link-item my_dropdown">
-                        <a href="#">
-                            <span class="icon-text" title="Sobre">
-                                <span class="icon"><i class="fa fa-circle-info"></i></span>
-                                <span class="menu-text">Sobre</span>
-                            </span></a>
+            <li class="menu_item">
+                <a href="#">
+                    <span class="icon-text" title="Sobre">
+                        <span class="icon"><i class="fa fa-circle-info"></i></span>
+                        <span class="menu-text">Sobre</span>
+                    </span></a>
+            </li>
+        </ul>
+    </nav>
 
-                        <span class="dropdown_item menu-text">
-                            <a href="#">Baixar User Guide</a>
-                        </span>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-
-        <div class="column">
-
-        </div>
-    </div>
+    <!-- End  -->
 </body>
 
 </html>
