@@ -26,6 +26,11 @@
   src: url("../fonts/Roboto-Regular.ttf");
 }
 
+@font-face {
+  font-family: "Nice-Sugar";
+  src: url("../fonts/Nice-Sugar.otf");
+}
+
 img {
   max-width: 100%;
 }
@@ -47,6 +52,12 @@ button:active {
   --light: #f8f9fa;
   --dark: #343a40;
 
+  --color1: #cf9d53;
+  --color2: #f7d9ad;
+  --color3: #f5ba62;
+  --color4: #ab9678;
+  --color5: #c2934e;
+
   --font_bold: "Roboto-Bold", sans-serif;
   --font_regular: "Roboto-Regular", sans-serif;
   --font_light: "Roboto-Light", sans-serif;
@@ -67,6 +78,5 @@ body {
   color: var(--dark);
 
   background-color: #f0fcff;
-
   overflow-y: hidden;
 }

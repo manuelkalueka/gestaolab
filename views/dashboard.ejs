@@ -11,24 +11,16 @@
 
     <link rel='stylesheet' href='/stylesheets/style.css'>
     <link rel='stylesheet' href='/stylesheets/fontawesome/css/all.css'>
-    <link rel="stylesheet" href="../public/stylesheets/fontawesome/css/solid.min.css">
     <link rel="stylesheet" href="/stylesheets/bulma/css/bulma.min.css">
     <link rel='stylesheet' href='/stylesheets/header.css'>
     <link rel='stylesheet' href='/stylesheets/sidebar.css'>
-    <link rel='stylesheet' href='/stylesheets/dashboard.css'>
 </head>
 
 <body>
-    <input type="checkbox" id="ckToggleMenu">
     <header>
         <div class="left-area">
             <h3>Gestão <span>LAB</span></h3>
         </div>
-
-
-        <label for="ckToggleMenu">
-            <i class="fa fa-bars" id="sidebar-btn"></i>
-        </label>
 
         <div class="right-area">
             <a href="#" class="logout-btn btn">Terminar Sessão</a>
@@ -36,67 +28,93 @@
     </header>
 
     <!-- SiDEBAR   -->
-    <nav class="sidebar">
-        <figure class="profile-container">
-            <img class="profile-avatar" src="/images/logo_mini.png" alt="Logo do Sistema"> </img>
-            <caption class="profile-title">Administrador</caption>
-        </figure>
-        <hr>
+    <nav class="menu-lateral">
+        <div class="btn-menu">
+            <i class="fa fa-bars" id="btn-menu"></i>
+        </div>
 
-        <ul class="list_menu">
-            <li class="menu_item">
+        <ul>
+            <li class="item-menu active-item">
                 <a href="#">
-                    <span class="icon-text" title="Dashboard">
-                        <span class="icon"><i class="fa fa-chart-line"></i></span>
-                        <span class="menu-text">Dashboard</span>
+                    <span class="icone icon">
+                        <i class="fa fa-chart-line"></i>
+                    </span>
+                    <span class="text-link">
+                        Dashboard
                     </span>
                 </a>
             </li>
 
-            <li class="menu_item">
-                <a href="#"><span class="icon-text" title="Materiais">
-                        <span class="icon"><i class="fa fa-screwdriver-wrench"></i></span>
-                        <span class="menu-text">Materiais</span>
-                    </span></a>
-            </li>
-            <li class="menu_item">
+            <li class="item-menu">
                 <a href="#">
-                    <span class="icon-text" title="Mesas">
-                        <span class="icon"><i class="fa fa-desktop"></i></span>
-                        <span class="menu-text">Mesas</span>
-                    </span></a>
-            </li>
-            <li class="menu_item">
-                <a href="#">
-                    <span class="icon-text" title="Relatórios">
-                        <span class="icon"><i class="fa fa-file"></i></span>
-                        <span class="menu-text">Relatórios</span>
-                    </span></a>
-            </li>
-            <li class="menu_item">
-                <a href="#"><span class="icon-text" title="Disciplinas">
-                        <span class="icon"><i class="fa fa-book"></i></span>
-                        <span class="menu-text">Disciplinas</span>
-                    </span></a>
+                    <span class="icone icon">
+                        <i class="fa fa-screwdriver-wrench"></i>
+                    </span>
+                    <span class="text-link">
+                        Materiais
+                    </span>
+                </a>
             </li>
 
-            <li class="menu_item">
+            <li class="item-menu">
                 <a href="#">
-                    <span class="icon-text" title="Sobre">
-                        <span class="icon"><i class="fa fa-circle-info"></i></span>
-                        <span class="menu-text">Sobre</span>
-                    </span></a>
+                    <span class="icone icon">
+                        <i class="fa fa-desktop"></i>
+                    </span>
+                    <span class="text-link">
+                        Mesas
+                    </span>
+                </a>
+            </li>
+
+            <li class="item-menu">
+                <a href="#">
+                    <span class="icone icon">
+                        <i class="fa fa-file"></i>
+                    </span>
+                    <span class="text-link">
+                        Relatórios
+                    </span>
+                </a>
+            </li>
+
+            <li class="item-menu">
+                <a href="#">
+                    <span class="icone icon">
+                        <i class="fa fa-circle-user"></i>
+                    </span>
+                    <span class="text-link">
+                        Conta
+                    </span>
+                </a>
+            </li>
+
+            <li class="item-menu">
+                <a href="#">
+                    <span class="icone icon">
+                        <i class="fa fa-gear"></i>
+                    </span>
+                    <span class="text-link">
+                        Configurações
+                    </span>
+                </a>
+            </li>
+
+            <li class="item-menu">
+                <a href="#">
+                    <span class="icone icon">
+                        <i class="fa fa-circle-info"></i>
+                    </span>
+                    <span class="text-link">
+                        Sobre
+                    </span>
+                </a>
             </li>
         </ul>
     </nav>
-
     <!-- End  -->
-
-    <main class="content">
-        <h1 class="">Sou o Conteudo lore</h1>
-        <p>kdjdjdj Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim eos earum voluptas vero, eius, aliquam
-            mollitia inventore quisquam quam repudiandae nobis omnis nihil possimus eaque perspiciatis adipisci! Quo,
-            error eum.</p>
+    <main>
+        <h1>Sou o conteudo</h1>
     </main>
 
     <script src="/javascripts/sidebar.js"></script>

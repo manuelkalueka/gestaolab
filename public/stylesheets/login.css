@@ -1,15 +1,3 @@
-@font-face {
-  font-family: "Nice-Sugar";
-  src: url("../fonts/Nice-Sugar.otf");
-}
-
-:root {
-  --natureza-1-hex: #8c7b26;
-  --natureza-2-hex: #40352c;
-  --natureza-3-hex: #f2ceae;
-  --natureza-4-hex: #8c6954;
-  --natureza-5-hex: #d9a78b;
-}
 @keyframes coming {
   75% {
     width: 120px;
@@ -39,7 +27,7 @@
 }
 
 .formLogin_container {
-  background-color: #ce9d53;
+  background-color: var(--color1);
   width: 30%;
   padding: 2em 0.5em;
 }

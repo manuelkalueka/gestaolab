@@ -1,71 +1,83 @@
-.sidebar {
-    background-color: var(--dark);
-    margin-top: 4.5em;
-    padding-top: 1.8em;
-    position: fixed;
-    left: 0;
-    width: 250px;
-    height: 100%;
-  
-    transition: left 0.5s ease;
-  }
-  
-  .profile-container {
-    margin: auto;
-    width: 4.25em;
-    height: 4.25em;
-    border-radius: 100px;
-    margin-bottom: 20px;
-    color: white;
-  }
-  
-  .profile-avatar {
-    max-width: 560px;
-    border: 2px solid white;
-    padding: 5px;
-    border-radius: 100px;
-  }
-  
-  .profile-title {
-    width: 100%;
-    color: #ccc;
-    font-size: 0.8em;
-  }
-  
-  .menu_item:first-child {
-    padding-top: 0.3em;
-  }
-  
-  .menu_item a {
-    padding: 1em;
-  
-    color: white;
-    display: block;
-    width: 100%;
-  
-    transition: background 0.5s ease-in-out;
-  }
-  
-  .menu_item a:hover {
-    border-top-left-radius: 12px;
-    border-bottom-left-radius: 12px;
-    background-color: rgb(192, 184, 47);
-  }
-  
-  label #sidebar-btn {
-    z-index: 1;
-    color: var(--light);
-    font-size: 1.8em;
-    cursor: pointer;
-  
-    transition: color 0.5s ease;
-  }
-  
-  label #sidebar-btn:hover {
-    color: rgb(250, 242, 152);
-  }
-  
-  #ckToggleMenu {
-    display: none;
-  }
-  
+.menu-lateral {
+  width: 70px;
+  height: 100%;
+  background-color: var(--dark);
+  padding: 40px 0 40px 1%;
+
+  box-shadow: 6px 0 0 var(--color1);
+
+  overflow: hidden;
+  transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /*colocar o menu-lateral Fixo
+  position: fixed;
+  top: 0;
+  left: 0; */
+}
+
+.menu-lateral.expandido {
+  width: 300px;
+}
+
+.btn-menu {
+  width: 100%;
+  padding-left: 10px;
+}
+
+.btn-menu > i {
+  /*Chama o elemento dentro dele*/
+  color: var(--light);
+  font-size: 24px;
+
+  cursor: pointer;
+}
+
+ul {
+  height: 100%;
+}
+
+li.item-menu:first-child {
+  margin-top: 20px;
+}
+
+li.item-menu {
+  transition: all 0.2s;
+}
+
+li.item-menu:hover {
+  background-color: var(--color1);
+
+  border-top-left-radius: var(--border_rad);
+  border-bottom-left-radius: var(--border_rad);
+}
+
+.active-item {
+  background-color: var(--color1);
+  border-top-left-radius: var(--border_rad);
+  border-bottom-left-radius: var(--border_rad);
+}
+
+.item-menu a {
+  color: var(--light);
+  font-size: 20px;
+  padding: 10px 4%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.item-menu a .icone > i {
+  font-size: 30px;
+  margin-left: 10px;
+}
+
+.item-menu a .text-link {
+  margin-left: 70px;
+  transition: 1s;
+  opacity: 0;
+}
+
+.menu-lateral.expandido .text-link {
+  margin-left: 40px;
+  opacity: 1;
+}

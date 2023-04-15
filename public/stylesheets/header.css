@@ -1,8 +1,8 @@
 header {
-  position: fixed;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   background-color: #23282c;
   padding: 20px;
   width: 100%;
@@ -17,14 +17,15 @@ header {
 }
 
 .left-area span {
-  color: rgb(250, 242, 152);
+  color: var(--color1);
+  font-family: "Nice-Sugar";
 }
 
 .logout-btn {
   padding: 5px;
-  background-color: rgb(250, 242, 152);
+  background-color: var(--color4);
   border-radius: var(--border_rad);
-  color: rgb(177, 129, 41);
+  color: var(--color2);
   font-size: 0.9em;
   text-align: center;
   font-weight: 600;
@@ -32,5 +33,5 @@ header {
 }
 
 .logout-btn:hover {
-  background-color: rgb(183, 176, 93); /*Colocar um background suave*/
+  background-color: var(--color1); /*Colocar um background suave*/
 }
