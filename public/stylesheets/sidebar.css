@@ -1,0 +1,71 @@
+.sidebar {
+    background-color: var(--dark);
+    margin-top: 4.5em;
+    padding-top: 1.8em;
+    position: fixed;
+    left: 0;
+    width: 250px;
+    height: 100%;
+  
+    transition: left 0.5s ease;
+  }
+  
+  .profile-container {
+    margin: auto;
+    width: 4.25em;
+    height: 4.25em;
+    border-radius: 100px;
+    margin-bottom: 20px;
+    color: white;
+  }
+  
+  .profile-avatar {
+    max-width: 560px;
+    border: 2px solid white;
+    padding: 5px;
+    border-radius: 100px;
+  }
+  
+  .profile-title {
+    width: 100%;
+    color: #ccc;
+    font-size: 0.8em;
+  }
+  
+  .menu_item:first-child {
+    padding-top: 0.3em;
+  }
+  
+  .menu_item a {
+    padding: 1em;
+  
+    color: white;
+    display: block;
+    width: 100%;
+  
+    transition: background 0.5s ease-in-out;
+  }
+  
+  .menu_item a:hover {
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    background-color: rgb(192, 184, 47);
+  }
+  
+  label #sidebar-btn {
+    z-index: 1;
+    color: var(--light);
+    font-size: 1.8em;
+    cursor: pointer;
+  
+    transition: color 0.5s ease;
+  }
+  
+  label #sidebar-btn:hover {
+    color: rgb(250, 242, 152);
+  }
+  
+  #ckToggleMenu {
+    display: none;
+  }
+  

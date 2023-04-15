@@ -13,6 +13,8 @@
     <link rel='stylesheet' href='/stylesheets/fontawesome/css/all.css'>
     <link rel="stylesheet" href="../public/stylesheets/fontawesome/css/solid.min.css">
     <link rel="stylesheet" href="/stylesheets/bulma/css/bulma.min.css">
+    <link rel='stylesheet' href='/stylesheets/header.css'>
+    <link rel='stylesheet' href='/stylesheets/sidebar.css'>
     <link rel='stylesheet' href='/stylesheets/dashboard.css'>
 </head>
 
@@ -29,18 +31,17 @@
         </label>
 
         <div class="right-area">
-            <a href="#" class="logout-btn">Terminar Sessão</a>
+            <a href="#" class="logout-btn btn">Terminar Sessão</a>
         </div>
     </header>
 
     <!-- SiDEBAR   -->
     <nav class="sidebar">
-        <div class="profile-container">
-            <span class="profile-avatar">
-                <i class="fa-solid fa-user-tie"></i>
-            </span>
-            <span class="profile-title">Administrador</span>
-        </div>
+        <figure class="profile-container">
+            <img class="profile-avatar" src="/images/logo_mini.png" alt="Logo do Sistema"> </img>
+            <caption class="profile-title">Administrador</caption>
+        </figure>
+        <hr>
 
         <ul class="list_menu">
             <li class="menu_item">
@@ -90,6 +91,15 @@
     </nav>
 
     <!-- End  -->
+
+    <main class="content">
+        <h1 class="">Sou o Conteudo lore</h1>
+        <p>kdjdjdj Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim eos earum voluptas vero, eius, aliquam
+            mollitia inventore quisquam quam repudiandae nobis omnis nihil possimus eaque perspiciatis adipisci! Quo,
+            error eum.</p>
+    </main>
+
+    <script src="/javascripts/sidebar.js"></script>
 </body>
 
 </html>

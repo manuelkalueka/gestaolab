@@ -1,110 +1,11 @@
-header {
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #343131;
-  padding: 20px;
-  width: 100%;
-  height: auto;
-}
 
-.left-area h3 {
-  color: white;
-  text-transform: uppercase;
-  font-size: 1.375em;
-  font-weight: 900;
-}
-
-.left-area span {
-  color: rgb(250, 242, 152);
-}
-
-.logout-btn {
-  padding: 5px;
-  background-color: rgb(250, 242, 152);
-  border-radius: var(--border_rad);
-  color: rgb(0, 0, 0);
-  font-size: 0.9em;
-  text-align: center;
-  font-weight: 600;
-  transition: background 500ms cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.logout-btn:hover {
-  background-color: rgb(218, 210, 119); /*Colocar um background suave*/
-}
-
-.sidebar {
-  background-color: #4a4545;
-  margin-top: 4.5em;
-  padding-top: 1.8em;
-  position: fixed;
-  left: 0;
-  width: 250px;
-  height: 100%;
-
-  transition: left 0.5s ease;
-}
-
-.profile-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 6.25em;
-  height: 6.25em;
-  border-radius: 100px;
-  margin-bottom: 10px;
-  background-color: red;
-  color: white;
-}
-
-.profile-title {
-  width: 100%;
-  color: #ccc;
-  margin-top: 0;
-  font-size: 0.8em;
-  text-align: center;
-}
-
-.menu_item a {
-  padding: 1em;
-
-  color: white;
-  display: block;
-  width: 100%;
-
-  transition: background 0.5s ease-in-out;
-}
-
-.menu_item a:hover {
-  border-top-left-radius: 12px;
-  border-bottom-left-radius: 12px;
-  background-color: rgb(192, 184, 47);
-}
-
-label #sidebar-btn {
-  z-index: 1;
-  color: var(--light);
-  font-size: 1.8em;
-  cursor: pointer;
-
-  transition: color 0.5s ease;
-}
-
-label #sidebar-btn:hover {
-  color: rgb(250, 242, 152);
-}
-
-#ckToggleMenu {
-  display: none;
-}
+/*
 
 #ckToggleMenu:checked ~ .sidebar {
   left: -190px;
 }
 
-#ckToggleMenu:checked ~ .sidebar .profile-container .menu-text {
+#ckToggleMenu:checked ~ .profile-container {
   display: none;
 }
 
@@ -112,4 +13,21 @@ label #sidebar-btn:hover {
   font-size: 1em;
   margin-left: 170px;
   width: 80px;
+}
+
+#ckToggleMenu:checked ~ .content {
+  left: 4.5%;
+}  */
+
+.content {
+  position: absolute;
+  top: 11.8%;
+  left: 19.8%;
+
+  padding: 2% 5% 2% 3%;
+
+  width: 84vw;
+  height: 90%;
+
+  transition: left 0.5s ease;
 }
