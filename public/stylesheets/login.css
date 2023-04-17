@@ -42,11 +42,12 @@
 }
 
 .title_page {
+  font-size: 5em;
   font-family: "Nice-Sugar", sans-serif;
 }
 
-h1,
-h3 {
+h1.title_page,
+h3.login_title {
   color: var(--light);
   text-align: center;
 }
@@ -56,10 +57,6 @@ button {
   outline: 0;
   border: 0;
   border-radius: var(--border_rad);
-}
-
-.title_page {
-  font-size: 5em;
 }
 
 .login_title {

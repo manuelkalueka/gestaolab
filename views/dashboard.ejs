@@ -1,123 +1,65 @@
-<!DOCTYPE html>
-<html lang="pt-PT">
+<%- include('./partials/header.ejs') %>
+    <%- include('./partials/sidebar.ejs') %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <%= title %>
-    </title>
+        <main class="conteudo container">
 
-    <link rel='stylesheet' href='/stylesheets/style.css'>
-    <link rel='stylesheet' href='/stylesheets/fontawesome/css/all.css'>
-    <link rel="stylesheet" href="/stylesheets/bulma/css/bulma.min.css">
-    <link rel='stylesheet' href='/stylesheets/header.css'>
-    <link rel='stylesheet' href='/stylesheets/sidebar.css'>
-</head>
-
-<body>
-    <header>
-        <div class="left-area">
-            <h3>Gestão <span>LAB</span></h3>
-        </div>
-
-        <div class="right-area">
-            <a href="#" class="logout-btn btn">Terminar Sessão</a>
-        </div>
-    </header>
-
-    <!-- SiDEBAR   -->
-    <nav class="menu-lateral">
-        <div class="btn-menu">
-            <i class="fa fa-bars" id="btn-menu"></i>
-        </div>
-
-        <ul>
-            <li class="item-menu active-item">
-                <a href="#">
-                    <span class="icone icon">
-                        <i class="fa fa-chart-line"></i>
+            <div class="card-container">
+                <div class="dash-card">
+                    <span class="card-title">Total de Mesas</span>
+                    <span class="card-icon">
+                        <i class="fa fa-display"></i>
+                        <span class="quant-card">3</span>
                     </span>
-                    <span class="text-link">
-                        Dashboard
-                    </span>
-                </a>
-            </li>
+                    <span class="foot-title">Total de Mesas Cadastradas</span>
+                </div>
 
-            <li class="item-menu">
-                <a href="#">
-                    <span class="icone icon">
-                        <i class="fa fa-screwdriver-wrench"></i>
+                <div class="dash-card">
+                    <span class="card-title">Total de Computadores</span>
+                    <span class="card-icon">
+                        <i class="fa fa-computer"></i>
+                        <span class="quant-card">3</span>
                     </span>
-                    <span class="text-link">
-                        Materiais
-                    </span>
-                </a>
-            </li>
+                    <span class="foot-title">Total de Computadores Cadastrados</span>
+                </div>
 
-            <li class="item-menu">
-                <a href="#">
-                    <span class="icone icon">
+                <div class="dash-card">
+                    <span class="card-title">Total Avariados</span>
+                    <span class="card-icon">
                         <i class="fa fa-desktop"></i>
+                        <span class="quant-card">3</span>
                     </span>
-                    <span class="text-link">
-                        Mesas
-                    </span>
-                </a>
-            </li>
+                    <span class="foot-title">Total de Computadores Avariados</span>
+                </div>
 
-            <li class="item-menu">
-                <a href="#">
-                    <span class="icone icon">
-                        <i class="fa fa-file"></i>
+                <div class="dash-card">
+                    <span class="card-title">Total de Incompletos</span>
+                    <span class="card-icon">
+                        <i class="fa fa-keyboard"></i>
+                        <span class="quant-card">3</span>
                     </span>
-                    <span class="text-link">
-                        Relatórios
-                    </span>
-                </a>
-            </li>
+                    <span class="foot-title">Total de Computadores Incompletos</span>
+                </div>
 
-            <li class="item-menu">
-                <a href="#">
-                    <span class="icone icon">
-                        <i class="fa fa-circle-user"></i>
+                <div class="dash-card">
+                    <span class="card-title">Total de Reservado</span>
+                    <span class="card-icon">
+                        <i class="fa fa-database"></i>
+                        <span class="quant-card">3</span>
                     </span>
-                    <span class="text-link">
-                        Conta
-                    </span>
-                </a>
-            </li>
+                    <span class="foot-title">Total de Material Reservado</span>
+                </div>
 
-            <li class="item-menu">
-                <a href="#">
-                    <span class="icone icon">
-                        <i class="fa fa-gear"></i>
+                <div class="dash-card">
+                    <span class="card-title">Total de Aulas Marcadas</span>
+                    <span class="card-icon">
+                        <i class="fa fa-person-chalkboard"></i>
+                        <span class="quant-card">3</span>
                     </span>
-                    <span class="text-link">
-                        Configurações
-                    </span>
-                </a>
-            </li>
+                    <span class="foot-title">Total de Aulas Marcadas Semanal</span>
+                </div>
 
-            <li class="item-menu">
-                <a href="#">
-                    <span class="icone icon">
-                        <i class="fa fa-circle-info"></i>
-                    </span>
-                    <span class="text-link">
-                        Sobre
-                    </span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <!-- End  -->
-    <main>
-        <h1>Sou o conteudo</h1>
-    </main>
+            </div>
 
-    <script src="/javascripts/sidebar.js"></script>
-</body>
+        </main>
 
-</html>
+        <%- include('./partials/footer.ejs') %>

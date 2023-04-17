@@ -16,6 +16,8 @@ const btnMenu = document.querySelector('#btn-menu');
 const menuLateral = document.querySelector('.menu-lateral');
 
 function abrirFecharMenu() {//expande o menu lateral
+    const conteudo = document.querySelector('.conteudo');
+    conteudo.classList.toggle('menor');
     menuLateral.classList.toggle('expandido');//add e remove a classe dinamicamente
 }
 

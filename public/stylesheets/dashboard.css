@@ -1,33 +1,117 @@
-
-/*
-
-#ckToggleMenu:checked ~ .sidebar {
-  left: -190px;
+@keyframes is-scaling {
+  to {
+    transform: scale(1.05);
+    opacity: 1;
+  }
 }
 
-#ckToggleMenu:checked ~ .profile-container {
-  display: none;
+body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
-#ckToggleMenu:checked ~ .sidebar a {
-  font-size: 1em;
-  margin-left: 170px;
-  width: 80px;
-}
-
-#ckToggleMenu:checked ~ .content {
-  left: 4.5%;
-}  */
-
-.content {
+.conteudo {
+  width: 100%;
+  height: 87.6%;
   position: absolute;
-  top: 11.8%;
-  left: 19.8%;
+  top: 12.3%;
+  left: 16.3%;
+  /*right: 0; posicao com siebar pequeno*/
 
-  padding: 2% 5% 2% 3%;
-
-  width: 84vw;
-  height: 90%;
+  padding: 2em 10% 2em 2%;
 
   transition: left 0.5s ease;
+}
+
+/*
+.conteudo.menor {
+ posicao com sidebar grande
+  left: 24.2%;
+}
+*/
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.dash-card {
+  max-width: 490px;
+  width: 30%;
+  height: 150px;
+  padding: 1.2em;
+  background-color: var(--light);
+  border-radius: var(--border_rad);
+  margin-right: 1.6em;
+  margin-bottom: 5em;
+
+  box-shadow: 1px 3px 7px #00000030;
+  opacity: 0.7;
+  transition: opacity 1s ease;
+}
+
+.dash-card:hover {
+  animation: is-scaling 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) 500ms;
+
+  cursor: pointer;
+}
+
+.card-title,
+.foot-title {
+  display: block;
+}
+
+.card-title {
+  text-align: right;
+}
+
+.card-icon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 5px;
+
+  border-bottom: 2px solid #ccc;
+}
+
+.card-icon > i,
+.card-icon > .quant-card {
+  font-size: 3em;
+}
+
+.card-icon > i.fa-display,
+.card-icon > i.fa-display + .quant-card,
+.card-icon > i.fa-database,
+.card-icon > i.fa-database + .quant-card,
+.card-icon > i.fa-person-chalkboard,
+.card-icon > i.fa-person-chalkboard + .quant-card {
+  color: var(--info);
+}
+
+.card-icon > i.fa-computer,
+.card-icon > i.fa-computer + .quant-card {
+  color: var(--success);
+}
+
+.card-icon > i.fa-computer,
+.card-icon > i.fa-computer + .quant-card {
+  color: var(--success);
+}
+
+.card-icon > i.fa-desktop,
+.card-icon > i.fa-desktop + .quant-card {
+  color: var(--danger);
+}
+
+.card-icon > i.fa-keyboard,
+.card-icon > i.fa-keyboard + .quant-card {
+  color: var(--warning);
+}
+
+.foot-title {
+  text-align: center;
 }

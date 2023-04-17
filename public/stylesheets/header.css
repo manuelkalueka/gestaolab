@@ -35,3 +35,16 @@ header {
 .logout-btn:hover {
   background-color: var(--color1); /*Colocar um background suave*/
 }
+
+#username {
+  padding: 1.6em;
+  color: var(--color1);
+
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 500ms ease-in-out;
+}
+
+#username:hover {
+  color: var(--color4);
+}
