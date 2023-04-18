@@ -48,7 +48,7 @@ button:active {
   --danger: #dc3545;
   --warning: #ffc107;
   --success: #28a745;
-  --info: #17a2b8;
+  --info: #3e8ed0;
   --light: #f8f9fa;
   --dark: #343a40;
 
@@ -77,6 +77,74 @@ body {
   font-size: 16px;
   color: var(--dark);
 
-  background-color: #f0fcff;
+  background-color: #f5fafb;
   overflow-y: hidden;
+}
+
+h1.title {
+  color: var(--color5);
+  border-bottom: 1px solid #ccc;
+}
+
+.top-elements {
+  width: 78vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 400px;
+  padding: 5px 5px;
+  border-radius: var(--border_rad);
+  background-color: #fff;
+
+  outline: 1px solid var(--info);
+}
+
+.search-area .input-search {
+  border: 0;
+  outline: 0;
+  height: 100%;
+  padding: 5px 10px;
+  border-radius: var(--border_rad);
+
+  width: 90%;
+}
+
+.btn-search {
+  color: var(--info);
+  font-size: 1.4em;
+
+  transition: color 0.5s ease;
+}
+
+.btn-search:hover {
+  color: #0f7686;
+}
+
+.btn-search:active {
+  color: #0f7686;
+}
+
+@keyframes abrirModal {
+  from {
+    transform: translate3d(0, -100%, -5px);
+    /* Modal entra de cima*/
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.modal.is-active {
+  animation-name: abrirModal;
+  animation-duration: .5s;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
