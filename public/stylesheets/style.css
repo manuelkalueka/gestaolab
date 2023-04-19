@@ -84,6 +84,8 @@ body {
 h1.title {
   color: var(--color5);
   border-bottom: 1px solid #ccc;
+
+  font-family: var(--font_regular);
 }
 
 .top-elements {
@@ -116,10 +118,15 @@ h1.title {
 }
 
 .btn-search {
+  outline: 0;
+  border: 0;
+  background-color: transparent;
   color: var(--info);
   font-size: 1.4em;
 
   transition: color 0.5s ease;
+
+  cursor: pointer;
 }
 
 .btn-search:hover {
@@ -145,6 +152,77 @@ h1.title {
 
 .modal.is-active {
   animation-name: abrirModal;
-  animation-duration: .5s;
+  animation-duration: 0.5s;
   animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+
+  font-family: var(--font_regular);
+}
+
+button#btnGuardar {
+  background-color: var(--color3);
+  transition: background-color 1s;
+}
+
+button#btnGuardar:hover {
+  background-color: var(--color5);
+}
+
+p.modal-card-title {
+  color: var(--color1);
+}
+
+.grid-container {
+  position: absolute;
+  top: 30%;
+  left: 0;
+
+  padding: 1.6em;
+}
+
+.grid-table {
+  max-width: 100%;
+  width: 62.5em;
+
+  font-family: var(--font_regular);
+}
+
+.grid-title {
+  font-size: 0.9em;
+}
+
+.grid-data {
+  text-align: center;
+  font-size: 0.7em;
+  text-indent: 4%; /*Tentar alinhar dados na tabela*/
+  width: auto;
+
+  border-collapse: collapse;
+}
+
+tbody.grid-body tr:nth-child(odd) {
+  background-color: #fff8ee;
+}
+
+.grid-data span.actions-list a {
+  padding: 0.3em;
+}
+
+.grid-data span.actions-list a > i.fa-trash {
+  color: var(--danger);
+}
+
+.grid-data span.actions-list a > i.fa-edit {
+  color: var(--warning);
+}
+
+.grid-data span.actions-list a > i.fa-eye {
+  color: var(--info);
+}
+
+span.actions-list a:hover {
+  opacity: 0.8;
+}
+
+button#btnLimparGrid {
+  float: right;
 }
