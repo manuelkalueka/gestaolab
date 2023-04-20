@@ -180,20 +180,21 @@ p.modal-card-title {
 }
 
 .grid-table {
+  margin: auto;
   max-width: 100%;
-  width: 62.5em;
+  width: 62.8em;
 
   font-family: var(--font_regular);
 }
 
 .grid-title {
-  font-size: 0.9em;
+  font-size: .9em;
 }
 
 .grid-data {
   text-align: center;
-  font-size: 0.7em;
-  text-indent: 4%; /*Tentar alinhar dados na tabela*/
+  font-size: 0.8em;
+  text-indent:1%; /*Tentar alinhar dados na tabela*/
   width: auto;
 
   border-collapse: collapse;
