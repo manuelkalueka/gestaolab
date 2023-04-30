@@ -5,6 +5,7 @@
 *::after {
   margin: 0;
   padding: 0;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   text-decoration: none;
   list-style: none;
@@ -188,13 +189,13 @@ p.modal-card-title {
 }
 
 .grid-title {
-  font-size: .9em;
+  font-size: 0.9em;
 }
 
 .grid-data {
   text-align: center;
   font-size: 0.8em;
-  text-indent:1%; /*Tentar alinhar dados na tabela*/
+  text-indent: 1%; /*Tentar alinhar dados na tabela*/
   width: auto;
 
   border-collapse: collapse;
