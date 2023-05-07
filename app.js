@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+const cors = require('cors');
+
 //Rotas do Sistema
 
 const loginRouter = require('./routes/login');
@@ -15,6 +17,8 @@ const contaRouter = require('./routes/conta');
 const aboutRouter = require('./routes/about');
 const settingRouter = require('./routes/settings');
 const relatorioRouter = require('./routes/relatorio');
+
+const db = require('./db/models');
 
 //Fim Rotas do Sistema
 
@@ -29,6 +33,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
 
 app.use('/', loginRouter);
 app.use('/', dashboardRouter);
