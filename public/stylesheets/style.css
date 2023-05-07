@@ -1,11 +1,8 @@
 @charset "UTF-8";
 
-*,
-*::before,
-*::after {
+* {
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   text-decoration: none;
   list-style: none;
@@ -90,7 +87,6 @@ h1.title {
 }
 
 .top-elements {
-  width: 78vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -101,11 +97,13 @@ h1.title {
   justify-content: space-between;
   align-items: center;
   width: 400px;
-  padding: 5px 5px;
+  padding: .3125em;
+  margin-bottom: 2em;
   border-radius: var(--border_rad);
   background-color: #fff;
 
   outline: 1px solid var(--info);
+
 }
 
 .search-area .input-search {
@@ -172,37 +170,21 @@ p.modal-card-title {
   color: var(--color1);
 }
 
-.grid-container {
-  position: absolute;
-  top: 30%;
-  left: 0;
-
-  padding: 1.6em;
-}
-
-.grid-table {
-  margin: auto;
-  max-width: 100%;
-  width: 62.8em;
-
+.table {
   font-family: var(--font_regular);
 }
 
 .grid-title {
+  background-color: #fff8ee;
   font-size: 0.9em;
+  padding: 0.43rem;
 }
 
 .grid-data {
   text-align: center;
   font-size: 0.8em;
-  text-indent: 1%; /*Tentar alinhar dados na tabela*/
+  padding: 0.43em 0;
   width: auto;
-
-  border-collapse: collapse;
-}
-
-tbody.grid-body tr:nth-child(odd) {
-  background-color: #fff8ee;
 }
 
 .grid-data span.actions-list a {
@@ -227,4 +209,63 @@ span.actions-list a:hover {
 
 button#btnLimparGrid {
   float: right;
+  margin-top: 1em;
 }
+
+a.pagination-link.is-current {
+  background-color: var(--info);
+  border-color: var(--info);
+ 
+}
+
+/* Responsividade manual em tabelas
+
+@media screen and (max-width: 480px) {
+  .grid-table thead {
+    display: none;
+  }
+
+  .grid-table tbody td {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  Responsividade das colunas dependendo dos dados
+  .grid-table tbody tr td:nth-child(1) {
+    width: 30%;
+  }
+
+  .grid-table tbody tr td:nth-child(2) {
+    width: 10%;
+  }
+
+  .grid-table tbody tr td:nth-child(3) {
+    width: 10%;
+  }
+
+  .grid-table tbody tr td:nth-child(4) {
+    width: 5%;
+  }
+
+  .grid-table tbody tr td:nth-child(5) {
+    width: 5%;
+  }
+
+  .grid-table tbody tr td:nth-child(6) {
+    width: 20%;
+  }
+
+  .grid-table tbody tr td:nth-child(7) {
+    width: 5%;
+  }
+
+  .grid-table tbody tr td:nth-child(8) {
+    width: 5%;
+  }
+
+  .grid-table tbody tr td:nth-child(9) {
+    width: 10%;
+  }
+}*/

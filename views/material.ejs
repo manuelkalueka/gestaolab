@@ -4,38 +4,128 @@
 
             <h1 class="title">Materiais</h1>
 
-            <div class="top-elements">
-                <button type="button" id="btn-novo" class="button is-info" data-target="modal-novo-material">Novo
-                    Material</button>
+            <div class="table|-container">
 
-                <form action="#" method="get">
-                    <span class="search-area">
-                        <input type="search" name="pesquisa-registo" placeholder="Pesquisar registo..."
-                            class="input-search">
-                        <button type="submit" class="btn-search">
-                            <i class="fa fa-search is-left icon"></i>
-                        </button>
-                    </span>
-                </form>
-            </div>
+                <div class="top-elements">
+                    <button type="button" id="btn-novo" class="button is-info" data-target="modal-novo-material">Novo
+                        Material</button>
+                    <form action="#" method="get">
+                        <span class="search-area">
+                            <input type="search" name="pesquisa-registo" placeholder="Pesquisar registo..."
+                                class="input-search">
+                            <button type="submit" class="btn-search">
+                                <i class="fa fa-search is-left icon"></i>
+                            </button>
+                        </span>
+                    </form>
+                </div>
 
-            <div class="grid-container">
-                <table class="table grid-table">
+                <table class="table is-striped is-hoverable is-fullwidth">
                     <thead class="grid-header">
                         <tr>
-                            <th class="grid-title">Nome</th>
-                            <th class="grid-title">Modelo</th>
-                            <th class="grid-title">Marca</th>
-                            <th class="grid-title">Quantidade</th>
-                            <th class="grid-title">Mesa</th>
-                            <th class="grid-title">Capacidade</th>
-                            <th class="grid-title">Programas</th>
-                            <th class="grid-title">Estado</th>
-                            <th class="grid-title">Acções</th>
+                            <th scope="col" class="grid-title">Nome</th>
+                            <th scope="col" class="grid-title">Modelo</th>
+                            <th scope="col" class="grid-title">Marca</th>
+                            <th scope="col" class="grid-title">Quantidade</th>
+                            <th scope="col" class="grid-title">Mesa</th>
+                            <th scope="col" class="grid-title">Capacidade</th>
+                            <th scope="col" class="grid-title">Programas</th>
+                            <th scope="col" class="grid-title">Estado</th>
+                            <th scope="col" class="grid-title">Acções</th>
                         </tr>
                     </thead>
 
                     <tbody class="grid-body">
+                        <tr>
+                            <td class="grid-data">Este é o PC do Manuel Kalueka servira para usar os word e para fins de
+                                pograma s</td>
+                            <td class="grid-data">HP 2000</td>
+                            <td class="grid-data">HP</td>
+                            <td class="grid-data">12</td>
+                            <td class="grid-data">02</td>
+                            <td class="grid-data">RAM 4Gb, Processaor Celeron 2.5Ghz, HD 500GBS</td>
+                            <td class="grid-data" style="color:var(--success);">Sim</td>
+                            <td class="grid-data">Bom</td>
+                            <td class="grid-data">
+                                <span class="actions-list">
+                                    <a href="#" class="btn-visualizar" id="btnVisualizar" title="Visualizar Registo"><i
+                                            class="fa fa-eye"></i></a>
+                                    <a href="#" class="btn-editar" id="btnEditar" title="Editar Registo"><i
+                                            class="fa fa-edit"></i></a>
+                                    <a href="#" class="btn-excluir" id="btnExcluir" title="Excluir Registo"><i
+                                            class="fa fa-trash"></i></a>
+                                </span>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="grid-data">Este é o PC do Manuel Kalueka servira para usar os word e para fins de
+                                pograma s</td>
+                            <td class="grid-data">HP 2000</td>
+                            <td class="grid-data">HP</td>
+                            <td class="grid-data">12</td>
+                            <td class="grid-data">02</td>
+                            <td class="grid-data">RAM 4Gb, Processaor Celeron 2.5Ghz, HD 500GBS</td>
+                            <td class="grid-data" style="color:var(--success);">Sim</td>
+                            <td class="grid-data">Bom</td>
+                            <td class="grid-data">
+                                <span class="actions-list">
+                                    <a href="#" class="btn-visualizar" id="btnVisualizar" title="Visualizar Registo"><i
+                                            class="fa fa-eye"></i></a>
+                                    <a href="#" class="btn-editar" id="btnEditar" title="Editar Registo"><i
+                                            class="fa fa-edit"></i></a>
+                                    <a href="#" class="btn-excluir" id="btnExcluir" title="Excluir Registo"><i
+                                            class="fa fa-trash"></i></a>
+                                </span>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td class="grid-data">Este é o PC do Manuel Kalueka servira para usar os word e para fins de
+                                pograma s</td>
+                            <td class="grid-data">HP 2000</td>
+                            <td class="grid-data">HP</td>
+                            <td class="grid-data">12</td>
+                            <td class="grid-data">02</td>
+                            <td class="grid-data">RAM 4Gb, Processaor Celeron 2.5Ghz, HD 500GBS</td>
+                            <td class="grid-data" style="color:var(--success);">Sim</td>
+                            <td class="grid-data">Bom</td>
+                            <td class="grid-data">
+                                <span class="actions-list">
+                                    <a href="#" class="btn-visualizar" id="btnVisualizar" title="Visualizar Registo"><i
+                                            class="fa fa-eye"></i></a>
+                                    <a href="#" class="btn-editar" id="btnEditar" title="Editar Registo"><i
+                                            class="fa fa-edit"></i></a>
+                                    <a href="#" class="btn-excluir" id="btnExcluir" title="Excluir Registo"><i
+                                            class="fa fa-trash"></i></a>
+                                </span>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="grid-data">Este é o PC do Manuel Kalueka servira para usar os word e para fins de
+                                pograma s</td>
+                            <td class="grid-data">HP 2000</td>
+                            <td class="grid-data">HP</td>
+                            <td class="grid-data">12</td>
+                            <td class="grid-data">02</td>
+                            <td class="grid-data">RAM 4Gb, Processaor Celeron 2.5Ghz, HD 500GBS</td>
+                            <td class="grid-data" style="color:var(--success);">Sim</td>
+                            <td class="grid-data">Bom</td>
+                            <td class="grid-data">
+                                <span class="actions-list">
+                                    <a href="#" class="btn-visualizar" id="btnVisualizar" title="Visualizar Registo"><i
+                                            class="fa fa-eye"></i></a>
+                                    <a href="#" class="btn-editar" id="btnEditar" title="Editar Registo"><i
+                                            class="fa fa-edit"></i></a>
+                                    <a href="#" class="btn-excluir" id="btnExcluir" title="Excluir Registo"><i
+                                            class="fa fa-trash"></i></a>
+                                </span>
+                            </td>
+
+                        </tr>
+
                         <tr>
                             <td class="grid-data">Este é o PC do Manuel Kalueka servira para usar os word e para fins de
                                 pograma s</td>
@@ -63,8 +153,24 @@
 
                 </table>
 
-                <button type="reset" class="button is-danger is-small" id="btnLimparGrid">Eliminar Todos
-                    Registos</button>
+                <nav class="pagination" role="navigation" aria-label="pagination">
+                    <a class="pagination-previous is-disabled" title="Esta é a primeira página">Anterior</a>
+                    <a class="pagination-next">Próxima</a>
+                    <ul class="pagination-list">
+                      <li>
+                        <a class="pagination-link is-current" aria-label="Page 1" aria-current="page">1</a>
+                      </li>
+                      <li>
+                        <a class="pagination-link" aria-label="Goto page 2">2</a>
+                      </li>
+                      <li>
+                        <a class="pagination-link" aria-label="Goto page 3">3</a>
+                      </li>
+                    </ul>
+                  </nav>
+                <button type="reset" class="button is-danger" id="btnLimparGrid">Eliminar Todos
+                    Registos
+                </button>
             </div>
 
         </main>

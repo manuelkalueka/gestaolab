@@ -1,5 +1,6 @@
 .menu-lateral {
-  width: 200px;
+  float: left;
+  width: 15vw;
   height: 100%;
   background-color: var(--dark);
   padding: 20px 0 40px 1%;
