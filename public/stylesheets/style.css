@@ -218,6 +218,10 @@ a.pagination-link.is-current {
  
 }
 
+.table th {
+  font-size: 1.1em;
+}
+
 /* Responsividade manual em tabelas
 
 @media screen and (max-width: 480px) {

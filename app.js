@@ -4,23 +4,30 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-const cors = require('cors');
+const cors = require('cors');//função do Cors ToDo
+
+//const db = require('./db/models'); DB com Sequelize
 
 //Rotas do Sistema
 
 const loginRouter = require('./routes/login');
 const dashboardRouter = require('./routes/dashboard');
-const router404 = require('./routes/404');
 const materiaisRouter = require('./routes/material');
 const mesaRouter = require('./routes/mesa');
 const contaRouter = require('./routes/conta');
 const aboutRouter = require('./routes/about');
 const settingRouter = require('./routes/settings');
 const relatorioRouter = require('./routes/relatorio');
-
-const db = require('./db/models');
+const extrasRouter = require('./routes/extras');
+const router404 = require('./routes/404');
 
 //Fim Rotas do Sistema
+
+/* Importação da Base de dados */
+const db = require('./db');
+/**
+ * Fim base de Dados
+ */
 
 var app = express();
 
@@ -37,13 +44,14 @@ app.use(cors());
 
 app.use('/', loginRouter);
 app.use('/', dashboardRouter);
-app.use('/', router404);
 app.use('/', materiaisRouter);
 app.use('/', mesaRouter);
 app.use('/', contaRouter);
 app.use('/', settingRouter);
 app.use('/', relatorioRouter);
 app.use('/', aboutRouter);
+app.use('/', extrasRouter);
+app.use('/', router404);//manter o erro de não encontrado em ultimo
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
