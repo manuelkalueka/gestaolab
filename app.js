@@ -3,13 +3,14 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const methodOverride = require('method-override')
+//const bodyParser = require('body-parser')
 
 const cors = require('cors');//função do Cors ToDo
 
 //const db = require('./db/models'); DB com Sequelize
 
 //Rotas do Sistema
-
 const loginRouter = require('./routes/login');
 const dashboardRouter = require('./routes/dashboard');
 const materiaisRouter = require('./routes/material');
@@ -24,7 +25,7 @@ const router404 = require('./routes/404');
 //Fim Rotas do Sistema
 
 /* Importação da Base de dados */
-const db = require('./db');
+//const db = require('./db.js');
 /**
  * Fim base de Dados
  */
@@ -40,6 +41,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+/* Metodo override para identificar o put e o delete*/
+app.use(methodOverride(function (req, res) {
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+    const method = req.body._method;
+    delete req.body._method;
+    return method;
+  }
+}));
+
+// Fim metodo override
 app.use(cors());
 
 app.use('/', loginRouter);
