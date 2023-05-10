@@ -5,10 +5,13 @@ const database = require('../database')
 const TITLE = "Materiais do Laboratório";
 
 router.get("/materiais", (req, res, next) => {
-    database("materiais").then((materiais) => {
-        res.render("material", { title: TITLE, materiais: materiais });
-    }, next);
-
+    if (req.session.usuario) {
+        database("materiais").then((materiais) => {
+            res.render("material", { title: TITLE, materiais: materiais });
+        }, next);
+    } else {
+        res.redirect('/login');
+    }
 });
 
 router.post("/materiais", (req, res, next) => {

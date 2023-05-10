@@ -3,7 +3,11 @@ const router = express.Router();
 const TITLE = "Gestor de Conta";
 
 router.get("/conta", (req, res, next) => {
-  res.render("conta", { title: TITLE });
+  if (req.session.usuario) {
+    res.render("conta", { title: TITLE });
+  } else {
+    res.redirect('/login');
+  }
 });
 
 module.exports = router;
