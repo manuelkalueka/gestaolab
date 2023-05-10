@@ -34,8 +34,15 @@ const btnNovo = document.querySelector('#btn-novo');
 btnNovo.addEventListener('click', abrirModalNovo);
 
 
-const btnEditar = document.querySelector('#btnEditar');
-btnEditar.addEventListener('click', abrirModalEditar);
+const btnEditarRegisto = document.querySelectorAll('.btn-editar');
 
-document.querySelector('#btnExcluir').addEventListener('click', excluirRegisto);
+btnEditarRegisto.forEach((element) => {
+    element.addEventListener('click', abrirModalEditar);
+});
+
+const btnExcluirRegisto = document.querySelectorAll('.btn-excluir');
+btnExcluirRegisto.forEach((element) => {
+    element.addEventListener('click', excluirRegisto);
+});
+
 document.querySelector('#btnLimparGrid').addEventListener('click', excluirTodosRegistos);
