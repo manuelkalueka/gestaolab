@@ -6,11 +6,6 @@ function validarSenha() {
     let username = userNameElement.value;
     let senha = senhaElement.value;
 
-<<<<<<< HEAD
-    const message = { err: 'Verifique os dados de acesso...', success: 'Dados aceito' };
-
-=======
->>>>>>> 6a8cdc1df8a08b48d15883c9ef367d7fc83910d9
     if (username == '' || senha == '') {
         event.preventDefault();
 
@@ -22,10 +17,6 @@ function validarSenha() {
     } else {
         alerMessage.classList.remove('hide');
         alerMessage.classList.add('alert-success');
-<<<<<<< HEAD
-        alerMessage.textContent = message.success;
-=======
->>>>>>> 6a8cdc1df8a08b48d15883c9ef367d7fc83910d9
     }
 }
 
