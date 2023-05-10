@@ -23,7 +23,7 @@ function abrirModalEditar() {
 }
 
 function excluirRegisto() {
-    confirm("Tens a certeza que deseja excluir o MATERIAL?");
+    confirm("Tens a certeza que deseja excluir o <MATERIAL?>");
 }
 
 function excluirTodosRegistos() {

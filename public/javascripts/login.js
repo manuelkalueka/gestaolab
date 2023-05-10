@@ -6,7 +6,7 @@ function validarSenha() {
     let username = userNameElement.value;
     let senha = senhaElement.value;
 
-    const message = { err: 'Verifique os dados de acesso...', sucess: 'Dados aceito' };
+    const message = { err: 'Verifique os dados de acesso...', success: 'Dados aceito' };
 
     if (username == '' || senha == '') {
         event.preventDefault();
@@ -20,7 +20,7 @@ function validarSenha() {
     } else {
         alerMessage.classList.remove('hide');
         alerMessage.classList.add('alert-success');
-        alerMessage.textContent = message.sucess;
+        alerMessage.textContent = message.success;
     }
 }
 
@@ -34,3 +34,7 @@ document.querySelector('#username').addEventListener('blur', () => {
 
 const btnEntrar = document.querySelector('#btnEntrar');
 btnEntrar.addEventListener('click', validarSenha);
+
+document.getElementsByTagName('body').addEventListener('load', ()=> {
+    document.querySelector('#username').focus();
+});
