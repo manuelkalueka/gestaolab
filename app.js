@@ -4,6 +4,11 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const methodOverride = require('method-override')
+
+//Controla a sessao do usuario
+const session = require('express-session');
+
+//fim sessao
 //const bodyParser = require('body-parser')
 
 const cors = require('cors');//função do Cors ToDo
@@ -50,6 +55,14 @@ app.use(methodOverride(function (req, res) {
     return method;
   }
 }));
+
+//configuracao das sessoes
+app.use(session({
+  secret: 'gestaodolaboratoriopormanuelkaluekadev',
+  resave: false,//altera os dados salvos em cada sessao
+  saveUninitialized: false//nao forca salvar
+}));
+//fim
 
 // Fim metodo override
 app.use(cors());
