@@ -3,11 +3,11 @@ const router = express.Router();
 const TITULO_PAGE = 'Dashboard';
 
 router.get('/dashboard', (req, res, next) => {
-    res.render('dashboard', { title: TITULO_PAGE });
-});
-
-router.post('/dashboard', (req, res, next) => {
-    res.render('dashboard', { title: TITULO_PAGE });
+    if (req.session.usuario) {
+        res.render('dashboard', { title: TITULO_PAGE, userLogado: req.session.usuario });
+    } else {
+        res.redirect('/login');
+    }
 });
 
 module.exports = router;
