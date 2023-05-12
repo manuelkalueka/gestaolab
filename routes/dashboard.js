@@ -1,10 +1,14 @@
 const express = require('express');
+
+const isAuth = require('../middlewares/authorize.js').isAuth;
+const isNotAuth = require('../middlewares/authorize.js').isNotAuth;
+
 const router = express.Router();
 const TITULO_PAGE = 'Dashboard';
 
 const database = require('../database');
 
-router.get('/dashboard', (req, res, next) => {
+router.get('/dashboard', isAuth, (req, res, next) => {
     if (!req.isAuthenticated()) {
         return res.redirect('/login');
     }
