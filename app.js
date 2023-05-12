@@ -3,7 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const methodOverride = require('method-override')
+const methodOverride = require('method-override');
+const passport = require('passport');
+require('./passport');
 
 //Controla a sessao do usuario
 const session = require('express-session');
@@ -29,17 +31,23 @@ const router404 = require('./routes/404');
 
 //Fim Rotas do Sistema
 
-/* Importação da Base de dados */
-//const db = require('./db.js');
-/**
- * Fim base de Dados
- */
-
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+//configuracao das sessoes e autenticacao de usuario
+app.use(session({
+  secret: 'gestao do laboratorio por manuel kalueka dev',
+  resave: false,//altera os dados salvos em cada sessao
+  saveUninitialized: false//nao forca salvar
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+//fim
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -55,15 +63,6 @@ app.use(methodOverride(function (req, res) {
     return method;
   }
 }));
-
-//configuracao das sessoes
-app.use(session({
-  secret: 'gestaodolaboratoriopormanuelkaluekadev',
-  resave: false,//altera os dados salvos em cada sessao
-  saveUninitialized: false//nao forca salvar
-}));
-//fim
-
 // Fim metodo override
 app.use(cors());
 
