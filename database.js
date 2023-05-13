@@ -9,6 +9,4 @@ const database = knex({
         database: 'gestaolab'
     }
 });
-
-
 module.exports = database;

@@ -1,28 +1,18 @@
 const express = require('express');
-const passport = require('passport');
-
-const isAuth = require('../middlewares/authorize.js').isAuth;
-const isNotAuth = require('../middlewares/authorize.js').isNotAuth;
-
 const router = express.Router();
 const title = 'GESTAOLAB | Área de Acesso';
 
-router.get('/login', isNotAuth, (req, res, next) => {
-    if (req.isAuthenticated()) {
-        res.redirect('dashboard');
-    } else {
-        res.render('login', { title: title });
-    }
+router.get('/login', (req, res, next) => {
+    res.render('login', { title: title });
 });
 
 router.get('/', (req, res, next) => {
     res.redirect('login');
 });
 
-router.post('/login', passport.authenticate('local', {
-    successRedirect: '/dashboard',
-    failureRedirect: '/error'
-}));
+router.post('/login', (req, res, next) => {
+    res.redirect('dashboard');
+});
 
 /** ROTA LOGOUT */
 

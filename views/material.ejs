@@ -4,7 +4,8 @@
 
             <h1 class="title">Materiais</h1>
 
-            <div class="table|-container">
+            <!--<div class="table-container">-->
+            <div>
 
                 <div class="top-elements">
                     <button type="button" id="btn-novo" class="button is-info" data-target="modal-novo-material">Novo
@@ -38,15 +39,28 @@
 
                         <% materiais.forEach((material)=> { %>
 
-
                             <tr>
-                                <td class="grid-data"><%= material.nome %></td>
-                                <td class="grid-data"><%= material.marca %></td>
-                                <td class="grid-data"><%= material.modelo %></td>
-                                <td class="grid-data"><%= material.mesa %></td>
-                                <td class="grid-data"><%= material.capacidade %></td>
-                                <td class="grid-data"><%= material.tem_programas %></td>
-                                <td class="grid-data"><%= material.estado %></td>
+                                <td class="grid-data">
+                                    <%= material.nome %>
+                                </td>
+                                <td class="grid-data">
+                                    <%= material.marca %>
+                                </td>
+                                <td class="grid-data">
+                                    <%= material.modelo %>
+                                </td>
+                                <td class="grid-data">
+                                    <%= material.mesa %>
+                                </td>
+                                <td class="grid-data">
+                                    <%= material.capacidade %>
+                                </td>
+                                <td class="grid-data">
+                                    <%= material.tem_programas %>
+                                </td>
+                                <td class="grid-data">
+                                    <%= material.estado %>
+                                </td>
                                 <td class="grid-data">
                                     <span class="actions-list">
                                         <a href="#" class="btn-visualizar" id="btnVisualizar"
@@ -141,14 +155,7 @@
                             </div>
                         </div>
 
-                        <!--   <div class="field">
-                            <label for="quant-material" class="label">
-                                Quantidade *
-                            </label>
-                            <div class="control">
-                                <input type="number" class="input" id="quant-material" min="1" max="99"
-                                    placeholder="Digite a quantidade" name="quantMaterial" required>
-                            </div>
+                        <div class="field">
                             <label for="data-compra" class="label">
                                 Data de Compra
                             </label>
@@ -156,7 +163,7 @@
                             <div class="control">
                                 <input type="date" class="input" id="data-compra" name="dataCompra">
                             </div>
-                        </div> -->
+                        </div>
 
                         <div class="field">
                             <label for="estado-material" class="label">
@@ -209,17 +216,20 @@
                             <label class="label">Observações</label>
                             <div class="control">
                                 <textarea class="textarea" placeholder="Ex.: Este material é....." rows="1"
-                                    autocomplete="on"></textarea>
+                                    autocomplete="on">
+                                </textarea>
                             </div>
+                        </div>
+
+                        <div class="field">
+                            <footer class="modal-card-foot">
+                                <button type="submit" class="button is-primary" id="btnGuardar">Guardar</button>
+                                <button type="reset" class="button" id="btnCancelar">Cancelar</button>
+                            </footer>
                         </div>
                     </form>
 
                 </section>
-
-                <footer class="modal-card-foot">
-                    <button type="submit" class="button is-primary" id="btnGuardar">Guardar</button>
-                    <button type="reset" class="button" id="btnCancelar">Cancelar</button>
-                </footer>
             </div>
         </div>
 

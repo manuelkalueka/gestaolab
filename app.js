@@ -4,8 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const methodOverride = require('method-override');
-const passport = require('passport');
-require('./passport');
 
 //Controla a sessao do usuario
 const session = require('express-session');
@@ -43,9 +41,6 @@ app.use(session({
   resave: false,//altera os dados salvos em cada sessao
   saveUninitialized: false//nao forca salvar
 }));
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 //fim
 

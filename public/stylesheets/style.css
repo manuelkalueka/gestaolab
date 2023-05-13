@@ -174,9 +174,9 @@ p.modal-card-title {
   font-family: var(--font_regular);
 }
 
-.grid-title {
+.table .grid-title {
   background-color: #fff8ee;
-  font-size: 0.9em;
+  font-size: .9em;
   padding: 0.43rem;
 }
 
@@ -216,10 +216,6 @@ a.pagination-link.is-current {
   background-color: var(--info);
   border-color: var(--info);
  
-}
-
-.table th {
-  font-size: 1.1em;
 }
 
 /* Responsividade manual em tabelas
@@ -273,3 +269,7 @@ a.pagination-link.is-current {
     width: 10%;
   }
 }*/
+
+footer.modal-card-foot {
+  background-color: transparent;
+}

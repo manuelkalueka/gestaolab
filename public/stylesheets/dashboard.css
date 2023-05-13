@@ -22,6 +22,8 @@ body {
   padding: 2em;
 
   transition: left 0.5s ease;
+
+  overflow-y: hidden;
 }
 
 /*

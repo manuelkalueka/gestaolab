@@ -5,17 +5,19 @@ const database = require('../database')
 const TITLE = "Materiais do Laboratório";
 
 router.get("/materiais", (req, res, next) => {
-    if (req.session.usuario) {
-        database("materiais").then((materiais) => {
-            res.render("material", { title: TITLE, materiais: materiais });
-        }, next);
-    } else {
-        res.redirect('/login');
-    }
+    database("materiais").then((materiais) => {
+        res.render("material",
+            {
+                title: TITLE, materiais: materiais,
+                message: null
+            });
+    }, next);
 });
 
 router.post("/materiais", (req, res, next) => {
-    res.render("material", { title: TITLE });
+    database("materiais").insert(req.body).then((ids) => {
+    }, next);
+    res.redirect('materiais');
 });
 
 router.put('/materiais/:id', (req, res, next) => {
