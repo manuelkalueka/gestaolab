@@ -100,6 +100,12 @@
                 </button>
             </div>
 
+            <p style="color:green;">
+                <label>
+                    <%= message%>
+                </label>
+            </p>
+
         </main>
 
         <div class="modal" id="modal-novo-material">
@@ -118,7 +124,7 @@
                             </label>
                             <div class="control">
                                 <input type="text" class="input" id="nome-material" maxlength="80"
-                                    placeholder="Digite o nome" name="nomeMaterial" required>
+                                    placeholder="Digite o nome" name="nome" required>
                             </div>
                         </div>
 
@@ -128,7 +134,7 @@
                             </label>
                             <div class="control">
                                 <input type="text" class="input" id="marca-material" maxlength="25"
-                                    placeholder="Digite a marca" name="marcaMaterial" value="Sem marca">
+                                    placeholder="Digite a marca" name="marca" value="Sem marca">
                             </div>
 
                             <label for="modelo-material" class="label">
@@ -136,7 +142,7 @@
                             </label>
                             <div class="control">
                                 <input type="text" class="input" id="modelo-material" maxlength="25"
-                                    placeholder="Digite o modelo" name="modeloMaterial" disabled>
+                                    placeholder="Digite o modelo" name="modelo" disabled>
                             </div>
                         </div>
 
@@ -144,7 +150,7 @@
                             <label class="label" for="tipo-material">Tipo de Material</label>
                             <div class="control">
                                 <div class="select">
-                                    <select id="tipo-material">
+                                    <select id="tipo-material" name="tipo_material">
                                         <option value="pc" selected>Computador</option>
                                         <option value="key">Teclado</option>
                                         <option value="mo">Mouse</option>
@@ -161,7 +167,7 @@
                             </label>
 
                             <div class="control">
-                                <input type="date" class="input" id="data-compra" name="dataCompra">
+                                <input type="date" class="input" id="data-compra" name="data_compra">
                             </div>
                         </div>
 
@@ -170,13 +176,13 @@
                                 Estado
                             </label>
                             <div class="control">
-                                <input type="radio" class="radio" id="rd-danificado" name="estadoMaterial">
+                                <input type="radio" class="radio" id="rd-danificado" name="estado">
                                 <span>Danificado</span>
 
-                                <input type="radio" class="radio" id="rd-bom" name="estadoMaterial" checked>
+                                <input type="radio" class="radio" id="rd-bom" name="estado" checked>
                                 <span>Bom</span>
 
-                                <input type="radio" class="radio" id="rd-rasoavel" name="estadoMaterial">
+                                <input type="radio" class="radio" id="rd-rasoavel" name="estado">
                                 <span>Rasoável</span>
                             </div>
                         </div>
@@ -184,7 +190,7 @@
                         <div class="field">
                             <label for="capacidade" class="label">Capacidade *</label>
                             <div class="control">
-                                <input type="text" class="input" id="capacidade"
+                                <input type="text" class="input" id="capacidade" name="capacidade"
                                     placeholder="Ex.: Ram de 4gb processador intel 2.4GHz HDD 500Gb" maxlength="45"
                                     required>
                             </div>
@@ -195,11 +201,10 @@
                                 Tem programas
                             </label>
                             <div class="control">
-                                <input type="radio" class="radio" id="rd-sim" name="temPrograma" checked>
+                                <input type="radio" class="radio" id="rd-sim" name="tem_programas" checked value="não">
                                 <span>Sim</span>
 
-
-                                <input type="radio" class="radio" id="rd-nao" name="temPrograma">
+                                <input type="radio" class="radio" id="rd-nao" name="tem_programas" value="não">
                                 <span>Não</span>
                             </div>
                         </div>
@@ -207,8 +212,8 @@
                         <div class="field">
                             <label for="mesa" class="label">Nº Mesa *</label>
                             <div class="control">
-                                <input type="number" class="input" id="mesa" placeholder="Digite o número da mesa"
-                                    required>
+                                <input type="number" class="input" id="mesa" name="mesa"
+                                    placeholder="Digite o número da mesa" required>
                             </div>
                         </div>
 
@@ -216,7 +221,7 @@
                             <label class="label">Observações</label>
                             <div class="control">
                                 <textarea class="textarea" placeholder="Ex.: Este material é....." rows="1"
-                                    autocomplete="on">
+                                    autocomplete="on" name="observacoes">
                                 </textarea>
                             </div>
                         </div>

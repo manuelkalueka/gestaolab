@@ -39,3 +39,15 @@ btnEditar.addEventListener('click', abrirModalEditar);
 
 document.querySelector('#btnExcluir').addEventListener('click', excluirRegisto);
 document.querySelector('#btnLimparGrid').addEventListener('click', excluirTodosRegistos);
+
+function verificarMaterial() {
+    const tipoMaterilList = document.querySelectorAll('#tipo-material');
+
+    tipoMaterilList.forEach(material => {
+        if (material.value.selected != 'pc') {
+            alert(material);
+        }
+    })
+}
+
+document.querySelector('#tipo-material').addEventListener('change', verificarMaterial);

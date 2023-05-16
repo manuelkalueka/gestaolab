@@ -8,12 +8,7 @@ const methodOverride = require('method-override');
 //Controla a sessao do usuario
 const session = require('express-session');
 
-//fim sessao
-//const bodyParser = require('body-parser')
-
 const cors = require('cors');//função do Cors ToDo
-
-//const db = require('./db/models'); DB com Sequelize
 
 //Rotas do Sistema
 const loginRouter = require('./routes/login');
@@ -42,11 +37,11 @@ app.use(session({
   saveUninitialized: false//nao forca salvar
 }));
 
-//fim
+//fim autenticacao
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));// true evita object null
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -59,6 +54,7 @@ app.use(methodOverride(function (req, res) {
   }
 }));
 // Fim metodo override
+
 app.use(cors());
 
 app.use('/', loginRouter);
