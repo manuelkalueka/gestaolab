@@ -10,7 +10,9 @@ router.get("/materiais", (req, res, next) => {
         .then((materiais) => {
             res.render("material",
                 {
-                    title: TITLE, materiais: materiais,
+                    title: TITLE,
+                    materiais: materiais,
+                    mesas: null,
                     message: null
                 });
         }, next);

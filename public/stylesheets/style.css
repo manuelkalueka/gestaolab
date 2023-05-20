@@ -37,9 +37,10 @@ a {
   color: inherit;
 }
 
+a:active,
 button:active {
-  transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
-  transform: translate(0, -3px);
+  transition: all 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  transform: scale(0.9);
 }
 
 :root {
@@ -97,13 +98,12 @@ h1.title {
   justify-content: space-between;
   align-items: center;
   width: 400px;
-  padding: .3125em;
+  padding: 0.3125em;
   margin-bottom: 2em;
   border-radius: var(--border_rad);
   background-color: #fff;
 
   outline: 1px solid var(--info);
-
 }
 
 .search-area .input-search {
@@ -157,12 +157,12 @@ h1.title {
   font-family: var(--font_regular);
 }
 
-button#btnGuardar {
+button#btnCadastrar {
   background-color: var(--color3);
   transition: background-color 1s;
 }
 
-button#btnGuardar:hover {
+button#btnCadastrar:hover {
   background-color: var(--color5);
 }
 
@@ -176,7 +176,7 @@ p.modal-card-title {
 
 .table .grid-title {
   background-color: #fff8ee;
-  font-size: .9em;
+  font-size: 0.9em;
   padding: 0.43rem;
 }
 
@@ -215,7 +215,6 @@ button#btnLimparGrid {
 a.pagination-link.is-current {
   background-color: var(--info);
   border-color: var(--info);
- 
 }
 
 /* Responsividade manual em tabelas
@@ -272,4 +271,48 @@ a.pagination-link.is-current {
 
 footer.modal-card-foot {
   background-color: transparent;
+}
+
+.alert-err {
+  width: auto;
+  height: auto;
+  background-color: rgb(255, 220, 216);
+  color: var(--danger);
+
+  text-align: center;
+  padding: 2px;
+  border-radius: var(--border_rad);
+}
+
+.message-alert {
+  animation: coming 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.alert-success {
+  width: 300px;
+  height: auto;
+  background-color: rgb(233, 255, 216);
+  color: var(--success);
+
+  text-align: center;
+  padding: 10px;
+  border-radius: var(--border_rad);
+}
+
+.hide {
+  display: none;
+}
+
+@keyframes coming {
+  75% {
+    width: 120px;
+    height: 0;
+    padding: 0;
+    color: transparent;
+    opacity: 0.7;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }

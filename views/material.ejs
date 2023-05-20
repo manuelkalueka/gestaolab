@@ -117,10 +117,151 @@
                 </header>
 
                 <section class="modal-card-body">
-                    <form action="/materiais" method="post">
+
+                    <form action="/materiais" method="post" id="form-validate">
                         <div class="field">
                             <label for="nome-material" class="label">
                                 Nome *
+                            </label>
+                            <div class="control">
+                                <input type="text" class="input" id="nome-material" maxlength="80"
+                                    placeholder="Digite o nome" name="nome">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="marca-material" class="label">
+                                Marca
+                            </label>
+                            <div class="control">
+                                <input type="text" class="input" id="marca-material" maxlength="25"
+                                    placeholder="Digite a marca" name="marca" value="Sem marca">
+                            </div>
+
+                            <label for="modelo-material" class="label">
+                                Modelo
+                            </label>
+                            <div class="control">
+                                <input type="text" class="input" id="modelo-material" maxlength="25"
+                                    placeholder="Sem modelo" name="modelo" disabled>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label" for="tipo-material">Tipo de Material</label>
+                            <div class="control">
+                                <div class="select">
+                                    <select id="tipo-material" name="tipo_material">
+                                        <option value="pc" selected>Computador</option>
+                                        <option value="key">Teclado</option>
+                                        <option value="mo">Mouse</option>
+                                        <option value="up">UPS</option>
+                                        <option value="other">Outro</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="data-compra" class="label">
+                                Data de Compra
+                            </label>
+
+                            <div class="control">
+                                <input type="date" class="input" id="data-compra" name="data_compra">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="estado-material" class="label">
+                                Estado
+                            </label>
+                            <div class="control">
+                                <input type="radio" class="radio" id="rd-danificado" name="estado">
+                                <span>Danificado</span>
+
+                                <input type="radio" class="radio" id="rd-bom" name="estado" checked>
+                                <span>Bom</span>
+
+                                <input type="radio" class="radio" id="rd-rasoavel" name="estado">
+                                <span>Rasoável</span>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="capacidade" class="label">Capacidade *</label>
+                            <div class="control">
+                                <input type="text" class="input" id="capacidade" name="capacidade"
+                                    placeholder="Ex.: Ram de 4gb processador intel 2.4GHz HDD 500Gb" maxlength="45">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="tem_programas" class="label">
+                                Tem programas
+                            </label>
+                            <div class="control">
+                                <input type="radio" class="radio" id="rd-sim" name="tem_programas" checked value="não">
+                                <span>Sim</span>
+
+                                <input type="radio" class="radio" id="rd-nao" name="tem_programas" value="não">
+                                <span>Não</span>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="mesa" class="label">Nº Mesa *</label>
+                            <div class="control">
+                                <select id="mesa name=" mesa">
+                                    <option value="none">Selecione uma opção</option>
+                                    <% mesas.forEach((mesa)=> { %>
+                                        <option value="<%= mesa.id%>">
+                                            <%= mesa.nome%>
+                                        </option>
+                                        <%})%>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="observacoes" class="label">Observações</label>
+                            <div class="control">
+                                <textarea id="observacoes" class="textarea" placeholder="Ex.: Este material é....."
+                                    rows="1" autocomplete="on" name="observacoes">
+                                </textarea>
+                            </div>
+                        </div>
+
+                        <div class="message-alert hide">
+                            <span id="msg"></span>
+                        </div>
+
+                        <div class="field">
+                            <footer class="modal-card-foot">
+                                <button type="submit" class="button is-primary" id="btnCadastrar">Cadastrar</button>
+                                <button type="reset" class="button" id="btnCancelar">Cancelar</button>
+                            </footer>
+                        </div>
+                    </form>
+
+                </section>
+            </div>
+        </div>
+
+        <!-- Modal editar registo-->
+        <div class="modal" id="modal-editar-material">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Editar Material</p>
+                    <button class="delete" aria-label="close" id="close"></button>
+                </header>
+
+                <section class="modal-card-body">
+                    <form action="/materiais" method="post">
+                        <div class="field">
+                            <label for="nome-material" class="label">
+                                Nome
                             </label>
                             <div class="control">
                                 <input type="text" class="input" id="nome-material" maxlength="80"
@@ -210,7 +351,7 @@
                         </div>
 
                         <div class="field">
-                            <label for="mesa" class="label">Nº Mesa *</label>
+                            <label for="mesa" class="label">Nº Mesa</label>
                             <div class="control">
                                 <input type="number" class="input" id="mesa" name="mesa"
                                     placeholder="Digite o número da mesa" required>
@@ -228,36 +369,14 @@
 
                         <div class="field">
                             <footer class="modal-card-foot">
-                                <button type="submit" class="button is-primary" id="btnGuardar">Guardar</button>
+                                <button type="submit" class="button is-primary" id="btnGuardar">Guardar
+                                    Alterações</button>
                                 <button type="reset" class="button" id="btnCancelar">Cancelar</button>
                             </footer>
                         </div>
                     </form>
 
                 </section>
-            </div>
-        </div>
-
-        <!-- Modal editar registo-->
-        <div class="modal" id="modal-editar-material">
-            <div class="modal-background"></div>
-            <div class="modal-card">
-                <header class="modal-card-head">
-                    <p class="modal-card-title">Editar Material Cadastrado</p>
-                    <button class="delete" aria-label="close" id="close"></button>
-                </header>
-
-                <section class="modal-card-body">
-                    <form action="/materiais" method="post">
-
-                    </form>
-
-                </section>
-
-                <footer class="modal-card-foot">
-                    <button type="submit" class="button is-primary" id="btnGEdicao">Guardar Alterações</button>
-                    <button type="reset" class="button" id="btnCanEdicao">Cancelar</button>
-                </footer>
             </div>
         </div>
         <!-- Fim Modal editar registo-->
