@@ -33,11 +33,16 @@ function excluirTodosRegistos() {
 const btnNovo = document.querySelector('#btn-novo');
 btnNovo.addEventListener('click', abrirModalNovo);
 
+//Abrir Editar elemento
+document.querySelectorAll('.btn-editar').forEach(btnEditar => {
+    btnEditar.addEventListener('click', abrirModalEditar);
+});
+//Excluir elemento Editar elemento
+document.querySelectorAll('.btn-excluir').forEach(btnExcluir => {
+    btnExcluir.addEventListener('click', excluirRegisto);
+})
 
-const btnEditar = document.querySelector('#btnEditar');
-btnEditar.addEventListener('click', abrirModalEditar);
-
-document.querySelector('#btnExcluir').addEventListener('click', excluirRegisto);
+//Exluir todos
 document.querySelector('#btnLimparGrid').addEventListener('click', excluirTodosRegistos);
 
 /*

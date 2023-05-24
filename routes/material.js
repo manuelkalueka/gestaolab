@@ -4,19 +4,20 @@ const database = require('../database');
 const yup = require('yup');
 
 const TITLE = "Materiais do Laboratório";
+let materiais;
+let mesas;
+
+database('materiais').limit(6).then(material => { return materiais = material }).catch(erro => console.log(erro.errors));
+database('mesas').then(mesa => { return mesas = mesa }).catch(erro => console.log(erro.errors));
 
 router.get("/materiais", (req, res, next) => {
-    database("materiais")
-        .limit(6)
-        .then((materiais) => {
-            res.render("material",
-                {
-                    title: TITLE,
-                    materiais: materiais,
-                    mesas: null,
-                    message: null
-                });
-        }, next);
+    res.render("material",
+        {
+            title: TITLE,
+            materiais: materiais,
+            mesas: mesas,
+            message: null
+        });
 });
 
 router.post("/materiais", (req, res, next) => {

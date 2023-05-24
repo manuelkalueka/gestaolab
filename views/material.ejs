@@ -40,7 +40,7 @@
                         <% materiais.forEach((material)=> { %>
 
                             <tr>
-                                <td class="grid-data">
+                                <td class="grid-data nome-in-table">
                                     <%= material.nome %>
                                 </td>
                                 <td class="grid-data">
@@ -65,9 +65,9 @@
                                     <span class="actions-list">
                                         <a href="#" class="btn-visualizar" id="btnVisualizar"
                                             title="Visualizar Registo"><i class="fa fa-eye"></i></a>
-                                        <a href="#" class="btn-editar" id="btnEditar" title="Editar Registo"><i
+                                        <a href="#" class="btn-editar" title="Editar Registo"><i
                                                 class="fa fa-edit"></i></a>
-                                        <a href="#" class="btn-excluir" id="btnExcluir" title="Excluir Registo"><i
+                                        <a href="#" class="btn-excluir" title="Excluir Registo"><i
                                                 class="fa fa-trash"></i></a>
                                     </span>
                                 </td>
@@ -117,6 +117,9 @@
                 </header>
 
                 <section class="modal-card-body">
+                    <div class="message-alert hide">
+                        <span id="msg"></span>
+                    </div>
 
                     <form action="/materiais" method="post" id="form-validate">
                         <div class="field">
@@ -213,7 +216,11 @@
                             <label for="mesa" class="label">Nº Mesa *</label>
                             <div class="control select">
                                 <select id="mesa" name="mesa">
-                                    <option value="1">Mesa 1</option>
+                                    <% mesas.forEach((mesa)=> { %>
+                                        <option value="<%= mesa.id%>">
+                                            <%= mesa.nome%>
+                                        </option>
+                                        <%})%>
                                 </select>
                             </div>
                         </div>
@@ -225,10 +232,6 @@
                                     rows="1" name="observacoes">
                                 </textarea>
                             </div>
-                        </div>
-
-                        <div class="message-alert hide">
-                            <span id="msg"></span>
                         </div>
 
                         <div class="field">
