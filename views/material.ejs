@@ -143,7 +143,7 @@
                             </label>
                             <div class="control">
                                 <input type="text" class="input" id="modelo-material" maxlength="25"
-                                    placeholder="Sem modelo" name="modelo" disabled>
+                                    placeholder="Digite o modelo" name="modelo" disabled value="Sem modelo">
                             </div>
                         </div>
 
@@ -177,13 +177,13 @@
                                 Estado
                             </label>
                             <div class="control">
-                                <input type="radio" class="radio" id="rd-danificado" name="estado">
+                                <input type="radio" class="radio" id="rd-danificado" name="estado" value="Danificado">
                                 <span>Danificado</span>
 
-                                <input type="radio" class="radio" id="rd-bom" name="estado" checked>
+                                <input type="radio" class="radio" id="rd-bom" name="estado" checked value="Bom">
                                 <span>Bom</span>
 
-                                <input type="radio" class="radio" id="rd-rasoavel" name="estado">
+                                <input type="radio" class="radio" id="rd-rasoavel" name="estado" value="Rasoável">
                                 <span>Rasoável</span>
                             </div>
                         </div>
@@ -201,24 +201,19 @@
                                 Tem programas
                             </label>
                             <div class="control">
-                                <input type="radio" class="radio" id="rd-sim" name="tem_programas" checked value="não">
+                                <input type="radio" class="radio" id="rd-sim" name="tem_programas" checked value="Sim">
                                 <span>Sim</span>
 
-                                <input type="radio" class="radio" id="rd-nao" name="tem_programas" value="não">
+                                <input type="radio" class="radio" id="rd-nao" name="tem_programas" value="Não">
                                 <span>Não</span>
                             </div>
                         </div>
 
                         <div class="field">
                             <label for="mesa" class="label">Nº Mesa *</label>
-                            <div class="control">
-                                <select id="mesa name=" mesa">
-                                    <option value="none">Selecione uma opção</option>
-                                    <% mesas.forEach((mesa)=> { %>
-                                        <option value="<%= mesa.id%>">
-                                            <%= mesa.nome%>
-                                        </option>
-                                        <%})%>
+                            <div class="control select">
+                                <select id="mesa" name="mesa">
+                                    <option value="1">Mesa 1</option>
                                 </select>
                             </div>
                         </div>
@@ -227,7 +222,7 @@
                             <label for="observacoes" class="label">Observações</label>
                             <div class="control">
                                 <textarea id="observacoes" class="textarea" placeholder="Ex.: Este material é....."
-                                    rows="1" autocomplete="on" name="observacoes">
+                                    rows="1" name="observacoes">
                                 </textarea>
                             </div>
                         </div>

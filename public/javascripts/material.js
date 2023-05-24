@@ -40,6 +40,8 @@ btnEditar.addEventListener('click', abrirModalEditar);
 document.querySelector('#btnExcluir').addEventListener('click', excluirRegisto);
 document.querySelector('#btnLimparGrid').addEventListener('click', excluirTodosRegistos);
 
+/*
+
 function validarMaterial() {
     const nomeElement = document.querySelector('#nome');
     const marcaElemnt = document.querySelector('#marca');
@@ -62,4 +64,10 @@ function validarMaterial() {
     alert('nome invalido');
 }
 
-document.querySelector('#btnCadastrar').addEventListener('click', validarMaterial()); //ToDo
+document.querySelector('#btnCadastrar').addEventListener('click', validarMaterial()); //ToDo */
+
+//Ativa o input modelo
+document.querySelector('#marca-material').addEventListener('blur', (evento) => {
+    const modeloElemnt = document.querySelector('#modelo-material')
+    modeloElemnt.disabled = false;
+});
