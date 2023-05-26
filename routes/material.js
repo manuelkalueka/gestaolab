@@ -7,8 +7,11 @@ const TITLE = "Materiais do Laboratório";
 let materiais;
 let mesas;
 
-database('materiais').limit(6).then(material => { return materiais = material }).catch(erro => console.log(erro.errors));
-database('mesas').then(mesa => { return mesas = mesa }).catch(erro => console.log(erro.errors));
+database('materiais')
+    .limit(6)
+    .then(material => { return materiais = material }).catch(erro => console.log(erro.errors));
+database('mesas')
+    .then(mesa => { return mesas = mesa }).catch(erro => console.log(erro.errors));
 
 router.get("/materiais", (req, res, next) => {
     res.render("material",
@@ -48,11 +51,10 @@ router.post("/materiais", (req, res, next) => {
             });
     }
 
-    database('materiais').insert(reqDados).then(() => {
-        res.redirect('materiais');
-    }).catch(err => {
-        res.send(err.errors);
-    });
+    database('materiais').insert(reqDados)
+        .then((ids) => {
+            res.redirect('materiais');
+        }, next)
 });
 
 module.exports = router;

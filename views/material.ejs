@@ -50,7 +50,11 @@
                                     <%= material.modelo %>
                                 </td>
                                 <td class="grid-data">
-                                    <%= material.mesa %>
+                                    <% for( let i=0; i < mesas.length; i++ ) { %>
+                                        <% if (material.mesa===mesas[i].id) { %>
+                                            <%= mesas[i].nome%>
+                                                <% } %>
+                                                    <% } %>
                                 </td>
                                 <td class="grid-data">
                                     <%= material.capacidade %>
@@ -256,6 +260,7 @@
                 </header>
 
                 <section class="modal-card-body">
+                    <!-- Form de Edicao de Material-->
                     <form action="/materiais" method="post">
                         <div class="field">
                             <label for="nome-material" class="label">
@@ -367,13 +372,13 @@
 
                         <div class="field">
                             <footer class="modal-card-foot">
-                                <button type="submit" class="button is-primary" id="btnGuardar">Guardar
+                                <button type="submit" class="button is-primary is-info" id="btnGuardar">Guardar
                                     Alterações</button>
-                                <button type="reset" class="button" id="btnCancelar">Cancelar</button>
+                                <button type="reset" class="button is-danger" id="btnCancelar">Cancelar</button>
                             </footer>
                         </div>
                     </form>
-
+                    <!-- Form de Edicao de Material-->
                 </section>
             </div>
         </div>
