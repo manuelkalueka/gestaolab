@@ -22,17 +22,50 @@
 
 <body>
     <header>
-      <div class="left-area">
-          <!-- 
+        <div class="left-area">
+            <!-- 
             <div class="btn-menu">
                 <i class="fa fa-bars" id="btn-menu"></i>
             </div> -->
 
-        <h3>Gestão <span>LAB</span></h3>
+            <h3>Gestão <span>LAB</span></h3>
         </div>
 
         <div class="right-area">
-            <strong id="username">&lt;&sol;<%= userLogado = "Manuel Kalueka" %>&gt;</strong>
-            <!-- <a href="#" class="logout-btn btn">Terminar Sessão</a> -->
+
+            <span class="account" id="btn-account">
+                <span class="icone icon">
+                    <i class="fa fa-circle-user"></i>
+
+                    <ul class="toggle-account-element hide" id="menu-perfil">
+                        <li class="account-element" id="username">
+                            <span class="username">mkaldev</span>
+                        </li>
+
+                        <li class="account-element link">
+                            <a href="/perfil">
+                                <span class="icone icon">
+                                    <i class="fa-solid fa-user"></i>
+                                </span>
+                                <span class="text-link">
+                                    Perfil
+                                </span>
+                            </a>
+                        </li>
+
+                        <li class="account-element link">
+                            <a href="/logout">
+                                <span class="icone icon">
+                                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                </span>
+                                <span class="text-link">
+                                    Sair
+                                </span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </span>
+            </span>
         </div>
     </header>

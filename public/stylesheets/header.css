@@ -21,30 +21,64 @@ header {
   font-family: "Nice-Sugar";
 }
 
-.logout-btn {
-  padding: 5px;
-  background-color: var(--color4);
-  border-radius: var(--border_rad);
-  color: var(--color2);
-  font-size: 0.9em;
-  text-align: center;
-  font-weight: 600;
-  transition: background 500ms cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.logout-btn:hover {
-  background-color: var(--color1); /*Colocar um background suave*/
-}
-
-#username {
+.account {
+  position: relative;
   padding: 1.6em;
   color: var(--color1);
-
-  text-decoration: underline;
   cursor: pointer;
   transition: color 500ms ease-in-out;
 }
 
-#username:hover {
+.account .icone i {
+  font-size: 1.375em;
+}
+
+.account:hover {
   color: var(--color4);
+}
+
+.toggle-account-element {
+  position: absolute;
+  top: 9vh;
+  right: 28px;
+  width: 150px;
+  height: auto;
+
+  background-color: var(--dark);
+
+  transition: all 200ms ease-in-out;
+
+  z-index: 9999999;
+}
+
+.account-element {
+  display: block;
+  padding: 10px;
+  background-color: #4c5054;
+  color: var(--light);
+  transition: all 200ms ease-in-out;
+}
+
+.account-element:first-child {
+  margin-bottom: 2px;
+}
+
+.account-element .icone i {
+  font-size: 0.9em;
+}
+
+.account-element a .text-link {
+  margin-left: 10px;
+}
+
+.account-element.link a {
+  color: var(--light);
+}
+
+.account-element.link:hover {
+  background-color: var(--color4);
+}
+
+.account-element#username:hover {
+  cursor: default;
 }

@@ -1,7 +1,7 @@
 function validarSenha() {
     const userNameElement = document.querySelector('#username');
     const senhaElement = document.querySelector('#senha');
-    const alerMessage = document.getElementsByClassName('message-alert')[0];
+    const alertMessage = document.getElementsByClassName('message-alert')[0];
 
     let username = userNameElement.value;
     let senha = senhaElement.value;
@@ -9,14 +9,11 @@ function validarSenha() {
     if (username == '' || senha == '') {
         event.preventDefault();
 
-        alerMessage.classList.remove('hide');
-        alerMessage.classList.add('alert-err')
+        alertMessage.classList.remove('hide');
+        alertMessage.classList.add('alert-err')
 
         userNameElement.focus();
         return;
-    } else {
-        alerMessage.classList.remove('hide');
-        alerMessage.classList.add('alert-success');
     }
 }
 
@@ -31,6 +28,6 @@ document.querySelector('#username').addEventListener('blur', () => {
 const btnEntrar = document.querySelector('#btnEntrar');
 btnEntrar.addEventListener('click', validarSenha);
 
-document.getElementsByTagName('body').addEventListener('load', ()=> {
+document.getElementsByTagName('body').addEventListener('load', () => {
     document.querySelector('#username').focus();
 });

@@ -2,13 +2,15 @@
     <%- include('./partials/sidebar.ejs') %>
         <main class="conteudo">
 
-            <h1 class="title">Materiais</h1>
+            <h1 class="title">
+                <%= title %>
+            </h1>
 
             <!--<div class="table-container">-->
             <div>
 
                 <div class="top-elements">
-                    <button type="button" id="btn-novo" class="button is-info" data-target="modal-novo-material">Novo
+                    <button type="button" id="btn-novo" class="button is-info" data-target="modal-novo">Novo
                         Material</button>
                     <form action="#" method="get">
                         <span class="search-area">
@@ -67,8 +69,8 @@
                                 </td>
                                 <td class="grid-data">
                                     <span class="actions-list">
-                                        <a href="#" class="btn-visualizar" id="btnVisualizar"
-                                            title="Visualizar Registo"><i class="fa fa-eye"></i></a>
+                                        <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
+                                                class="fa fa-eye"></i></a>
                                         <a href="#" class="btn-editar" title="Editar Registo"><i
                                                 class="fa fa-edit"></i></a>
                                         <a href="#" class="btn-excluir" title="Excluir Registo"><i
@@ -112,7 +114,7 @@
 
         </main>
 
-        <div class="modal" id="modal-novo-material">
+        <div class="modal" id="modal-novo">
             <div class="modal-background"></div>
             <div class="modal-card">
                 <header class="modal-card-head">
@@ -251,7 +253,7 @@
         </div>
 
         <!-- Modal editar registo-->
-        <div class="modal" id="modal-editar-material">
+        <div class="modal" id="modal-editar">
             <div class="modal-background"></div>
             <div class="modal-card">
                 <header class="modal-card-head">
@@ -383,5 +385,25 @@
             </div>
         </div>
         <!-- Fim Modal editar registo-->
+
+        <!-- Modal ver registo-->
+        <div class="modal" id="modal-ver">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">NOME DO MATERIAL</p>
+                    <button class="delete" aria-label="close" id="close"></button>
+                </header>
+
+                <section class="modal-card-body">
+                    <h1>
+                        Sobre o Material aqui
+                    </h1>
+                </section>
+            </div>
+        </div>
+        <!-- Fim Modal ver registo-->
+
+
 
         <%- include('./partials/footer.ejs') %>

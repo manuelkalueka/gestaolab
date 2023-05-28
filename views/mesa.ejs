@@ -1,3 +1,301 @@
-<%- include('./partials/header.ejs')%>
-    <%- include('./partials/sidebar.ejs')%>
-        <%- include('./partials/footer.ejs')%>
+<%- include('./partials/header.ejs') %>
+    <%- include('./partials/sidebar.ejs') %>
+        <main class="conteudo">
+
+            <h1 class="title">
+                <%=title%>
+            </h1>
+
+            <!--<div class="table-container">-->
+            <div>
+
+                <div class="top-elements">
+                    <button type="button" id="btn-novo" class="button is-info" data-target="modal-novo">Nova
+                        mesa</button>
+                    <form action="#" method="get">
+                        <span class="search-area">
+                            <input type="search" name="pesquisa-registo" placeholder="Pesquisar registo..."
+                                class="input-search">
+                            <button type="submit" class="btn-search">
+                                <i class="fa fa-search is-left icon"></i>
+                            </button>
+                        </span>
+                    </form>
+                </div>
+
+                <table class="table is-striped is-hoverable is-fullwidth">
+                    <thead class="grid-header">
+                        <tr>
+                            <th scope="col" class="grid-title">Nome</th>
+                            <th scope="col" class="grid-title">Estado</th>
+                            <th scope="col" class="grid-title">Acções</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="grid-body">
+
+                        <% mesas.forEach((mesa)=> { %>
+
+                            <tr>
+                                <td class="grid-data nome-in-table">
+                                    <%= mesa.nome %>
+                                </td>
+
+                                <td class="grid-data">
+                                    <%= mesa.estado %>
+                                </td>
+                                <td class="grid-data">
+                                    <span class="actions-list">
+                                        <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
+                                                class="fa fa-eye"></i></a>
+                                        <a href="#" class="btn-editar" title="Editar Registo"><i
+                                                class="fa fa-edit"></i></a>
+                                        <a href="#" class="btn-excluir" title="Excluir Registo"><i
+                                                class="fa fa-trash"></i></a>
+                                    </span>
+                                </td>
+
+                            </tr>
+
+                            <% }) %>
+
+                    </tbody>
+
+                </table>
+
+                <nav class="pagination" role="navigation" aria-label="pagination">
+                    <a class="pagination-previous is-disabled" title="Esta é a primeira página">Anterior</a>
+                    <a class="pagination-next">Próxima</a>
+                    <ul class="pagination-list">
+                        <li>
+                            <a class="pagination-link is-current" aria-label="Page 1" aria-current="page">1</a>
+                        </li>
+                        <li>
+                            <a class="pagination-link" aria-label="Goto page 2">2</a>
+                        </li>
+                        <li>
+                            <a class="pagination-link" aria-label="Goto page 3">3</a>
+                        </li>
+                    </ul>
+                </nav>
+                <button type="reset" class="button is-danger" id="btnLimparGrid">Eliminar Todos
+                    Registos
+                </button>
+            </div>
+
+            <p style="color:green;">
+                <label>
+                    <%= message%>
+                </label>
+            </p>
+
+        </main>
+
+        <div class="modal" id="modal-novo">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Cadastro de mesa</p>
+                    <button class="delete" aria-label="close" id="close"></button>
+                </header>
+
+                <section class="modal-card-body">
+                    <div class="message-alert hide">
+                        <span id="msg"></span>
+                    </div>
+
+                    <form action="/mesas" method="post" id="form-validate">
+                        <div class="field">
+                            <label for="nome-mesa" class="label">
+                                Nome *
+                            </label>
+                            <div class="control">
+                                <input type="text" class="input" id="nome-mesa" maxlength="80"
+                                    placeholder="Digite o nome" name="nome">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="estado-mesa" class="label">
+                                Estado
+                            </label>
+                            <div class="control">
+                                <input type="radio" class="radio" id="rd-vazia" name="estado" value="Vazia">
+                                <span>Vazia</span>
+
+                                <input type="radio" class="radio" id="rd-espaco-livre" name="estado" checked
+                                    value="Espaço Livre">
+                                <span>Espaço Livre</span>
+
+                                <input type="radio" class="radio" id="rd-cheia" name="estado" value="Cheia">
+                                <span>Cheia</span>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <footer class="modal-card-foot">
+                                <button type="submit" class="button is-primary" id="btnCadastrar">Cadastrar</button>
+                                <button type="reset" class="button" id="btnCancelar">Cancelar</button>
+                            </footer>
+                        </div>
+                    </form>
+
+                </section>
+            </div>
+        </div>
+
+        <!-- Modal editar registo-->
+        <div class="modal" id="modal-editar">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Editar mesa</p>
+                    <button class="delete" aria-label="close" id="close"></button>
+                </header>
+
+                <section class="modal-card-body">
+                    <!-- Form de Edicao de mesa-->
+                    <form action="/materiais" method="post">
+                        <div class="field">
+                            <label for="nome-mesa" class="label">
+                                Nome
+                            </label>
+                            <div class="control">
+                                <input type="text" class="input" id="nome-mesa" maxlength="80"
+                                    placeholder="Digite o nome" name="nome" required>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="marca-mesa" class="label">
+                                Marca
+                            </label>
+                            <div class="control">
+                                <input type="text" class="input" id="marca-mesa" maxlength="25"
+                                    placeholder="Digite a marca" name="marca" value="Sem marca">
+                            </div>
+
+                            <label for="modelo-mesa" class="label">
+                                Modelo
+                            </label>
+                            <div class="control">
+                                <input type="text" class="input" id="modelo-mesa" maxlength="25"
+                                    placeholder="Digite o modelo" name="modelo" disabled>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label" for="tipo-mesa">Tipo de mesa</label>
+                            <div class="control">
+                                <div class="select">
+                                    <select id="tipo-mesa" name="tipo_mesa">
+                                        <option value="pc" selected>Computador</option>
+                                        <option value="key">Teclado</option>
+                                        <option value="mo">Mouse</option>
+                                        <option value="up">UPS</option>
+                                        <option value="other">Outro</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="data-compra" class="label">
+                                Data de Compra
+                            </label>
+
+                            <div class="control">
+                                <input type="date" class="input" id="data-compra" name="data_compra">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="estado-mesa" class="label">
+                                Estado
+                            </label>
+                            <div class="control">
+                                <input type="radio" class="radio" id="rd-danificado" name="estado">
+                                <span>Danificado</span>
+
+                                <input type="radio" class="radio" id="rd-bom" name="estado" checked>
+                                <span>Bom</span>
+
+                                <input type="radio" class="radio" id="rd-rasoavel" name="estado">
+                                <span>Rasoável</span>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="capacidade" class="label">Capacidade *</label>
+                            <div class="control">
+                                <input type="text" class="input" id="capacidade" name="capacidade"
+                                    placeholder="Ex.: Ram de 4gb processador intel 2.4GHz HDD 500Gb" maxlength="45"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="estado-mesa" class="label">
+                                Tem programas
+                            </label>
+                            <div class="control">
+                                <input type="radio" class="radio" id="rd-sim" name="tem_programas" checked value="não">
+                                <span>Sim</span>
+
+                                <input type="radio" class="radio" id="rd-nao" name="tem_programas" value="não">
+                                <span>Não</span>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="mesa" class="label">Nº Mesa</label>
+                            <div class="control">
+                                <input type="number" class="input" id="mesa" name="mesa"
+                                    placeholder="Digite o número da mesa" required>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Observações</label>
+                            <div class="control">
+                                <textarea class="textarea" placeholder="Ex.: Este mesa é....." rows="1"
+                                    autocomplete="on" name="observacoes">
+                                </textarea>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <footer class="modal-card-foot">
+                                <button type="submit" class="button is-primary is-info" id="btnGuardar">Guardar
+                                    Alterações</button>
+                                <button type="reset" class="button is-danger" id="btnCancelar">Cancelar</button>
+                            </footer>
+                        </div>
+                    </form>
+                    <!-- Form de Edicao de mesa-->
+                </section>
+            </div>
+        </div>
+        <!-- Fim Modal editar registo-->
+
+        <!-- Modal ver registo-->
+        <div class="modal" id="modal-ver">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">NOME DO mesa</p>
+                    <button class="delete" aria-label="close" id="close"></button>
+                </header>
+
+                <section class="modal-card-body">
+                    <h1>
+                        Sobre o mesa aqui
+                    </h1>
+                </section>
+            </div>
+        </div>
+        <!-- Fim Modal ver registo-->
+
+
+
+        <%- include('./partials/footer.ejs') %>
