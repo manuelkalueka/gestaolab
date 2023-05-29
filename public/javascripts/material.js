@@ -29,3 +29,5 @@ document.querySelector('#marca-material').addEventListener('blur', (evento) => {
     const modeloElemnt = document.querySelector('#modelo-material')
     modeloElemnt.disabled = false;
 });
+
+document.querySelector('#observacoes').value = '';

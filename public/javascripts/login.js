@@ -27,7 +27,3 @@ document.querySelector('#username').addEventListener('blur', () => {
 
 const btnEntrar = document.querySelector('#btnEntrar');
 btnEntrar.addEventListener('click', validarSenha);
-
-document.getElementsByTagName('body').addEventListener('load', () => {
-    document.querySelector('#username').focus();
-});

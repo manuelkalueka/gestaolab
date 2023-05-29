@@ -1,16 +1,17 @@
 const formValidate = document.querySelector('#form-validate');
 if (formValidate) {
   formValidate.addEventListener('submit', (evento) => {
-    const nome = document.getElementById('nome-material');
+    const nome = document.getElementsByName('nome');
     const capacidade = document.getElementById('capacidade');
-    if (nome.value === '' || capacidade.value == '') {
+    const estado = document.getElementsByName('estado');
+
+    if (nome.value === '' || capacidade.value == '' || estado.value == '') {
       evento.preventDefault();
       const msgContainer = document.querySelector('.message-alert');
       msgContainer.classList.add('alert-err');
       msgContainer.classList.remove('hide');
       document.querySelector('#msg').textContent = 'Preecha todos os campos correctamente!';
       nome.focus();
-
       return;
     }
   })
@@ -80,4 +81,3 @@ document.querySelectorAll('.btn-ver').forEach(btnVer => {
 //Exluir todos
 document.querySelector('#btnLimparGrid').addEventListener('click', excluirTodosRegistos);
 
-document.querySelector('#observacoes').value = '';

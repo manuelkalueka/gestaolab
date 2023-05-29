@@ -67,6 +67,11 @@ header {
   font-size: 0.9em;
 }
 
+.account-element a {
+  display: block;
+  width: 100%;
+}
+
 .account-element a .text-link {
   margin-left: 10px;
 }

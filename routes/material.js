@@ -46,7 +46,7 @@ router.post("/materiais", (req, res, next) => {
                 mesas: null,
                 message: {
                     erro: true,
-                    texto: erro.errors
+                    texto: "erro.errors"
                 }
             });
     }
