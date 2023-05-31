@@ -4,29 +4,26 @@ const passport = require('passport');
 const title = 'GESTAOLAB | Área de Acesso';
 
 router.get('/login', (req, res, next) => {
-    if (req.query.fail)
-        res.render('login', { message: 'Usuário e/ou senha incorretos!', title: title });
-    else
+    if (req.isAuthenticated())
         res.render('login', { message: null, title: title });
+    else
+        res.render('login', { message: 'Usuário e/ou senha incorretos!', title: title });
 });
 
 router.get('/', (req, res, next) => {
     res.redirect('login');
 });
 
-router.post('/login', (req, res, next) => {
-    passport.authenticate('local', {
-        successRedirect: '/dashboard',
-        failureRedirect: '/login?fail=true'
-    })
-
-});
+router.post('/login', passport.authenticate('local', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/mesas',
+}));
 
 /** ROTA LOGOUT */
 
 router.get('/logout', (req, res, next) => {
     req.session.destroy();
-    res.redirect('login');
+    res.redirect('/');
 })
 
 module.exports = router;

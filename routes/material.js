@@ -9,6 +9,7 @@ let mesas;
 
 database('materiais')
     .limit(6)
+    .orderBy('nome', 'asc')
     .then(material => { return materiais = material }).catch(erro => console.log(erro.errors));
 database('mesas')
     .then(mesa => { return mesas = mesa }).catch(erro => console.log(erro.errors));

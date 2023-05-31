@@ -1,6 +1,6 @@
 function validarSenha() {
     const userNameElement = document.querySelector('#username');
-    const senhaElement = document.querySelector('#senha');
+    const senhaElement = document.querySelector('#password');
     const alertMessage = document.getElementsByClassName('message-alert')[0];
 
     let username = userNameElement.value;

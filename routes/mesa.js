@@ -7,6 +7,7 @@ const database = require('../database');
 let mesas;
 
 database('mesas')
+  .orderBy('nome', 'asc')
   .limit(6)
   .then(mesa => { return mesas = mesa }).catch(erro => console.log(erro.errors));
 
