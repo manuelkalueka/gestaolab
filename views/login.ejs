@@ -39,9 +39,9 @@
                 </label>
                 <button type="submit" id="btnEntrar" class="btn">Entrar</button>
 
-                <div class="message-alert hide">
-                    Messagem aqui!!!!
-                </div>
+                <p class="message-error">
+                    <%= message%>
+                </p>
 
                 <a href="#" class="btnFogSenha">Esqueci minha password</a>
 
@@ -50,6 +50,14 @@
     </main>
 
     <script src="/javascripts/login.js"></script>
+    <script>
+        document.querySelector('#username').focus();
+        
+        const messageLogin = document.querySelector('.message-error');
+        if (messageLogin.innerText.length == 0) {
+            messageLogin.classList.add('hide');
+        }
+    </script>
 </body>
 
 </html>

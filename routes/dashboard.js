@@ -25,7 +25,7 @@ router.get('/dashboard', (req, res, next) => {
 });
 
 router.post('/dashboard', (req, res, next) => {
-    res.status(200).redirect('dashboard');
+    res.redirect('dashboard');
 });
 
 module.exports = router;

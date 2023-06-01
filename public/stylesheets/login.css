@@ -131,6 +131,18 @@ a.btnFogSenha:hover {
   display: none;
 }
 
+.message-error {
+  width:34%;
+  height: auto;
+  background-color: rgb(255, 220, 216);
+  color: var(--danger);
+
+  text-align: center;
+  padding: 10px;
+  border-radius: var(--border_rad);
+  animation: coming 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
 @media (max-width: 840px) {
   .hero {
     display: none;

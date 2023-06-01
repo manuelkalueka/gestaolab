@@ -3,11 +3,18 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const passport = require('passport');
-require('./passport');
-const session = require('express-session');
 const methodOverride = require('method-override');
 const cors = require('cors');//função do Cors ToDo
+const session = require('express-session');
+var passport = require('passport');
+require('./passport');
+
+//Verificar autenticacao, caso sim continue, caso nao volta no login com falha
+function authenticationMiddleware(req, res, next) {
+  if (req.isAuthenticated()) return next();
+  res.redirect('/login?fail=true');
+}
+
 
 //Rotas do Sistema
 const loginRouter = require('./routes/login');
@@ -28,6 +35,18 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+//configuracao das sessoes e autenticacao de usuario
+app.use(session({
+  secret: 'gestao do laboratorio de informatica',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 45 * 60 * 1000 }//45min
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+//fim autenticacao
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));// true evita object null
@@ -46,27 +65,15 @@ app.use(methodOverride(function (req, res) {
 
 app.use(cors());//estudar o USO
 
-//configuracao das sessoes e autenticacao de usuario
-app.use(session({
-  secret: 'gestao do laboratorio de informatica',
-  resave: false,
-  saveUninitialized: false,
-  cookie: { maxAge: 45 * 60 * 1000 }//45min
-}));
-
-app.use(passport.initialize());
-app.use(passport.session());
-//fim autenticacao
-
 app.use('/', loginRouter);
-app.use('/', dashboardRouter);
-app.use('/', materiaisRouter);
-app.use('/', mesaRouter);
-app.use('/', contaRouter);
-app.use('/', settingRouter);
-app.use('/', relatorioRouter);
-app.use('/', aboutRouter);
-app.use('/', extrasRouter);
+app.use('/', authenticationMiddleware, dashboardRouter);
+app.use('/', authenticationMiddleware, materiaisRouter);
+app.use('/', authenticationMiddleware, mesaRouter);
+app.use('/', authenticationMiddleware, contaRouter);
+app.use('/', authenticationMiddleware, settingRouter);
+app.use('/', authenticationMiddleware, relatorioRouter);
+app.use('/', authenticationMiddleware, aboutRouter);
+app.use('/', authenticationMiddleware, extrasRouter);
 app.use('/', router404);//manter o erro de não encontrado em ultimo
 
 // catch 404 and forward to error handler
