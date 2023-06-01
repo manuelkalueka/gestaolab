@@ -13,7 +13,7 @@ passport.use(new LocalStrategy((username, password, done) => {
       const isValid = bcrypt.compareSync(password, user.password);
 
       if (!user || !isValid) {
-        console.log(user);
+        //console.log(user);
         return done(null, false);//usuario nao encontrado
       }
 

@@ -2,17 +2,8 @@ const express = require('express');
 const router = express.Router();
 const TITULO_PAGE = 'Dashboard';
 const database = require('../database');
-let total_mesas;
 
-database('mesas').count().then((total) => {
-    return total_mesas = total;
-}).catch((err) => {
-
-});
 router.get('/dashboard', (req, res, next) => {
-    if (!req.isAuthenticated()) {
-        return res.redirect('/');
-    }
     res.render('dashboard', {
         title: TITULO_PAGE,
         total_mesas: 2,

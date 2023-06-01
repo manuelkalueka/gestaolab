@@ -15,7 +15,9 @@ router.get("/mesas", (req, res, next) => {
   res.render("mesa", {
     title: TITLE,
     mesas: mesas,
-    message: null
+    message: null, 
+    sessao: req.session,
+    usuario: req.user
   });
 });
 
@@ -35,7 +37,9 @@ router.post('/mesas', (req, res, next) => {
         message: {
           erro: true,
           texto: "erro"
-        }
+        }, 
+        sessao: req.session,
+        usuario: req.user
       });
   } else {
     database('mesas')

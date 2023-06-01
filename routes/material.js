@@ -20,7 +20,9 @@ router.get("/materiais", (req, res, next) => {
             title: TITLE,
             materiais: materiais,
             mesas: mesas,
-            message: null
+            message: null,
+            sessao: req.session,
+            usuario: req.user
         });
 });
 
@@ -47,8 +49,10 @@ router.post("/materiais", (req, res, next) => {
                 mesas: null,
                 message: {
                     erro: true,
-                    texto: "erro.errors"
-                }
+                    texto: "erro.errors",
+                },
+                sessao: req.session,
+                usuario: req.user
             });
     }
 
