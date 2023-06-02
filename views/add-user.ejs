@@ -1,3 +1,78 @@
 <%- include('./partials/header.ejs')%>
     <%- include('./partials/sidebar.ejs')%>
+        <main class="conteudo">
+            <h1 class="title">
+                <%= title %>
+            </h1>
+
+
+            <div class="columns">
+                <div class="column">
+                    <div class="form-container">
+                        <form action="/perfil" method="post">
+
+                            <label class="user-label" for="nome-completo">
+                                Nome Completo *
+                            </label>
+
+                            <input type="text" class="input" id="nome-completo" maxlength="80"
+                                placeholder="Digite o nome" name="nome_completo">
+
+                            <div class="field">
+                                <label class="user-label" for="username">
+                                    Nome de usuário *
+                                </label>
+
+                                <input type="text" class="input" id="username" maxlength="14"
+                                    placeholder="Digite o nome de usuario" name="username">
+
+                            </div>
+
+                            <label class="user-label" for="bi">
+                                Número do BI
+                            </label>
+
+                            <input type="text" class="input" id="bi" maxlength="14" placeholder="Digite o numero do BI"
+                                name="bi">
+
+
+                            <div class="field">
+                                <label class="user-label" for="genero">Gênero</label>
+
+                                <div class="select">
+                                    <select id="genero" name="genero">
+                                        <option value="" selected>Seleciona uma opção</option>
+                                        <option value="Masculino">Masculino</option>
+                                        <option value="Feminino">Feminino</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label class="user-label" for="password">
+                                    Senha *
+                                </label>
+
+                                <input type="password" class="input" id="password" maxlength="80"
+                                    placeholder="Digite a senha" name="password">
+                            </div>
+                            <label class="user-label" for="conf-password">
+                                Confirme a senha
+                            </label>
+
+                            <input type="password" class="input" id="conf-password" maxlength="80"
+                                placeholder="Cofirme a senha" name="conf-password">
+
+                            <div class="field right">
+                                <button type="submit" id="btnCadastrarUser" name="btnCadastrarUser"
+                                    class="button is-info">Cadastrar Usuário</button>
+                                <button type="reset" id="btnCancelar" name="btnCancelar"
+                                    class="button is-danger">Cancelar</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
         <%- include('./partials/footer.ejs')%>

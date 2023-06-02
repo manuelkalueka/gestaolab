@@ -302,6 +302,27 @@ footer.modal-card-foot {
 .hide {
   display: none;
 }
+label.user-label {
+  display: inline-block;
+  width: 160px;
+  vertical-align: middle;
+}
+
+.form-container {
+
+}
+
+input.input {
+  width:60%;
+  display: inline-block;
+
+  margin-bottom: 1em;
+}
+
+.right {
+  margin-right: 24.2%;
+  float: right;
+}
 
 @keyframes coming {
   75% {

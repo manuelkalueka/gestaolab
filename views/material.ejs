@@ -6,105 +6,101 @@
                 <%= title %>
             </h1>
 
-            <!--<div class="table-container">-->
-            <div>
-
-                <div class="top-elements">
-                    <button type="button" id="btn-novo" class="button is-info" data-target="modal-novo">Novo
-                        Material</button>
-                    <form action="#" method="get">
-                        <span class="search-area">
-                            <input type="search" name="pesquisa-registo" placeholder="Pesquisar registo..."
-                                class="input-search">
-                            <button type="submit" class="btn-search">
-                                <i class="fa fa-search is-left icon"></i>
-                            </button>
-                        </span>
-                    </form>
-                </div>
-
-                <table class="table is-striped is-hoverable is-fullwidth">
-                    <thead class="grid-header">
-                        <tr>
-                            <th scope="col" class="grid-title">Nome</th>
-                            <th scope="col" class="grid-title">Modelo</th>
-                            <th scope="col" class="grid-title">Marca</th>
-                            <th scope="col" class="grid-title">Mesa</th>
-                            <th scope="col" class="grid-title">Capacidade</th>
-                            <th scope="col" class="grid-title">Programas</th>
-                            <th scope="col" class="grid-title">Estado</th>
-                            <th scope="col" class="grid-title">Acções</th>
-                        </tr>
-                    </thead>
-
-                    <tbody class="grid-body">
-
-                        <% materiais.forEach((material)=> { %>
-
-                            <tr>
-                                <td class="grid-data nome-in-table">
-                                    <%= material.nome %>
-                                </td>
-                                <td class="grid-data">
-                                    <%= material.marca %>
-                                </td>
-                                <td class="grid-data">
-                                    <%= material.modelo %>
-                                </td>
-                                <td class="grid-data">
-                                    <% for( let i=0; i < mesas.length; i++ ) { %>
-                                        <% if (material.mesa===mesas[i].id) { %>
-                                            <%= mesas[i].nome%>
-                                                <% } %>
-                                                    <% } %>
-                                </td>
-                                <td class="grid-data">
-                                    <%= material.capacidade %>
-                                </td>
-                                <td class="grid-data">
-                                    <%= material.tem_programas %>
-                                </td>
-                                <td class="grid-data">
-                                    <%= material.estado %>
-                                </td>
-                                <td class="grid-data">
-                                    <span class="actions-list">
-                                        <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
-                                                class="fa fa-eye"></i></a>
-                                        <a href="#" class="btn-editar" title="Editar Registo"><i
-                                                class="fa fa-edit"></i></a>
-                                        <a href="#" class="btn-excluir" title="Excluir Registo"><i
-                                                class="fa fa-trash"></i></a>
-                                    </span>
-                                </td>
-
-                            </tr>
-
-                            <% }) %>
-
-                    </tbody>
-
-                </table>
-
-                <nav class="pagination" role="navigation" aria-label="pagination">
-                    <a class="pagination-previous is-disabled" title="Esta é a primeira página">Anterior</a>
-                    <a class="pagination-next">Próxima</a>
-                    <ul class="pagination-list">
-                        <li>
-                            <a class="pagination-link is-current" aria-label="Page 1" aria-current="page">1</a>
-                        </li>
-                        <li>
-                            <a class="pagination-link" aria-label="Goto page 2">2</a>
-                        </li>
-                        <li>
-                            <a class="pagination-link" aria-label="Goto page 3">3</a>
-                        </li>
-                    </ul>
-                </nav>
-                <button type="reset" class="button is-danger" id="btnLimparGrid">Eliminar Todos
-                    Registos
-                </button>
+            <div class="top-elements">
+                <button type="button" id="btn-novo" class="button is-info" data-target="modal-novo">Novo
+                    Material</button>
+                <form action="#" method="get">
+                    <span class="search-area">
+                        <input type="search" name="pesquisa-registo" placeholder="Pesquisar registo..."
+                            class="input-search">
+                        <button type="submit" class="btn-search">
+                            <i class="fa fa-search is-left icon"></i>
+                        </button>
+                    </span>
+                </form>
             </div>
+
+            <table class="table is-striped is-hoverable is-fullwidth">
+                <thead class="grid-header">
+                    <tr>
+                        <th scope="col" class="grid-title">Nome</th>
+                        <th scope="col" class="grid-title">Modelo</th>
+                        <th scope="col" class="grid-title">Marca</th>
+                        <th scope="col" class="grid-title">Mesa</th>
+                        <th scope="col" class="grid-title">Capacidade</th>
+                        <th scope="col" class="grid-title">Programas</th>
+                        <th scope="col" class="grid-title">Estado</th>
+                        <th scope="col" class="grid-title">Acções</th>
+                    </tr>
+                </thead>
+
+                <tbody class="grid-body">
+
+                    <% materiais.forEach((material)=> { %>
+
+                        <tr>
+                            <td class="grid-data nome-in-table">
+                                <%= material.nome %>
+                            </td>
+                            <td class="grid-data">
+                                <%= material.marca %>
+                            </td>
+                            <td class="grid-data">
+                                <%= material.modelo %>
+                            </td>
+                            <td class="grid-data">
+                                <% for( let i=0; i < mesas.length; i++ ) { %>
+                                    <% if (material.mesa===mesas[i].id) { %>
+                                        <%= mesas[i].nome%>
+                                            <% } %>
+                                                <% } %>
+                            </td>
+                            <td class="grid-data">
+                                <%= material.capacidade %>
+                            </td>
+                            <td class="grid-data">
+                                <%= material.tem_programas %>
+                            </td>
+                            <td class="grid-data">
+                                <%= material.estado %>
+                            </td>
+                            <td class="grid-data">
+                                <span class="actions-list">
+                                    <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
+                                            class="fa fa-eye"></i></a>
+                                    <a href="#" class="btn-editar" title="Editar Registo"><i class="fa fa-edit"></i></a>
+                                    <a href="#" class="btn-excluir" title="Excluir Registo"><i
+                                            class="fa fa-trash"></i></a>
+                                </span>
+                            </td>
+
+                        </tr>
+
+                        <% }) %>
+
+                </tbody>
+
+            </table>
+
+            <nav class="pagination" role="navigation" aria-label="pagination">
+                <a class="pagination-previous is-disabled" title="Esta é a primeira página">Anterior</a>
+                <a class="pagination-next">Próxima</a>
+                <ul class="pagination-list">
+                    <li>
+                        <a class="pagination-link is-current" aria-label="Page 1" aria-current="page">1</a>
+                    </li>
+                    <li>
+                        <a class="pagination-link" aria-label="Goto page 2">2</a>
+                    </li>
+                    <li>
+                        <a class="pagination-link" aria-label="Goto page 3">3</a>
+                    </li>
+                </ul>
+            </nav>
+            <button type="reset" class="button is-danger" id="btnLimparGrid">Eliminar Todos
+                Registos
+            </button>
+
 
             <p style="color:green;">
                 <label>

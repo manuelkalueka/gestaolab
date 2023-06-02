@@ -12,7 +12,7 @@ require('./passport');
 //Verificar autenticacao, caso sim continue, caso nao volta no login com falha
 function authenticationMiddleware(req, res, next) {
   if (req.isAuthenticated()) return next();
-  res.redirect('/login?fail=true');
+  res.redirect('/login');
 }
 
 
