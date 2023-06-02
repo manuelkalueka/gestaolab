@@ -9,4 +9,8 @@ router.get("/perfil", (req, res, next) => {
   });
 });
 
+router.get('/perfil/add', (req, res, next) => {
+  res.render('add-user', { title: 'Criar novo Usuário', usuario: null});
+});
+
 module.exports = router;
