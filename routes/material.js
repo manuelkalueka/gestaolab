@@ -62,4 +62,17 @@ router.post("/materiais", (req, res, next) => {
         }, next)
 });
 
+
+router.put('/materiais', (req, res, next) => {
+    const { id } = req.params;
+
+    database('materiais')
+        .where('id', id)
+        .update(req.body)
+        .then(result => {
+            if (result == 0) return res.send(400);
+            res.redirect('materiais');
+        }, next);
+});
+
 module.exports = router;

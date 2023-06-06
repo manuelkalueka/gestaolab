@@ -6,16 +6,16 @@
             </h1>
 
 
-            <div class="columns">
+            <div class="columns div_centro">
                 <div class="column">
                     <div class="form-container">
-                        <form action="/perfil" method="post">
+                        <form action="/perfil/add" method="post" id="form-validate">
 
                             <label class="user-label" for="nome-completo">
                                 Nome Completo *
                             </label>
 
-                            <input type="text" class="input" id="nome-completo" maxlength="80"
+                            <input type="text" class="input input-add" id="nome-completo" maxlength="80"
                                 placeholder="Digite o nome" name="nome_completo">
 
                             <div class="field">
@@ -23,7 +23,7 @@
                                     Nome de usuário *
                                 </label>
 
-                                <input type="text" class="input" id="username" maxlength="14"
+                                <input type="text" class="input input-add" id="username" maxlength="14"
                                     placeholder="Digite o nome de usuario" name="username">
 
                             </div>
@@ -32,7 +32,7 @@
                                 Número do BI
                             </label>
 
-                            <input type="text" class="input" id="bi" maxlength="14" placeholder="Digite o numero do BI"
+                            <input type="text" class="input input-add" id="bi" maxlength="14" placeholder="Digite o numero do BI"
                                 name="bi">
 
 
@@ -53,21 +53,40 @@
                                     Senha *
                                 </label>
 
-                                <input type="password" class="input" id="password" maxlength="80"
+                                <input type="password" class="input input-add" id="password" maxlength="80"
                                     placeholder="Digite a senha" name="password">
                             </div>
                             <label class="user-label" for="conf-password">
                                 Confirme a senha
                             </label>
 
-                            <input type="password" class="input" id="conf-password" maxlength="80"
-                                placeholder="Cofirme a senha" name="conf-password">
+                                <input type="password" class="input input-add" id="conf-password" maxlength="80"
+                                    placeholder="Cofirme a senha">
+                            </div>
+                            <div class="field">
+                                <div class="field">
+                                    <label for="estado-material" class="user-label">
+                                        Tipo de Conta
+                                    </label>
+                                    <div class="control">
+                                        <input type="radio" class="radio" id="rd-prof" name="tipo_conta" checked
+                                            value="Professor">
+                                        <span>Professor</span>
+
+                                        <input type="radio" class="radio" id="rd-conv" name="tipo_conta"
+                                            value="Convidado">
+                                        <span>Convidado</span>
+                                        <input type="radio" class="radio" id="rd-adm" name="tipo_conta"
+                                            value="Administrador">
+                                        <span>Administrador</span>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="field right">
-                                <button type="submit" id="btnCadastrarUser" name="btnCadastrarUser"
-                                    class="button is-info">Cadastrar Usuário</button>
-                                <button type="reset" id="btnCancelar" name="btnCancelar"
-                                    class="button is-danger">Cancelar</button>
+                                <button type="submit" id="btnCadastrarUser" class="button is-info">Cadastrar
+                                    Usuário</button>
+                                <a  href="/perfil" id="btnCancelar" class="button is-danger">Cancelar</a>
                             </div>
 
                         </form>
@@ -75,4 +94,6 @@
                 </div>
             </div>
         </main>
+
+        <script src="/javascripts/add-user.js"></script>
         <%- include('./partials/footer.ejs')%>

@@ -66,11 +66,12 @@
                             </td>
                             <td class="grid-data">
                                 <span class="actions-list">
-                                    <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
-                                            class="fa fa-eye"></i></a>
-                                    <a href="#" class="btn-editar" title="Editar Registo"><i class="fa fa-edit"></i></a>
-                                    <a href="#" class="btn-excluir" title="Excluir Registo"><i
-                                            class="fa fa-trash"></i></a>
+                                    <a href="/materiais/<%= material.id%>" class="btn-ver" id="btnVer"
+                                        title="Visualizar Registo"><i class="fa fa-eye"></i></a>
+                                    <a href="/materiais/<%= material.id%>" class="btn-editar" title="Editar Registo">
+                                        <i class="fa fa-edit"></i></a>
+                                    <a href="/materiais/<%= material.id%>" class="btn-excluir"
+                                        title="Excluir Registo"><i class="fa fa-trash"></i></a>
                                 </span>
                             </td>
 
@@ -400,6 +401,6 @@
         </div>
         <!-- Fim Modal ver registo-->
 
-
+        <script src="/javascripts/material.js"></script>
 
         <%- include('./partials/footer.ejs') %>

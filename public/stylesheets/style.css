@@ -308,12 +308,8 @@ label.user-label {
   vertical-align: middle;
 }
 
-.form-container {
-
-}
-
-input.input {
-  width:60%;
+input.input.input-add {
+  width: 60%;
   display: inline-block;
 
   margin-bottom: 1em;
@@ -322,6 +318,10 @@ input.input {
 .right {
   margin-right: 24.2%;
   float: right;
+}
+
+.div_centro {
+  padding-left: 10%;
 }
 
 @keyframes coming {
@@ -336,4 +336,7 @@ input.input {
   100% {
     opacity: 1;
   }
+}
+a#btn-novo-user {
+  margin-bottom: 1.5em;
 }
