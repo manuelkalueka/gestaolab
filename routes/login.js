@@ -19,7 +19,7 @@ router.post('/login', passport.authenticate('local', {
 
 /** ROTA LOGOUT */
 
-router.get('/logout', (req, res, next) => {
+router.post('/logout', (req, res, next) => {
     req.session.destroy();
     res.redirect('/');
 });

@@ -9,9 +9,9 @@
             <div class="top-elements">
                 <button type="button" id="btn-novo" class="button is-info" data-target="modal-novo">Novo
                     Material</button>
-                <form action="#" method="get">
+                <form method="get">
                     <span class="search-area">
-                        <input type="search" name="pesquisa-registo" placeholder="Pesquisar registo..."
+                        <input type="search" name="pesquisa" placeholder="Pesquisar registo..."
                             class="input-search">
                         <button type="submit" class="btn-search">
                             <i class="fa fa-search is-left icon"></i>
@@ -98,9 +98,12 @@
                     </li>
                 </ul>
             </nav>
-            <button type="reset" class="button is-danger" id="btnLimparGrid">Eliminar Todos
-                Registos
-            </button>
+            <form action="/materiais" method="post">
+                <input type="hidden" name="_method" value="delete">
+                <button type="submit" class="button is-danger" id="btnLimparGrid">Eliminar Todos
+                    Registos
+                </button>
+            </form>
 
 
             <p style="color:green;">

@@ -57,10 +57,6 @@ function excluirRegisto() {
   confirm("Tens a certeza que deseja excluir o <MATERIAL?>");
 }
 
-function excluirTodosRegistos() {
-  confirm("Esta acção apagará todos os registos, Confirmar?");
-}
-
 const btnNovo = document.querySelector('#btn-novo');
 btnNovo.addEventListener('click', abrirModalNovo);
 
@@ -68,6 +64,7 @@ btnNovo.addEventListener('click', abrirModalNovo);
 document.querySelectorAll('.btn-editar').forEach(btnEditar => {
   btnEditar.addEventListener('click', abrirModalEditar);
 });
+
 //Excluir elemento Editar elemento
 document.querySelectorAll('.btn-excluir').forEach(btnExcluir => {
   btnExcluir.addEventListener('click', excluirRegisto);
@@ -76,8 +73,13 @@ document.querySelectorAll('.btn-excluir').forEach(btnExcluir => {
 //Ver registo do material
 document.querySelectorAll('.btn-ver').forEach(btnVer => {
   btnVer.addEventListener('click', abrirModalVer);
-})
+});
 
 //Exluir todos
-document.querySelector('#btnLimparGrid').addEventListener('click', excluirTodosRegistos);
+document.querySelector('#btnLimparGrid').addEventListener('click', (evento) => {
+  if (!confirm("Esta acção apagará todos os registos, Confirmar?")) {
+    evento.preventDefault();
+    return;
+  }
+});
 

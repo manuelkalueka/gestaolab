@@ -15,6 +15,11 @@ database('mesas')
     .then(mesa => { return mesas = mesa }).catch(erro => console.log(erro.errors));
 
 router.get("/materiais", (req, res, next) => {
+    if (req.query.pesquisa) {
+        if (req.query.pesquisa.valueOf != '') {
+            //Fazer pesquisa aqui
+        }
+    }
     res.render("material",
         {
             title: TITLE,
@@ -71,6 +76,15 @@ router.put('/materiais', (req, res, next) => {
         .update(req.body)
         .then(result => {
             if (result == 0) return res.send(400);
+            res.redirect('materiais');
+        }, next);
+});
+
+//apaga todos os registos da BD
+router.delete('/materiais', (req, res, next) => {
+    database('materiais')
+        .truncate()
+        .then(() => {
             res.redirect('materiais');
         }, next);
 });
