@@ -53,6 +53,7 @@
                                         <%= mesas[i].nome%>
                                             <% } %>
                                                 <% } %>
+
                             </td>
                             <td class="grid-data">
                                 <%= material.capacidade %>
@@ -65,12 +66,12 @@
                             </td>
                             <td class="grid-data">
                                 <span class="actions-list">
-                                    <a href="/materiais/<%= material.id%>" class="btn-ver" id="btnVer"
-                                        title="Visualizar Registo"><i class="fa fa-eye"></i></a>
-                                    <a href="/materiais/<%= material.id%>" class="btn-editar" title="Editar Registo">
+                                    <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
+                                            class="fa fa-eye"></i></a>
+                                    <a href="#" class="btn-editar" title="Editar Registo">
                                         <i class="fa fa-edit"></i></a>
-                                    <a href="/materiais/<%= material.id%>" class="btn-excluir"
-                                        title="Excluir Registo"><i class="fa fa-trash"></i></a>
+                                    <a href="/materiais" class="btn-excluir" title="Excluir Registo"><i
+                                            class="fa fa-trash"></i></a>
                                 </span>
                             </td>
 
@@ -271,7 +272,7 @@
                             </label>
                             <div class="control">
                                 <input type="text" class="input" id="ed-nome-material" maxlength="80"
-                                    placeholder="Digite o nome" name="nome" required>
+                                    placeholder="Digite o nome" name="nome">
                             </div>
                         </div>
 
@@ -289,15 +290,15 @@
                             </label>
                             <div class="control">
                                 <input type="text" class="input" id="ed-modelo-material" maxlength="25"
-                                    placeholder="Digite o modelo" name="modelo" disabled>
+                                    placeholder="Digite o modelo" name="modelo" disabled value="Sem modelo">
                             </div>
                         </div>
 
                         <div class="field">
-                            <label class="label" for="ed-tipo-material">Tipo de Material</label>
+                            <label class="label" for="tipo-material">Tipo de Material</label>
                             <div class="control">
                                 <div class="select">
-                                    <select id="ed-tipo-material" name="tipo_material">
+                                    <select id="tipo-material" name="tipo_material">
                                         <option value="pc" selected>Computador</option>
                                         <option value="key">Teclado</option>
                                         <option value="mo">Mouse</option>
@@ -323,23 +324,22 @@
                                 Estado
                             </label>
                             <div class="control">
-                                <input type="radio" class="radio" id="rd-danificado" name="estado">
+                                <input type="radio" class="radio" id="rd-danificado" name="estado" value="Danificado">
                                 <span>Danificado</span>
 
-                                <input type="radio" class="radio" id="rd-bom" name="estado" checked>
+                                <input type="radio" class="radio" id="rd-bom" name="estado" checked value="Bom">
                                 <span>Bom</span>
 
-                                <input type="radio" class="radio" id="rd-rasoavel" name="estado">
+                                <input type="radio" class="radio" id="rd-rasoavel" name="estado" value="Rasoável">
                                 <span>Rasoável</span>
                             </div>
                         </div>
 
                         <div class="field">
-                            <label for="ed-capacidade" class="label">Capacidade *</label>
+                            <label for="ed-capacidade" class="label">Capacidade</label>
                             <div class="control">
                                 <input type="text" class="input" id="ed-capacidade" name="capacidade"
-                                    placeholder="Ex.: Ram de 4gb processador intel 2.4GHz HDD 500Gb" maxlength="45"
-                                    required>
+                                    placeholder="Ex.: Ram de 4gb processador intel 2.4GHz HDD 500Gb" maxlength="45">
                             </div>
                         </div>
 
@@ -348,39 +348,46 @@
                                 Tem programas
                             </label>
                             <div class="control">
-                                <input type="radio" class="radio" id="rd-sim" name="tem_programas" checked value="Sim">
+                                <input type="radio" class="radio n-programa" id="rd-sim" name="tem_programas" checked
+                                    value="Sim">
                                 <span>Sim</span>
 
-                                <input type="radio" class="radio" id="rd-nao" name="tem_programas" value="Não">
+                                <input type="radio" class="radio n-programa" id="rd-nao" name="tem_programas"
+                                    value="Não">
                                 <span>Não</span>
                             </div>
                         </div>
 
                         <div class="field">
                             <label for="ed-mesa" class="label">Nº Mesa</label>
-                            <div class="control">
-                                <input type="number" class="input" id="ed-mesa" name="mesa"
-                                    placeholder="Digite o número da mesa" required>
+                            <div class="control select">
+                                <select id="mesa" name="mesa">
+                                    <% mesas.forEach((mesa)=> { %>
+                                        <option value="<%= mesa.id%>">
+                                            <%= mesa.nome%>
+                                        </option>
+                                        <%})%>
+                                </select>
                             </div>
                         </div>
 
                         <div class="field">
-                            <label class="label">Observações</label>
+                            <label for="ed-observacoes" class="label">Observações</label>
                             <div class="control">
-                                <textarea class="textarea" placeholder="Ex.: Este material é....." rows="1"
-                                    autocomplete="on" name="observacoes">
+                                <textarea id="ed-observacoes" class="textarea" placeholder="Ex.: Este material é....."
+                                    rows="1" name="observacoes">
                                 </textarea>
                             </div>
                         </div>
 
                         <div class="field">
                             <footer class="modal-card-foot">
-                                <button type="submit" class="button is-primary is-info" id="btnGuardar">Guardar
-                                    Alterações</button>
-                                <button type="reset" class="button is-danger" id="btnCancelar">Cancelar</button>
+                                <button type="submit" class="button is-primary" id="btnSalvar">Cadastrar</button>
+                                <button type="reset" class="button" id="btnCancelar">Cancelar</button>
                             </footer>
                         </div>
                     </form>
+
                     <!-- Form de Edicao de Material-->
                 </section>
             </div>
@@ -397,9 +404,62 @@
                 </header>
 
                 <section class="modal-card-body">
-                    <h1>
-                        Sobre o Material aqui
-                    </h1>
+                    <div class="ver-body">
+                        <div class="foto-material">
+                            NOME DO MATERIAL
+                        </div>
+                        <div class="descricao">
+                            <span class="desc-campo">
+                                Marca: <span>
+                                    <%=materiais[0].marca%>
+                                </span>
+                            </span>
+                            <span class="desc-campo">
+                                Modelo: <span>
+                                    <%=materiais[0].modelo%>
+                                </span>
+                            </span>
+                            <span class="desc-campo">
+                                Tipo de Material: <span>
+                                    <%=materiais[0].tipo_material%>
+                                </span>
+                            </span>
+                            <span class="desc-campo">
+                                Estado: <span>
+                                    <%=materiais[0].estado%>
+                                </span>
+                            </span>
+                            <span class="desc-campo">
+                                Data de Compra: <span>
+                                    <%=materiais[0].data_compra%>
+                                </span>
+                            </span>
+                            <span class="desc-campo">
+                                Capacidade <span>
+                                    <%=materiais[0].capacidade%>
+                                </span>
+                            </span>
+                            <span class="desc-campo">
+                                Tem Programas <span>
+                                    <%=materiais[0].tem_programas%>
+                                </span>
+                            </span>
+                            <span class="desc-campo">
+                                Mesa: <span>
+                                    <% for( let i=0; i < mesas.length; i++ ) { %>
+                                        <% if (materiais[0].mesa===mesas[i].id) { %>
+                                            <%= mesas[i].nome%>
+                                                <% } %>
+                                                    <% } %>
+                                </span>
+                            </span>
+                            <span class="desc-campo">
+                                Observações: <span>
+                                    <%=materiais[0].observacao%>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
                 </section>
             </div>
         </div>

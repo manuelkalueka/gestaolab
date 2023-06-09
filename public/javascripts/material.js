@@ -56,3 +56,11 @@ tipoMaterial.addEventListener('change', (evento) => {
         }
     }
 });
+
+//editar mostrar as info
+
+document.querySelectorAll('.btn-editar').forEach(elemento => {
+    elemento.addEventListener('click', () => {
+        document.querySelectorAll('.grid-data').forEach(campo => console.log(campo.value));
+    });
+})

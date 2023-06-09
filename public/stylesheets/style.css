@@ -337,3 +337,35 @@ input.input.input-add {
     opacity: 1;
   }
 }
+
+.ver-body {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.foto-material {
+  background-color: #707375;
+  border: 3px solid var(--dark);
+  border-radius: var(--border_rad);
+  width: 40%;
+
+  font-size: 1.3em;
+  color: var(--light);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.descricao {
+  width: 60%;
+  padding: 1em;
+}
+
+.desc-campo {
+  display: block;
+}
+
+.desc-campo > span {
+  font-weight: bold;
+}
