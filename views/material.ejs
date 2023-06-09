@@ -11,8 +11,7 @@
                     Material</button>
                 <form method="get">
                     <span class="search-area">
-                        <input type="search" name="pesquisa" placeholder="Pesquisar registo..."
-                            class="input-search">
+                        <input type="search" name="pesquisa" placeholder="Pesquisar registo..." class="input-search">
                         <button type="submit" class="btn-search">
                             <i class="fa fa-search is-left icon"></i>
                         </button>
@@ -182,7 +181,7 @@
                         </div>
 
                         <div class="field">
-                            <label for="estado-material" class="label">
+                            <label class="label">
                                 Estado
                             </label>
                             <div class="control">
@@ -206,14 +205,16 @@
                         </div>
 
                         <div class="field">
-                            <label for="tem_programas" class="label">
+                            <label class="label">
                                 Tem programas
                             </label>
                             <div class="control">
-                                <input type="radio" class="radio" id="rd-sim" name="tem_programas" checked value="Sim">
+                                <input type="radio" class="radio n-programa" id="rd-sim" name="tem_programas" checked
+                                    value="Sim">
                                 <span>Sim</span>
 
-                                <input type="radio" class="radio" id="rd-nao" name="tem_programas" value="Não">
+                                <input type="radio" class="radio n-programa" id="rd-nao" name="tem_programas"
+                                    value="Não">
                                 <span>Não</span>
                             </div>
                         </div>
@@ -265,38 +266,38 @@
                     <!-- Form de Edicao de Material-->
                     <form action="/materiais" method="post">
                         <div class="field">
-                            <label for="nome-material" class="label">
+                            <label for="ed-nome-material" class="label">
                                 Nome
                             </label>
                             <div class="control">
-                                <input type="text" class="input" id="nome-material" maxlength="80"
+                                <input type="text" class="input" id="ed-nome-material" maxlength="80"
                                     placeholder="Digite o nome" name="nome" required>
                             </div>
                         </div>
 
                         <div class="field">
-                            <label for="marca-material" class="label">
+                            <label for="ed-marca-material" class="label">
                                 Marca
                             </label>
                             <div class="control">
-                                <input type="text" class="input" id="marca-material" maxlength="25"
+                                <input type="text" class="input" id="ed-marca-material" maxlength="25"
                                     placeholder="Digite a marca" name="marca" value="Sem marca">
                             </div>
 
-                            <label for="modelo-material" class="label">
+                            <label for="ed-modelo-material" class="label">
                                 Modelo
                             </label>
                             <div class="control">
-                                <input type="text" class="input" id="modelo-material" maxlength="25"
+                                <input type="text" class="input" id="ed-modelo-material" maxlength="25"
                                     placeholder="Digite o modelo" name="modelo" disabled>
                             </div>
                         </div>
 
                         <div class="field">
-                            <label class="label" for="tipo-material">Tipo de Material</label>
+                            <label class="label" for="ed-tipo-material">Tipo de Material</label>
                             <div class="control">
                                 <div class="select">
-                                    <select id="tipo-material" name="tipo_material">
+                                    <select id="ed-tipo-material" name="tipo_material">
                                         <option value="pc" selected>Computador</option>
                                         <option value="key">Teclado</option>
                                         <option value="mo">Mouse</option>
@@ -308,17 +309,17 @@
                         </div>
 
                         <div class="field">
-                            <label for="data-compra" class="label">
+                            <label for="ed-data-compra" class="label">
                                 Data de Compra
                             </label>
 
                             <div class="control">
-                                <input type="date" class="input" id="data-compra" name="data_compra">
+                                <input type="date" class="input" id="ed-data-compra" name="data_compra">
                             </div>
                         </div>
 
                         <div class="field">
-                            <label for="estado-material" class="label">
+                            <label class="label">
                                 Estado
                             </label>
                             <div class="control">
@@ -334,31 +335,31 @@
                         </div>
 
                         <div class="field">
-                            <label for="capacidade" class="label">Capacidade *</label>
+                            <label for="ed-capacidade" class="label">Capacidade *</label>
                             <div class="control">
-                                <input type="text" class="input" id="capacidade" name="capacidade"
+                                <input type="text" class="input" id="ed-capacidade" name="capacidade"
                                     placeholder="Ex.: Ram de 4gb processador intel 2.4GHz HDD 500Gb" maxlength="45"
                                     required>
                             </div>
                         </div>
 
                         <div class="field">
-                            <label for="estado-material" class="label">
+                            <label class="label">
                                 Tem programas
                             </label>
                             <div class="control">
-                                <input type="radio" class="radio" id="rd-sim" name="tem_programas" checked value="não">
+                                <input type="radio" class="radio" id="rd-sim" name="tem_programas" checked value="Sim">
                                 <span>Sim</span>
 
-                                <input type="radio" class="radio" id="rd-nao" name="tem_programas" value="não">
+                                <input type="radio" class="radio" id="rd-nao" name="tem_programas" value="Não">
                                 <span>Não</span>
                             </div>
                         </div>
 
                         <div class="field">
-                            <label for="mesa" class="label">Nº Mesa</label>
+                            <label for="ed-mesa" class="label">Nº Mesa</label>
                             <div class="control">
-                                <input type="number" class="input" id="mesa" name="mesa"
+                                <input type="number" class="input" id="ed-mesa" name="mesa"
                                     placeholder="Digite o número da mesa" required>
                             </div>
                         </div>

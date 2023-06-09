@@ -31,3 +31,28 @@ document.querySelector('#marca-material').addEventListener('blur', (evento) => {
 });
 
 document.querySelector('#observacoes').value = '';
+
+const tipoMaterial = document.querySelector('#tipo-material');
+
+tipoMaterial.addEventListener('change', (evento) => {
+    for (let i = 0; i < tipoMaterial.length; i++) {
+        const capacidade = document.querySelector('#capacidade');
+        const programas = document.getElementsByClassName('n-programa');
+
+        if (!tipoMaterial[0].selected) {
+
+            capacidade.disabled = true;
+            for (let i = 0; i < programas.length; i++) {
+                programas[i].disabled = true;
+            }
+            break;
+        } else {
+
+            capacidade.disabled = false;
+            for (let i = 0; i < programas.length; i++) {
+                programas[i].disabled = false;
+            }
+            break;
+        }
+    }
+});

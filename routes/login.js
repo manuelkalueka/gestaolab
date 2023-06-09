@@ -8,6 +8,9 @@ router.get('/login', (req, res, next) => {
         res.render('login', { message: 'Usuário e/ou senha incorretos!', title: title });
     }
     else {
+        if (req.session.username) {//saber se o usuario esta logado ou nao
+            res.redirect('dashboard');
+        }
         res.render('login', { message: null, title: title });
     }
 });
