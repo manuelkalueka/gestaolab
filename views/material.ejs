@@ -70,9 +70,15 @@
                                             class="fa fa-eye"></i></a>
                                     <a href="#" class="btn-editar" title="Editar Registo">
                                         <i class="fa fa-edit"></i></a>
-                                    <a href="/materiais" class="btn-excluir" title="Excluir Registo"><i
-                                            class="fa fa-trash"></i></a>
+                                    <!-- Form Eliminar-->
+                                    <form action="/materiais/<%=material.id%>" method="post" id="deleteRegisto">
+                                        <input type="hidden" name="_method" value="delete">
+                                        <button type="submit" class="btn-excluir" title="Excluir Registo"><i
+                                                class="fa fa-trash"></i></button>
+                                    </form>
+                                    <!-- Fim Form Eliminar-->
                                 </span>
+
                             </td>
 
                         </tr>

@@ -344,8 +344,7 @@ input.input.input-add {
 }
 
 .foto-material {
-  background-color: #707375;
-  border: 3px solid var(--dark);
+  background-color: #999a9b;
   border-radius: var(--border_rad);
   width: 40%;
 

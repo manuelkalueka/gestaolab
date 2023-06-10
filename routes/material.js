@@ -80,6 +80,22 @@ router.put('/materiais', (req, res, next) => {
         }, next);
 });
 
+//Apagar apenas um unico resgisto
+router.delete('/materiais/:id', (req, res, next) => {
+    const { id } = req.params;
+    console.log("deletando" + id);
+    database('materiais')
+        .where("id", id)
+        .delete()
+        .then((result) => {
+            if (result === 0) {
+                return res.send(400);
+            }
+            res.redirect('/materiais');
+        }, next);
+});
+
+
 //apaga todos os registos da BD
 router.delete('/materiais', (req, res, next) => {
     database('materiais')

@@ -69,9 +69,32 @@ function abrirModalVer() {
   });
 }
 
-function excluirRegisto() {
-  confirm("Tens a certeza que deseja excluir o <MATERIAL?>");
+function excluirRegisto(id) {
+  const resposta = confirm("Tens a certeza que deseja excluir este Regisito ?");
+  const rota = window.location.pathname;
+
+  if (resposta) {
+    const form = document.createElement('form');
+    form.setAttribute('method', 'post');
+    form.setAttribute('action', + '/materiais/' + id);
+
+    const deleteInput = document.createElement('input');
+    deleteInput.setAttribute('type', 'hidden');
+    deleteInput.setAttribute('name', '_method');
+    deleteInput.setAttribute('value', 'delete');
+
+    form.appendChild(deleteInput);
+    document.body.appendChild(form);
+    form.submit();
+  }
 }
+
+document.getElementById('deleteRegisto').addEventListener('submit', (evento) => {
+  const resposta = confirm("Tens a certeza que deseja excluir este Regisito ?");
+  if (!resposta) {
+    evento.preventDefault();
+  }
+})
 
 const btnNovo = document.querySelector('#btn-novo');
 btnNovo.addEventListener('click', abrirModalNovo);
