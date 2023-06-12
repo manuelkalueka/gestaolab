@@ -4,19 +4,13 @@ const database = require('../database');
 const yup = require('yup');
 
 const TITLE = "Materiais do Laboratório";
-const getMateriais = async () => {
-    try {
-        const { data } = await database("materiais")
-    } catch (error) {
-        console.log(error.message);
-    }
-};
+let materiais;
 let mesas;
 
-// database('materiais')
-//     .limit(6)
-//     .orderBy('nome', 'asc')
-//     .then(material => { return materiais = material }).catch(erro => console.log(erro.errors));
+database('materiais')
+    .limit(6)
+    .orderBy('nome', 'asc')
+    .then(material => { return materiais = material }).catch(erro => console.log(erro.errors));
 database('mesas')
     .then(mesa => { return mesas = mesa }).catch(erro => console.log(erro.errors));
 
