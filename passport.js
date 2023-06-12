@@ -3,21 +3,25 @@ var database = require('./database');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-passport.use(new LocalStrategy((username, password, done) => {
+passport.use(new LocalStrategy(async (username, password, done) => {
 
-  database("usuarios")
+  await database("usuarios")
     .where("username", username)
     .first()
     .then((user) => {
-      // comparando as senhas
-      const isValid = bcrypt.compareSync(password, user.password);
 
-      if (!user || !isValid) {
+      if (!user) {
         //console.log(user);
         return done(null, false);//usuario nao encontrado
       }
+      // comparando as senhas
+      const isValid = bcrypt.compareSync(password, user.password);
 
-      done(null, user)
+      if (!isValid) {
+        return done(null, false);
+      }
+
+      return done(null, user)
 
     }, done);
 }));
@@ -26,8 +30,8 @@ passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
-passport.deserializeUser((id, done) => {
-  database("usuarios")
+passport.deserializeUser(async (id, done) => {
+  await database("usuarios")
     .where("id", id)
     .first()
     .then((user) => {

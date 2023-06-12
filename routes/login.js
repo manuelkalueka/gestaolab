@@ -6,11 +6,9 @@ const title = 'GESTAOLAB | Área de Acesso';
 router.get('/login', (req, res, next) => {
     if (req.query.fail) {
         res.render('login', { message: 'Usuário e/ou senha incorretos!', title: title });
-    }
-    else {
-        if (req.session.username) {//saber se o usuario esta logado ou nao
-            res.redirect('dashboard');
-        }
+    } else if (req.isAuthenticated()) {
+        res.redirect('/dashboard');
+    } else {
         res.render('login', { message: null, title: title });
     }
 });
@@ -22,7 +20,7 @@ router.post('/login', passport.authenticate('local', {
 
 /** ROTA LOGOUT */
 
-router.post('/logout', (req, res, next) => {
+router.get('/logout', (req, res, next) => {
     req.session.destroy();
     res.redirect('/');
 });
