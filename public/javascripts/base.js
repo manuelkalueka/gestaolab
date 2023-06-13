@@ -69,25 +69,25 @@ function abrirModalVer() {
   });
 }
 
-function excluirRegisto(id) {
-  const resposta = confirm("Tens a certeza que deseja excluir este Regisito ?");
-  const rota = window.location.pathname;
+// function excluirRegisto(id) {
+//   const resposta = confirm("Tens a certeza que deseja excluir este Regisito ?");
+//   const rota = window.location.pathname;
 
-  if (resposta) {
-    const form = document.createElement('form');
-    form.setAttribute('method', 'post');
-    form.setAttribute('action', + '/materiais/' + id);
+//   if (resposta) {
+//     const form = document.createElement('form');
+//     form.setAttribute('method', 'post');
+//     form.setAttribute('action', + '/materiais/' + id);
 
-    const deleteInput = document.createElement('input');
-    deleteInput.setAttribute('type', 'hidden');
-    deleteInput.setAttribute('name', '_method');
-    deleteInput.setAttribute('value', 'delete');
+//     const deleteInput = document.createElement('input');
+//     deleteInput.setAttribute('type', 'hidden');
+//     deleteInput.setAttribute('name', '_method');
+//     deleteInput.setAttribute('value', 'delete');
 
-    form.appendChild(deleteInput);
-    document.body.appendChild(form);
-    form.submit();
-  }
-}
+//     form.appendChild(deleteInput);
+//     document.body.appendChild(form);
+//     form.submit();
+//   }
+// }
 
 document.getElementById('deleteRegisto').addEventListener('submit', (evento) => {
   const resposta = confirm("Tens a certeza que deseja excluir este Regisito ?");

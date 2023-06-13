@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const TITLE = "Sobre Desenvolvedor";
+const TITLE = "Sobre o GestaoLAB";
 
 router.get("/about", (req, res, next) => {
         res.render("about", {

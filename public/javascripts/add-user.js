@@ -7,7 +7,7 @@ if (formUserValidate) {
         const password = document.querySelector('#password');
         const confPassword = document.querySelector('#conf-password');
 
-        if (nomeCompleto.value == '' || nomeCompleto.indexOf() == -1) {
+        if (nomeCompleto.value == '' || nomeCompleto.indexOf(' ') == -1) {
             alert("informe um nome completo");
             nomeCompleto.focus();
             nomeCompleto.style.outline = '1px solid red';

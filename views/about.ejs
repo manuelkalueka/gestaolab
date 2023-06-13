@@ -1,3 +1,70 @@
 <%- include('./partials/header.ejs')%>
     <%- include('./partials/sidebar.ejs')%>
+
+        <main class="conteudo">
+            <h1 class="title">
+                <%= title%>
+            </h1>
+
+            <div class="about">
+                <figure class="auth-container">
+                    <img src="/images/person/avatar-dev.png" alt="Imagem do Desenvolvedor Pedro Manuel Kalueka"
+                        class="auth-img">
+                    <figcaption class="auth-img-caption">
+                        <a href="https:/www.github.com/manuelkalueka" target="_blank">Pedro Manuel Kalueka</a>
+                        <span>Estudante do <span class="school">Instituto Médio Politécnico do Uíge</span></span>
+                        <span class="contact">
+
+                            <a href="https://www.contacts.google.com" target="_blank">
+                                <i class="fa fa-phone"> </i>
+                                +244 933808187
+                            </a>
+
+                            <a href="https://www.gmail.com" target="_blank" id="email">
+                                <i class="fa fa-envelope"> </i>
+                                pedrokalueca@gmail.com
+                            </a>
+                        </span>
+                    </figcaption>
+                </figure>
+
+                <article class="project-descritption">
+                    <span class="project-item project-header">
+                        <img src="/images/logo_mini.png" alt="Logo GestaoLAB" class="logo">
+                        <span>GestaoLAB</span>
+                    </span>
+                    <span class="project-item">
+                        Versão 0.1.2 (Beta)
+                    </span>
+                    <span class="description">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis iure nostrum nihil ipsa, error
+                        numquam, suscipit eveniet ipsam voluptate, assumenda libero. Voluptate hic quia doloribus quae
+                        magni
+                        rerum, nihil reprehenderit.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro ad dolor veniam odit tempore
+                        temporibus aut quasi modi doloremque consectetur! Voluptates exercitationem eum doloremque unde
+                        sed
+                        sunt in ullam esse!
+                    </span>
+                    <span class="copy">
+                        <span>
+                            <p>GestaoLAB</p>
+                            Copyright 2023 <strong>Manuel Kalueka Dev</strong>. Todos os direitos
+                            reservados.
+                        </span>
+                        <span>
+                            O GestaoLAB foi concretizado graças ao pedido e incentivo do nosso amado Professor
+                            <strong class="mention">
+                                <a href="#">
+                                    Afonso Augusto
+                                    Menata
+                                </a>
+                        </span>
+                        </strong>
+                        <a href="#" target="_self">Termos de Utilização</a>
+                    </span>
+                </article>
+            </div>
+
+        </main>
         <%- include('./partials/footer.ejs')%>

@@ -1,0 +1,149 @@
+main.conteudo {
+}
+
+.about {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+
+  border-radius: var(--border_rad);
+}
+
+.auth-container {
+  border-radius: var(--border_rad);
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-right: 2.5em;
+  padding: 1em;
+  background-color: var(--color4);
+
+  box-shadow: 2px 1px 7px rgba(0, 0, 0, 0.258);
+}
+
+.auth-img {
+  margin: 0 auto;
+  width: 50%;
+  border-radius: 100%;
+}
+
+.auth-img-caption {
+  margin-top: 5px;
+  padding: 10px;
+  color: #fff;
+  text-align: center;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+.auth-img-caption {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-img-caption a {
+  color: #fff;
+}
+
+.auth-img-caption a + span {
+  font-size: 0.9em;
+  font-weight: light;
+  color: #ebe3e3;
+}
+
+span.school {
+  text-transform: uppercase;
+}
+
+span.contact {
+  margin: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  border-top: 1px solid #ccc;
+
+  font-size: 0.9em;
+  font-weight: light;
+  color: #ebe3e3;
+}
+
+span.contact a {
+  width: 250px;
+}
+
+.project-descritption {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color4);
+
+  border-radius: var(--border_rad);
+  box-shadow: 2px 1px 7px rgba(0, 0, 0, 0.258);
+}
+
+.project-header,
+.project-item,
+.description,
+.copy {
+  padding: 0.5em 2%;
+}
+
+.project-header {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #dadada;
+}
+
+.project-header span {
+  font-size: 1.5em;
+  font-weight: 700;
+  color: var(--light);
+}
+
+.project-header .logo {
+  width: 5%;
+  margin-right: 10px;
+}
+
+.project-item,
+.copy,
+.copy strong,
+.description,
+.copy span,
+.mention a {
+  color: #e0e0e0;
+  font-weight: 400;
+}
+
+.project-item,
+.copy,
+.description {
+  font-size: 0.9em;
+}
+
+strong {
+  font-weight: 500;
+}
+.description {
+  text-align: justify;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+}
+
+.copy span {
+  margin-bottom: 0.8em;
+}
