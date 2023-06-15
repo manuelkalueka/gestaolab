@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const database = require('../database');
 const yup = require('yup');
+const moment = require('moment');
 
 const TITLE = "Materiais do Laboratório";
 let materiais;
@@ -10,9 +11,9 @@ let mesas;
 database('materiais')
     .limit(6)
     .orderBy('nome', 'asc')
-    .then(material => { return materiais = material }).catch(erro => console.log(erro.errors));
+    .then(material => { return materiais = material }).catch(erro => console.log(erro.message));
 database('mesas')
-    .then(mesa => { return mesas = mesa }).catch(erro => console.log(erro.errors));
+    .then(mesa => { return mesas = mesa }).catch(erro => console.log(erro.message));
 
 router.get("/materiais", (req, res, next) => {
     if (req.query.pesquisa) {
@@ -104,5 +105,19 @@ router.delete('/materiais', (req, res, next) => {
             res.redirect('materiais');
         }, next);
 });
+
+router.get('/materiais/:id', (req, res, next) => {
+    const { id } = req.params;
+    database('materiais')
+        .where('id', id)
+        .then((result) => {
+            if (!result) {
+                res.sendStatus(400);
+                return;
+            }
+
+            res.json(result);
+        });
+})
 
 module.exports = router;

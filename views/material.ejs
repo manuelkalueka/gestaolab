@@ -36,6 +36,7 @@
                 <tbody class="grid-body">
 
                     <% materiais.forEach((material)=> { %>
+                        <!--<h3 class="table-empty">Não tem dados para listar!</h3>-->
 
                         <tr>
                             <td class="grid-data nome-in-table">
@@ -68,7 +69,8 @@
                                 <span class="actions-list">
                                     <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
                                             class="fa fa-eye"></i></a>
-                                    <a href="#" class="btn-editar" title="Editar Registo">
+                                    <a href="#" class="btn-editar" title="Editar Registo"
+                                        data-material-id="<%=material.id%>">
                                         <i class="fa fa-edit"></i></a>
                                     <!-- Form Eliminar-->
                                     <form action="/materiais/<%=material.id%>" method="post" id="deleteRegisto">
@@ -273,11 +275,12 @@
                     <!-- Form de Edicao de Material-->
                     <form action="/materiais" method="post">
                         <div class="field">
+                            <input type="hidden" id="edit-material-id" value="">
                             <label for="ed-nome-material" class="label">
                                 Nome
                             </label>
                             <div class="control">
-                                <input type="text" class="input" id="ed-nome-material" maxlength="80"
+                                <input type="text" class="input" id="edit-nome-material" maxlength="80"
                                     placeholder="Digite o nome" name="nome">
                             </div>
                         </div>
@@ -417,51 +420,46 @@
                         <div class="descricao">
                             <span class="desc-campo">
                                 Marca: <span>
-                                    <%=materiais[0].marca%>
+
                                 </span>
                             </span>
                             <span class="desc-campo">
                                 Modelo: <span>
-                                    <%=materiais[0].modelo%>
+
                                 </span>
                             </span>
                             <span class="desc-campo">
                                 Tipo de Material: <span>
-                                    <%=materiais[0].tipo_material%>
+
                                 </span>
                             </span>
                             <span class="desc-campo">
                                 Estado: <span>
-                                    <%=materiais[0].estado%>
+
                                 </span>
                             </span>
                             <span class="desc-campo">
                                 Data de Compra: <span>
-                                    <%=materiais[0].data_compra%>
+
                                 </span>
                             </span>
                             <span class="desc-campo">
                                 Capacidade <span>
-                                    <%=materiais[0].capacidade%>
+
                                 </span>
                             </span>
                             <span class="desc-campo">
                                 Tem Programas <span>
-                                    <%=materiais[0].tem_programas%>
+
                                 </span>
                             </span>
                             <span class="desc-campo">
-                                Mesa: <span>
-                                    <% for( let i=0; i < mesas.length; i++ ) { %>
-                                        <% if (materiais[0].mesa===mesas[i].id) { %>
-                                            <%= mesas[i].nome%>
-                                                <% } %>
-                                                    <% } %>
-                                </span>
+
+                            </span>
                             </span>
                             <span class="desc-campo">
                                 Observações: <span>
-                                    <%=materiais[0].observacao%>
+
                                 </span>
                             </span>
                         </div>

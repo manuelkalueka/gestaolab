@@ -87,3 +87,13 @@ header {
 .account-element#username:hover {
   cursor: default;
 }
+
+.date-display {
+  color: #a2a4a5;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.date-display span {
+  margin-right: 5px;
+}

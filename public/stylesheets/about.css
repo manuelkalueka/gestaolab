@@ -1,6 +1,3 @@
-main.conteudo {
-}
-
 .about {
   width: 100%;
   height: 90%;
@@ -19,7 +16,13 @@ main.conteudo {
   flex-direction: column;
   margin-right: 2.5em;
   padding: 1em;
-  background-color: var(--color4);
+  background: rgb(207, 157, 83);
+  background: linear-gradient(
+    48deg,
+    rgba(207, 157, 83, 1) 16%,
+    rgba(194, 147, 78, 1) 55%,
+    rgba(245, 186, 98, 1) 99%
+  );
 
   box-shadow: 2px 1px 7px rgba(0, 0, 0, 0.258);
 }
@@ -83,7 +86,13 @@ span.contact a {
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: var(--color4);
+  background: rgb(207, 157, 83);
+  background: linear-gradient(
+    48deg,
+    rgba(207, 157, 83, 1) 16%,
+    rgba(194, 147, 78, 1) 55%,
+    rgba(245, 186, 98, 1) 99%
+  );
 
   border-radius: var(--border_rad);
   box-shadow: 2px 1px 7px rgba(0, 0, 0, 0.258);

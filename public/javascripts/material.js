@@ -59,8 +59,26 @@ tipoMaterial.addEventListener('change', (evento) => {
 
 //editar mostrar as info
 
-document.querySelectorAll('.btn-editar').forEach(elemento => {
-    elemento.addEventListener('click', () => {
-        document.querySelectorAll('.grid-data').forEach(campo => console.log(campo.value));
+document.querySelectorAll('.btn-editar').forEach(botao => {
+    botao.addEventListener('click', () => {
+        const materialId = botao.dataset.materialId;
+        document.querySelector('#edit-material-id').value = materialId;
+
+        fetch('/materiais/' + materialId, {
+            method: 'GET'
+        })
+            .then(response => response.json())
+            .then(data => {
+
+                data.forEach(dados => {
+                    document.querySelector('#edit-nome-material').value = dados.nome;
+                })
+            })
+            .catch(error => {
+                console.log('Ocorreu um erro:', error.message);
+            });
+
     });
-})
+});
+
+

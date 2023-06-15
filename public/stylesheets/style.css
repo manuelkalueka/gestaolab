@@ -187,12 +187,24 @@ p.modal-card-title {
   width: auto;
 }
 
-.grid-data span.actions-list a {
+.grid-data span.actions-list a,
+.grid-data span.actions-list form {
   padding: 0.3em;
 }
 
-.grid-data span.actions-list a > i.fa-trash {
+.grid-data span.actions-list form {
+  display: inline;
+}
+
+.grid-data span.actions-list form button > i.fa-trash {
   color: var(--danger);
+}
+
+.grid-data span.actions-list form button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
 
 .grid-data span.actions-list a > i.fa-edit {
@@ -203,7 +215,8 @@ p.modal-card-title {
   color: var(--info);
 }
 
-span.actions-list a:hover {
+span.actions-list a:hover,
+.grid-data span.actions-list form button:hover {
   opacity: 0.8;
 }
 
