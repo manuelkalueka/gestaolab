@@ -68,16 +68,32 @@ router.post("/materiais", (req, res, next) => {
         }, next)
 });
 
+router.get('/materiais/:id', (req, res, next) => {
+    const { id } = req.params;
+    database('materiais')
+        .where('id', id)
+        .then((result) => {
+            if (!result) {
+                res.sendStatus(400);
+                return;
+            }
+
+            res.json(result);
+        }, next);
+});
 
 router.put('/materiais/:id', (req, res, next) => {
     const { id } = req.params;
-
+    console.log(req.body + " Meu Body");
     database('materiais')
         .where('id', id)
         .update(req.body)
         .then(result => {
-            if (result == 0) return res.send(400);
-            res.redirect('materiais');
+            if (result == 0) {
+                return res.send(400)
+            }
+
+            res.json(result);
         }, next);
 });
 
@@ -108,20 +124,6 @@ router.delete('/materiais', (req, res, next) => {
             }
 
             res.send(messages);
-        }, next);
-});
-
-router.get('/materiais/:id', (req, res, next) => {
-    const { id } = req.params;
-    database('materiais')
-        .where('id', id)
-        .then((result) => {
-            if (!result) {
-                res.sendStatus(400);
-                return;
-            }
-
-            res.json(result);
         }, next);
 });
 

@@ -1,5 +1,4 @@
 //Opcoes de Menu Conta
-
 const btnAccount = document.querySelector('.btn-account');
 
 if (btnAccount) {
@@ -13,3 +12,5 @@ if (btnAccount) {
         }
     });
 }
+
+document.querySelector('.date-display-info').innerHTML = moment().format('LLL');

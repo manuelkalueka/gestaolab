@@ -105,15 +105,25 @@ document.querySelectorAll('.btn-editar').forEach(botao => {
                     }
 
                     document.querySelector('#edit-observacoes').value = dados.observacoes;
-                    document.querySelector('#btnSalvar').addEventListener('click', () => {
-                        window.location.href = "/materiais/" + dados.id;
-                    })
                 });
             })
             .catch(error => {
                 console.log('Ocorreu um erro:', error.message);
             });
 
+        fetch('/materiais/' + materialId, {
+            method: 'POST'
+        })
+            .then(response => response.json())
+            .then(data => {
+                document.querySelector('#form-edit').addEventListener('submit', (evento) => {
+
+                    evento.preventDefault();
+                    console.log("Cai aqui");
+                    const modalEditar = document.querySelector('#modal-editar');
+                    modalEditar.classList.remove('is-active');
+                })
+            })
     });
 });
 

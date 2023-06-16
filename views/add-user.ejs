@@ -16,20 +16,20 @@
                             </label>
 
                             <input type="text" class="input input-add" id="nome-completo" maxlength="80"
-                                placeholder="Digite o nome" name="nome_completo">
+                                placeholder="Digite o Nome Completo" name="nome_completo">
 
                             <div class="field">
                                 <label class="user-label" for="username-add">
                                     Nome de usuário *
                                 </label>
 
-                                <input type="text" class="input input-add" id="username-add" maxlength="14"
+                                <input type="text" class="input input-add" id="username-add" maxlength="25"
                                     placeholder="Digite o nome de usuario" name="username">
 
                             </div>
 
                             <label class="user-label" for="bi">
-                                Número do BI
+                                Número do BI *
                             </label>
 
                             <input type="text" class="input input-add" id="bi" maxlength="14"
@@ -93,6 +93,7 @@
             </div>
         </main>
         <script src="/javascripts/sidebar.js"></script>
+        <script src="/javascripts/header.js"></script>
         <script src="/javascripts/add-user.js"></script>
 
         <%- include('./partials/footer.ejs')%>

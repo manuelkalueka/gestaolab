@@ -275,7 +275,7 @@
 
                 <section class="modal-card-body">
                     <!-- Form de Edicao de Material-->
-                    <form action="#" method="post">
+                    <form id="form-edit" method="post">
                         <div class="field">
                             <input type="hidden" name="_method" value="put">
                             <input type="hidden" id="edit-material-id" value="">
@@ -307,7 +307,7 @@
                         </div>
 
                         <div class="field">
-                            <label class="label" for="edit/tipo-material">Tipo de Material</label>
+                            <label class="label" for="edit-tipo-material">Tipo de Material</label>
                             <div class="control">
                                 <div class="select">
                                     <select id="edit-tipo-material" name="tipo_material">
@@ -474,6 +474,7 @@
         </div>
         <!-- Fim Modal ver registo-->
         <script src="/javascripts/base.js"></script>
+        <script src="/javascripts/header.js"></script>
         <script src="/javascripts/material.js"></script>
 
         <%- include('./partials/footer.ejs') %>
