@@ -7,8 +7,10 @@
             </h1>
 
             <div class="top-elements">
-                <button type="button" id="btn-novo" class="button is-info" data-target="modal-novo">Novo
-                    Material</button>
+                <button type="button" id="btn-novo" class="button is-info">Novo
+                    Material
+                </button>
+
                 <form method="get">
                     <span class="search-area">
                         <input type="search" name="pesquisa" placeholder="Pesquisar registo..." class="input-search">
@@ -106,20 +108,20 @@
                     </li>
                 </ul>
             </nav>
-            <form action="/materiais" method="post">
+            <form action="/materiais" method="post" id="form-deleteAll">
                 <input type="hidden" name="_method" value="delete">
+
                 <button type="submit" class="button is-danger" id="btnLimparGrid">Eliminar Todos
                     Registos
                 </button>
             </form>
 
-
-            <p style="color:green;">
-                <label>
-                    <%= message%>
-                </label>
+            <p class="message-box oculto">
+                <span>
+                    <i class="fa-solid fa-check" id="icone-message"></i>
+                </span>
+                <span id="message">Feito com sucesso, abosoluto</span>
             </p>
-
         </main>
 
         <div class="modal" id="modal-novo">
@@ -142,7 +144,7 @@
                             </label>
                             <div class="control">
                                 <input type="text" class="input" id="nome-material" maxlength="80"
-                                    placeholder="Digite o nome" name="nome">
+                                    placeholder="Digite o nome" name="nome" autofocus>
                             </div>
                         </div>
 
@@ -273,10 +275,11 @@
 
                 <section class="modal-card-body">
                     <!-- Form de Edicao de Material-->
-                    <form action="/materiais" method="post">
+                    <form action="#" method="post">
                         <div class="field">
+                            <input type="hidden" name="_method" value="put">
                             <input type="hidden" id="edit-material-id" value="">
-                            <label for="ed-nome-material" class="label">
+                            <label for="edit-nome-material" class="label">
                                 Nome
                             </label>
                             <div class="control">
@@ -286,28 +289,28 @@
                         </div>
 
                         <div class="field">
-                            <label for="ed-marca-material" class="label">
+                            <label for="edit-marca-material" class="label">
                                 Marca
                             </label>
                             <div class="control">
-                                <input type="text" class="input" id="ed-marca-material" maxlength="25"
-                                    placeholder="Digite a marca" name="marca" value="Sem marca">
+                                <input type="text" class="input" id="edit-marca-material" maxlength="25"
+                                    placeholder="Digite a marca" name="marca">
                             </div>
 
-                            <label for="ed-modelo-material" class="label">
+                            <label for="edit-modelo-material" class="label">
                                 Modelo
                             </label>
                             <div class="control">
-                                <input type="text" class="input" id="ed-modelo-material" maxlength="25"
-                                    placeholder="Digite o modelo" name="modelo" disabled value="Sem modelo">
+                                <input type="text" class="input" id="edit-modelo-material" maxlength="25"
+                                    placeholder="Digite o modelo" name="modelo">
                             </div>
                         </div>
 
                         <div class="field">
-                            <label class="label" for="tipo-material">Tipo de Material</label>
+                            <label class="label" for="edit/tipo-material">Tipo de Material</label>
                             <div class="control">
                                 <div class="select">
-                                    <select id="tipo-material" name="tipo_material">
+                                    <select id="edit-tipo-material" name="tipo_material">
                                         <option value="pc" selected>Computador</option>
                                         <option value="key">Teclado</option>
                                         <option value="mo">Mouse</option>
@@ -319,12 +322,12 @@
                         </div>
 
                         <div class="field">
-                            <label for="ed-data-compra" class="label">
+                            <label for="edit-data-compra" class="label">
                                 Data de Compra
                             </label>
 
                             <div class="control">
-                                <input type="date" class="input" id="ed-data-compra" name="data_compra">
+                                <input type="date" class="input" id="edit-data-compra" name="data_compra">
                             </div>
                         </div>
 
@@ -333,21 +336,24 @@
                                 Estado
                             </label>
                             <div class="control">
-                                <input type="radio" class="radio" id="rd-danificado" name="estado" value="Danificado">
+                                <input type="radio" class="radio" id="edit-rd-danificado" data-edit-radio="edit-estado"
+                                    name="estado" value="Danificado">
                                 <span>Danificado</span>
 
-                                <input type="radio" class="radio" id="rd-bom" name="estado" checked value="Bom">
+                                <input type="radio" class="radio" id="edit-rd-bom" data-edit-radio="edit-estado"
+                                    name="estado" checked value="Bom">
                                 <span>Bom</span>
 
-                                <input type="radio" class="radio" id="rd-rasoavel" name="estado" value="Rasoável">
+                                <input type="radio" class="radio" id="edit-rd-rasoavel" data-edit-radio="edit-estado"
+                                    name="estado" value="Rasoável">
                                 <span>Rasoável</span>
                             </div>
                         </div>
 
                         <div class="field">
-                            <label for="ed-capacidade" class="label">Capacidade</label>
+                            <label for="edit-capacidade" class="label">Capacidade</label>
                             <div class="control">
-                                <input type="text" class="input" id="ed-capacidade" name="capacidade"
+                                <input type="text" class="input" id="edit-capacidade" name="capacidade"
                                     placeholder="Ex.: Ram de 4gb processador intel 2.4GHz HDD 500Gb" maxlength="45">
                             </div>
                         </div>
@@ -357,20 +363,20 @@
                                 Tem programas
                             </label>
                             <div class="control">
-                                <input type="radio" class="radio n-programa" id="rd-sim" name="tem_programas" checked
-                                    value="Sim">
+                                <input type="radio" class="radio n-programa" id="edit-rd-sim"
+                                    data-edit-programas="edit-programas" name="tem_programas" checked value="Sim">
                                 <span>Sim</span>
 
-                                <input type="radio" class="radio n-programa" id="rd-nao" name="tem_programas"
-                                    value="Não">
+                                <input type="radio" class="radio n-programa" id="edit-rd-nao"
+                                    data-edit-programas="edit-programas" name="tem_programas" value="Não">
                                 <span>Não</span>
                             </div>
                         </div>
 
                         <div class="field">
-                            <label for="ed-mesa" class="label">Nº Mesa</label>
+                            <label for="edit-mesa" class="label">Nº Mesa</label>
                             <div class="control select">
-                                <select id="mesa" name="mesa">
+                                <select id="edit-mesa" name="mesa">
                                     <% mesas.forEach((mesa)=> { %>
                                         <option value="<%= mesa.id%>">
                                             <%= mesa.nome%>
@@ -381,9 +387,9 @@
                         </div>
 
                         <div class="field">
-                            <label for="ed-observacoes" class="label">Observações</label>
+                            <label for="edit-observacoes" class="label">Observações</label>
                             <div class="control">
-                                <textarea id="ed-observacoes" class="textarea" placeholder="Ex.: Este material é....."
+                                <textarea id="edit-observacoes" class="textarea" placeholder="Ex.: Este material é....."
                                     rows="1" name="observacoes">
                                 </textarea>
                             </div>
@@ -391,13 +397,12 @@
 
                         <div class="field">
                             <footer class="modal-card-foot">
-                                <button type="submit" class="button is-primary" id="btnSalvar">Cadastrar</button>
-                                <button type="reset" class="button" id="btnCancelar">Cancelar</button>
+                                <button type="submit" class="button is-primary" id="btnSalvar">Salvar
+                                    alterações</button>
+                                <a href="/materiais" class="button" id="btnCancelar">Cancelar</a>
                             </footer>
                         </div>
                     </form>
-
-                    <!-- Form de Edicao de Material-->
                 </section>
             </div>
         </div>
@@ -468,7 +473,7 @@
             </div>
         </div>
         <!-- Fim Modal ver registo-->
-
+        <script src="/javascripts/base.js"></script>
         <script src="/javascripts/material.js"></script>
 
         <%- include('./partials/footer.ejs') %>

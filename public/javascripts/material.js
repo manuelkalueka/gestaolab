@@ -58,7 +58,6 @@ tipoMaterial.addEventListener('change', (evento) => {
 });
 
 //editar mostrar as info
-
 document.querySelectorAll('.btn-editar').forEach(botao => {
     botao.addEventListener('click', () => {
         const materialId = botao.dataset.materialId;
@@ -72,7 +71,44 @@ document.querySelectorAll('.btn-editar').forEach(botao => {
 
                 data.forEach(dados => {
                     document.querySelector('#edit-nome-material').value = dados.nome;
-                })
+                    document.querySelector('#edit-marca-material').value = dados.marca;
+                    document.querySelector('#edit-modelo-material').value = dados.modelo;
+                    const editTipoMaterial = document.querySelector('#edit-tipo-material');
+
+                    for (let i = 0; i < editTipoMaterial.length; i++) {
+                        if (editTipoMaterial[i].value == dados.tipo_material) {
+                            editTipoMaterial[i].selected = true;
+                        }
+                    }
+
+                    const radioEstado = document.querySelectorAll('input[data-edit-radio=edit-estado]');
+                    radioEstado.forEach((radio) => {
+                        if (radio.value.toLowerCase() == dados.estado.toLowerCase()) {
+                            radio.checked = true;
+                        }
+                    });
+
+                    document.querySelector('#edit-capacidade').value = dados.capacidade;
+                    const radioPrograma = document.querySelectorAll('input[data-edit-programas=edit-programas]');
+                    radioPrograma.forEach(programa => {
+                        if (programa.value.toLowerCase() == dados.tem_programas.toLowerCase()) {
+                            programa.checked = true;
+                        }
+                    });
+
+                    document.querySelector('#edit-data-compra').value = dados.data_compra.substring(0, 10);
+                    const editMesa = document.querySelector('#edit-mesa');
+                    for (let i = 0; i < editMesa.length; i++) {
+                        if (editMesa[i].value == dados.mesa) {
+                            editMesa[i].selected = true;
+                        }
+                    }
+
+                    document.querySelector('#edit-observacoes').value = dados.observacoes;
+                    document.querySelector('#btnSalvar').addEventListener('click', () => {
+                        window.location.href = "/materiais/" + dados.id;
+                    })
+                });
             })
             .catch(error => {
                 console.log('Ocorreu um erro:', error.message);
@@ -81,4 +117,48 @@ document.querySelectorAll('.btn-editar').forEach(botao => {
     });
 });
 
+//mensagem de delete all
+function showDeleteAllMessage() {
+    const message = document.querySelector('#message');
+    const messageBox = document.querySelector('.message-box');
 
+    const messages = localStorage.getItem('messages').split(';');
+    messageBox.classList.remove('oculto');
+    message.innerHTML = messages[0];
+
+    localStorage.removeItem('messages');
+}
+
+// //Excluir todos
+const btnLimparTudo = document.querySelector('#btnLimparGrid');
+const formDeleteAll = document.querySelector('#form-deleteAll');
+
+btnLimparTudo.addEventListener('click', (evento) => {
+    const confirmacao = confirm("Esta acção apagará todos os registos, Confirmar?");
+    formDeleteAll.addEventListener('submit', (evento) => {
+        if (!confirmacao) {
+            evento.preventDefault();
+            return;
+        }
+
+        if (!confirm("Tens Certeza?")) {
+            evento.preventDefault();
+            return;
+        }
+
+        fetch('/materiais', {
+            method: 'DELETE'
+        })
+            .then(response => response.json())
+            .then(data => {
+                localStorage.setItem('messages', data.sucesso + ";" + data.falha);
+                window.location.reload();
+
+                showDeleteAllMessage();
+
+            })
+            .catch(error => {
+                console.log('Ocorreu um erro:', error.message);
+            });
+    });
+});

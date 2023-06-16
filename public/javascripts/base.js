@@ -33,7 +33,7 @@ if (formValidate) {
   })
 }
 
-function abrirModalNovo() {
+document.querySelector('#btn-novo').addEventListener('click', () => {
   const modalNovo = document.querySelector('#modal-novo');
 
   modalNovo.classList.add('is-active');
@@ -43,7 +43,7 @@ function abrirModalNovo() {
       modalNovo.classList.remove('is-active');
     }
   });
-}
+});
 
 function abrirModalEditar() {
   const modalEditar = document.querySelector('#modal-editar');
@@ -96,9 +96,6 @@ document.getElementById('deleteRegisto').addEventListener('submit', (evento) => 
   }
 })
 
-const btnNovo = document.querySelector('#btn-novo');
-btnNovo.addEventListener('click', abrirModalNovo);
-
 //Abrir Editar elemento
 document.querySelectorAll('.btn-editar').forEach(btnEditar => {
   btnEditar.addEventListener('click', abrirModalEditar);
@@ -114,11 +111,10 @@ document.querySelectorAll('.btn-ver').forEach(btnVer => {
   btnVer.addEventListener('click', abrirModalVer);
 });
 
-//Exluir todos
-document.querySelector('#btnLimparGrid').addEventListener('click', (evento) => {
-  if (!confirm("Esta acção apagará todos os registos, Confirmar?")) {
-    evento.preventDefault();
-    return;
-  }
-});
 
+//.addEventListener('click', (evento) => {
+//   if (!) {
+//     evento.preventDefault();
+//     return;
+//   }
+// });

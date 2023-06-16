@@ -1,4 +1,5 @@
 //Opcoes de Menu Conta
+
 const btnAccount = document.querySelector('.btn-account');
 
 if (btnAccount) {

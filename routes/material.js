@@ -39,7 +39,7 @@ router.post("/materiais", (req, res, next) => {
         marca: yup.string().default("Sem marca"),
         modelo: yup.string().default("Sem modelo"),
         tipo_material: yup.string(),
-        data_compra: yup.date().default(() => new Date()),
+        data_compra: yup.date(),
         estado: yup.string(),
         capacidade: yup.string().required("Digite as capacidades do PC").max(45),
         tem_programas: yup.string().default("Sim"),
@@ -69,7 +69,7 @@ router.post("/materiais", (req, res, next) => {
 });
 
 
-router.put('/materiais', (req, res, next) => {
+router.put('/materiais/:id', (req, res, next) => {
     const { id } = req.params;
 
     database('materiais')
@@ -84,7 +84,7 @@ router.put('/materiais', (req, res, next) => {
 //Apagar apenas um unico resgisto
 router.delete('/materiais/:id', (req, res, next) => {
     const { id } = req.params;
-    console.log("deletando" + id);
+    // console.log("deletando" + id);
     database('materiais')
         .where("id", id)
         .delete()
@@ -102,7 +102,12 @@ router.delete('/materiais', (req, res, next) => {
     database('materiais')
         .truncate()
         .then(() => {
-            res.redirect('materiais');
+            const messages = {
+                sucesso: "Registos apagados com sucesso!",
+                falha: "Não conseguimos apagar os teus Registos",
+            }
+
+            res.send(messages);
         }, next);
 });
 
@@ -117,7 +122,7 @@ router.get('/materiais/:id', (req, res, next) => {
             }
 
             res.json(result);
-        });
-})
+        }, next);
+});
 
 module.exports = router;
