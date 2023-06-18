@@ -172,3 +172,22 @@ btnLimparTudo.addEventListener('click', (evento) => {
             });
     });
 });
+
+const formularioDados = document.querySelector('.form-dados');
+formularioDados.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const data = new FormData(formularioDados);
+
+    fetch('/materiais/cadastrar', {
+        method: 'POST',
+        body: data,
+    })
+        .then((response) => response.json())
+        .then((result) => {
+            
+        })
+        .catch((erro) => {
+            console.log(erro);
+        })
+})

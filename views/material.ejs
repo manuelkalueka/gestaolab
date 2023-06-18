@@ -39,8 +39,7 @@
 
                     <% materiais.forEach((material)=> { %>
                         <!--<h3 class="table-empty">Não tem dados para listar!</h3>-->
-
-                        <tr>
+                        <tr id="lista-dados">
                             <td class="grid-data nome-in-table">
                                 <%= material.nome %>
                             </td>
@@ -137,7 +136,7 @@
                         <span id="msg"></span>
                     </div>
 
-                    <form action="/materiais" method="post" id="form-validate">
+                    <form action="/materiais/cadastrar" method="post" id="form-validate" class="form-dados">
                         <div class="field">
                             <label for="nome-material" class="label">
                                 Nome *
@@ -255,7 +254,7 @@
                         <div class="field">
                             <footer class="modal-card-foot">
                                 <button type="submit" class="button is-primary" id="btnCadastrar">Cadastrar</button>
-                                <button type="reset" class="button" id="btnCancelar">Cancelar</button>
+                                <a href="/materiais" class="button" id="btnCancelarCad">Cancelar</a>
                             </footer>
                         </div>
                     </form>

@@ -15,24 +15,27 @@ database('materiais')
 database('mesas')
     .then(mesa => { return mesas = mesa }).catch(erro => console.log(erro.message));
 
-router.get("/materiais", (req, res, next) => {
-    if (req.query.pesquisa) {
-        if (req.query.pesquisa.valueOf != '') {
-            //Fazer pesquisa aqui
-        }
+router.get("/materiais", async (req, res, next) => {
+    try {
+
+
+        const dados = await database('materiais').select('*');
+        res.render("material",
+            {
+                title: TITLE,
+                materiais: dados,
+                mesas: mesas,
+                message: null,
+                sessao: req.session,
+                usuario: req.user
+            });
+    } catch (erro) {
+        console.log(erro);
+        res.status(500).send("Erro ao listar os dados");
     }
-    res.render("material",
-        {
-            title: TITLE,
-            materiais: materiais,
-            mesas: mesas,
-            message: null,
-            sessao: req.session,
-            usuario: req.user
-        });
 });
 
-router.post("/materiais", (req, res, next) => {
+router.post('/materiais/cadastrar', async (req, res, next) => {
     const reqDados = req.body;
     let dadosValidados = yup.object({
         nome: yup.string().required("Preencha o campo nome").strict(),
@@ -62,10 +65,18 @@ router.post("/materiais", (req, res, next) => {
             });
     }
 
-    database('materiais').insert(reqDados)
-        .then((ids) => {
-            res.redirect('materiais');
-        }, next)
+    try {
+        if (typeof req.body == undefined) {
+            console.log("Sou undefined");
+        }
+        console.log(req.body);
+        await database('materiais').insert(req.body);
+        res.json({ success: true });
+    } catch (erro) {
+        console.log(erro.message);
+        res.status(500).json({ success: false });
+    }
+
 });
 
 router.get('/materiais/:id', (req, res, next) => {
