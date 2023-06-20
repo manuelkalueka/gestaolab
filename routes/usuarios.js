@@ -32,7 +32,7 @@ router.get('/usuarios/add', (req, res, next) => {
     res.render('add-user', { title: 'Criar novo Usuário', usuario: req.user });
 });
 
-router.post('/usuarios/add', (req, res, next) => {
+router.post('/usuarios/add', async (req, res, next) => {
     const reqDados = {
         nome_completo: req.body.nome_completo,
         bi: req.body.bi,
@@ -62,7 +62,7 @@ router.post('/usuarios/add', (req, res, next) => {
                 usuario: req.user
             });
     }
-    database('usuarios').insert(reqDados)
+    await database('usuarios').insert(reqDados)
         .then((ids) => {
             res.redirect('/usuarios');
         }, next)
