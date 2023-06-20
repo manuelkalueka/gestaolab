@@ -4,25 +4,28 @@ const TITLE = "Mesas do Laborário";
 const yup = require('yup');
 
 const database = require('../database');
-let mesas;
 
-database('mesas')
-  .orderBy('nome', 'asc')
-  .limit(6)
-  .then(mesa => { return mesas = mesa }).catch(erro => console.log(erro.errors));
+router.get("/mesas", async (req, res, next) => {
+  try {
+    const mesas = await database('mesas')
+      .orderBy('nome', 'asc')
+      .limit(6);
 
-router.get("/mesas", (req, res, next) => {
-  res.render("mesa", {
-    title: TITLE,
-    mesas: mesas,
-    message: null, 
-    sessao: req.session,
-    usuario: req.user
-  });
+    res.render("mesa", {
+      title: TITLE,
+      mesas: mesas,
+      message: null,
+      sessao: req.session,
+      usuario: req.user
+    });
+  }
+  catch (erro) {
+    console.log(erro.message);
+  }
 });
 
-router.post('/mesas', (req, res, next) => {
-  const reqDados = req.body;
+router.post('/mesas', async (req, res, next) => {
+  const reqDados = await req.body;
 
   let schema = yup.object({
     nome: yup.string().required("Preecha o campo nome!"),
@@ -30,19 +33,27 @@ router.post('/mesas', (req, res, next) => {
   });
 
   if (!schema.isValid(reqDados)) {
-    res.status(400).render("mesas",
-      {
-        title: TITLE,
-        mesas: null,
-        message: {
-          erro: true,
-          texto: "erro"
-        }, 
-        sessao: req.session,
-        usuario: req.user
-      });
+    try {
+      const mesas = await database('mesas')
+        .orderBy('nome', 'asc')
+        .limit(6);
+
+      res.status(400).render("mesas",
+        {
+          title: TITLE,
+          mesas: mesas,
+          message: {
+            erro: true,
+            texto: "erro"
+          },
+          sessao: req.session,
+          usuario: req.user
+        });
+    } catch (erro) {
+      console.log(erro.message);
+    }
   } else {
-    database('mesas')
+    await database('mesas')
       .insert(reqDados)
       .then(ids => {
         res.redirect('mesas');

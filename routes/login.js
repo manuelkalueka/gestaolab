@@ -3,7 +3,7 @@ const router = express.Router();
 var passport = require('passport');
 const title = 'GESTAOLAB | Área de Acesso';
 
-router.get('/login', (req, res, next) => {
+router.get('/login', async (req, res, next) => {
     if (req.query.fail) {
         res.render('login', { message: 'Usuário e/ou senha incorretos!', title: title });
     } else if (req.isAuthenticated()) {
@@ -20,12 +20,12 @@ router.post('/login', passport.authenticate('local', {
 
 /** ROTA LOGOUT */
 
-router.get('/logout', (req, res, next) => {
+router.get('/logout', async (req, res, next) => {
     req.session.destroy();
     res.redirect('/');
 });
 
-router.get('/', (req, res, next) => {
+router.get('/', async (req, res, next) => {
     res.redirect('login');
 });
 

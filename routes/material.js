@@ -5,21 +5,19 @@ const yup = require('yup');
 const moment = require('moment');
 
 const TITLE = "Materiais do Laboratório";
-let mesas;
-
-database('mesas')
-    .then(mesa => { return mesas = mesa }).catch(erro => console.log(erro.message));
 
 router.get("/materiais", async (req, res, next) => {
     try {
-        const dados = await database('materiais')
+        const dadosMateriais = await database('materiais')
             .limit(6)
+            .orderBy('nome', 'asc');
+        const dadosMesas = await database('mesas')
             .orderBy('nome', 'asc');
         res.render("material",
             {
                 title: TITLE,
-                materiais: dados,
-                mesas: mesas,
+                materiais: dadosMateriais,
+                mesas: dadosMesas,
                 message: null,
                 sessao: req.session,
                 usuario: req.user

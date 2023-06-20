@@ -49,11 +49,8 @@ router.post('/usuarios/add', (req, res, next) => {
         password: yup.string().required("Preecha a Palavra Passe").min(4)
     });
 
-    if (!schema.isValid(req.body) || usuarios.forEach(usuario => {
-        if (usuario.username == reqDados.username) {
-            return true;
-        }
-    })) {
+    if (!schema.isValid(req.body)) {
+
         res.status(400).render("add-user",
             {
                 title: TITLE,
@@ -67,7 +64,7 @@ router.post('/usuarios/add', (req, res, next) => {
     }
     database('usuarios').insert(reqDados)
         .then((ids) => {
-            res.redirect('/perfil');
+            res.redirect('/usuarios');
         }, next)
 });
 
