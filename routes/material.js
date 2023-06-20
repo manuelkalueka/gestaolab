@@ -5,21 +5,16 @@ const yup = require('yup');
 const moment = require('moment');
 
 const TITLE = "Materiais do Laboratório";
-let materiais;
 let mesas;
 
-database('materiais')
-    .limit(6)
-    .orderBy('nome', 'asc')
-    .then(material => { return materiais = material }).catch(erro => console.log(erro.message));
 database('mesas')
     .then(mesa => { return mesas = mesa }).catch(erro => console.log(erro.message));
 
 router.get("/materiais", async (req, res, next) => {
     try {
-
-
-        const dados = await database('materiais').select('*');
+        const dados = await database('materiais')
+            .limit(6)
+            .orderBy('nome', 'asc');
         res.render("material",
             {
                 title: TITLE,
@@ -35,48 +30,50 @@ router.get("/materiais", async (req, res, next) => {
     }
 });
 
+router.get("/materiais/listar", async (req, res, next) => {
+    try {
+        const dados = await database('materiais')
+            .limit(6)
+            .orderBy('nome', 'asc');
+        res.json(dados);
+    } catch (erro) {
+        console.log(erro);
+        res.status(500).send("Erro ao listar os dados");
+    }
+});
+
 router.post('/materiais/cadastrar', async (req, res, next) => {
     const reqDados = req.body;
-    let dadosValidados = yup.object({
-        nome: yup.string().required("Preencha o campo nome").strict(),
-        marca: yup.string().default("Sem marca"),
-        modelo: yup.string().default("Sem modelo"),
-        tipo_material: yup.string(),
-        data_compra: yup.date(),
-        estado: yup.string(),
-        capacidade: yup.string().required("Digite as capacidades do PC").max(45),
-        tem_programas: yup.string().default("Sim"),
-        mesa: yup.number().positive().required("Informe a mesa deste material").strict(),
-        observacoes: yup.string()
-    });
+    try {
+        let dadosValidados = yup.object({
+            nome: yup.string().required("Preencha o campo nome").strict(),
+            marca: yup.string().default("Sem marca"),
+            modelo: yup.string().default("Sem modelo"),
+            tipo_material: yup.string(),
+            data_compra: yup.date(),
+            estado: yup.string(),
+            capacidade: yup.string().required("Digite as capacidades do PC").max(45),
+            tem_programas: yup.string().default("Sim"),
+            mesa: yup.number().positive().required("Informe a mesa deste material").strict(),
+            observacoes: yup.string()
+        });
 
-    if (!dadosValidados.isValid(reqDados)) {
-        res.status(400).render("material",
-            {
-                title: TITLE,
-                materiais: {},
-                mesas: null,
-                message: {
-                    erro: true,
-                    texto: "erro.errors",
-                },
-                sessao: req.session,
-                usuario: req.user
-            });
+        const validacao = dadosValidados.isValid(reqDados);
+        if (!validacao) {
+            return res.status(400).json('rever os dados preechidos');
+        }
+    }
+    catch (erro) {
+        console.log(erro);
     }
 
     try {
-        if (typeof req.body == undefined) {
-            console.log("Sou undefined");
-        }
-        console.log(req.body);
         await database('materiais').insert(req.body);
-        res.json({ success: true });
+        res.redirect('/materiais')
     } catch (erro) {
-        console.log(erro.message);
-        res.status(500).json({ success: false });
+        console.log(erro);
+        res.status(500).redirect('/materiais')
     }
-
 });
 
 router.get('/materiais/:id', (req, res, next) => {
@@ -85,7 +82,7 @@ router.get('/materiais/:id', (req, res, next) => {
         .where('id', id)
         .then((result) => {
             if (!result) {
-                res.sendStatus(400);
+                res.send(400);
                 return;
             }
 
@@ -123,18 +120,12 @@ router.delete('/materiais/:id', (req, res, next) => {
         }, next);
 });
 
-
 //apaga todos os registos da BD
 router.delete('/materiais', (req, res, next) => {
     database('materiais')
         .truncate()
         .then(() => {
-            const messages = {
-                sucesso: "Registos apagados com sucesso!",
-                falha: "Não conseguimos apagar os teus Registos",
-            }
-
-            res.send(messages);
+            res.redirect('/materiais');
         }, next);
 });
 

@@ -26,7 +26,7 @@ const contaRouter = require('./routes/perfil');
 const aboutRouter = require('./routes/about');
 const settingRouter = require('./routes/settings');
 const relatorioRouter = require('./routes/relatorio');
-const extrasRouter = require('./routes/extras');
+const usuariosRouter = require('./routes/usuarios');
 const router404 = require('./routes/404');
 //Fim Rotas do Sistema
 
@@ -41,7 +41,7 @@ app.use(session({
   secret: 'gestao do laboratorio de informatica',
   resave: false,
   saveUninitialized: false,
-  cookie: { maxAge: 45 * 60 * 1000 }//45min
+  cookie: { maxAge: 90 * 60 * 1000 }//1h30 de duracao
 }));
 
 app.use(passport.initialize());
@@ -74,7 +74,7 @@ app.use('/', authenticationMiddleware, contaRouter);
 app.use('/', authenticationMiddleware, settingRouter);
 app.use('/', authenticationMiddleware, relatorioRouter);
 app.use('/', authenticationMiddleware, aboutRouter);
-app.use('/', authenticationMiddleware, extrasRouter);
+app.use('/', authenticationMiddleware, usuariosRouter);
 app.use('/', router404);//manter o erro de não encontrado em ultimo
 
 // catch 404 and forward to error handler

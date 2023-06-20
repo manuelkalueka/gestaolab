@@ -3,94 +3,10 @@
 
         <main class="conteudo">
             <h1 class="title">
-                <%= title %>
+                <%=title%>
             </h1>
-            <div class="top-elements">
-                <a href="/perfil/add" id="btn-novo" class="button is-info">Criar usuário</a>
-
-                <form action="#" method="get">
-                    <span class="search-area">
-                        <input type="search" name="pesquisa-registo" placeholder="Pesquisar registo..."
-                            class="input-search">
-                        <button type="submit" class="btn-search">
-                            <i class="fa fa-search is-left icon"></i>
-                        </button>
-                    </span>
-                </form>
-            </div>
-
-            <div class="table-container">
-
-                <table class="table is-striped is-hoverable is-fullwidth">
-                    <thead class="grid-header">
-                        <tr>
-                            <th scope="col" class="grid-title">Nome Completo</th>
-                            <th scope="col" class="grid-title">BI</th>
-                            <th scope="col" class="grid-title">Genero</th>
-                            <th scope="col" class="grid-title">Tipo Conta</th>
-                            <th scope="col" class="grid-title">Estado</th>
-                            <th scope="col" class="grid-title">Acções</th>
-                        </tr>
-                    </thead>
-
-                    <tbody class="grid-body">
-
-                        <% lista_usuarios.forEach((usuario)=> { %>
-
-                            <tr>
-                                <td class="grid-data nome-in-table">
-                                    <%= usuario.nome_completo %>
-                                </td>
-
-                                <td class="grid-data">
-                                    <%= usuario.bi %>
-                                </td>
-                                <td class="grid-data">
-                                    <%= usuario.genero %>
-                                </td>
-                                <td class="grid-data">
-                                    <%= usuario.tipo_conta %>
-                                </td>
-                                <td class="grid-data">
-                                    <%= usuario.estado %>
-                                </td>
-                                <td class="grid-data">
-                                    <span class="actions-list">
-                                        <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
-                                                class="fa fa-eye"></i></a>
-                                        <a href="#" class="btn-editar" title="Editar Registo"><i
-                                                class="fa fa-edit"></i></a>
-                                        <a href="#" class="btn-excluir" title="Excluir Registo"><i
-                                                class="fa fa-trash"></i></a>
-                                    </span>
-                                </td>
-
-                            </tr>
-
-                            <% }) %>
-
-                    </tbody>
-
-                </table>
-            </div>
-
-            <nav class="pagination" role="navigation" aria-label="pagination">
-                <a class="pagination-previous is-disabled" title="Esta é a primeira página">Anterior</a>
-                <a class="pagination-next">Próxima</a>
-                <ul class="pagination-list">
-                    <li>
-                        <a class="pagination-link is-current" aria-label="Page 1" aria-current="page">1</a>
-                    </li>
-                    <li>
-                        <a class="pagination-link" aria-label="Goto page 2">2</a>
-                    </li>
-                    <li>
-                        <a class="pagination-link" aria-label="Goto page 3">3</a>
-                    </li>
-                </ul>
-            </nav>
         </main>
-        <script src="/javascripts/base.js"></script>
-        <script src="/javascripts/header.js"></script>
-        <script src="/javascripts/sidebar.js"></script>
+        <script src="/javascripts/header.js" defer></script>
+
+
         <%- include('./partials/footer.ejs')%>

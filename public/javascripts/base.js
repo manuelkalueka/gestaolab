@@ -89,11 +89,13 @@ function abrirModalVer() {
 //   }
 // }
 
-document.getElementById('deleteRegisto').addEventListener('submit', (evento) => {
-  const resposta = confirm("Tens a certeza que deseja excluir este Regisito ?");
-  if (!resposta) {
-    evento.preventDefault();
-  }
+document.querySelectorAll('.deleteRegisto').forEach(deleteRegisto => {
+  deleteRegisto.addEventListener('submit', (evento) => {
+    const resposta = confirm("Tens a certeza que deseja excluir este Registo?");
+    if (!resposta) {
+      evento.preventDefault();
+    }
+  });
 })
 
 //Abrir Editar elemento

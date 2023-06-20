@@ -72,9 +72,10 @@
                                             class="fa fa-eye"></i></a>
                                     <a href="#" class="btn-editar" title="Editar Registo"
                                         data-material-id="<%=material.id%>">
-                                        <i class="fa fa-edit"></i></a>
+                                        <i class="fa fa-edit"></i>
+                                    </a>
                                     <!-- Form Eliminar-->
-                                    <form action="/materiais/<%=material.id%>" method="post" id="deleteRegisto">
+                                    <form action="/materiais/<%=material.id%>" method="post" class="deleteRegisto">
                                         <input type="hidden" name="_method" value="delete">
                                         <button type="submit" class="btn-excluir" title="Excluir Registo"><i
                                                 class="fa fa-trash"></i></button>
@@ -107,7 +108,7 @@
                     </li>
                 </ul>
             </nav>
-            <form action="/materiais" method="post" id="form-deleteAll">
+            <form method="post" id="form-deleteAll">
                 <input type="hidden" name="_method" value="delete">
 
                 <button type="submit" class="button is-danger" id="btnLimparGrid">Eliminar Todos
@@ -136,7 +137,7 @@
                         <span id="msg"></span>
                     </div>
 
-                    <form action="/materiais/cadastrar" method="post" id="form-validate" class="form-dados">
+                    <form action="/materiais/cadastrar" method="post" id="form-validate" class="form-cadastro">
                         <div class="field">
                             <label for="nome-material" class="label">
                                 Nome *
@@ -274,9 +275,8 @@
 
                 <section class="modal-card-body">
                     <!-- Form de Edicao de Material-->
-                    <form id="form-edit" method="post">
+                    <form id="form-validate" class="form-edit" method="post">
                         <div class="field">
-                            <input type="hidden" name="_method" value="put">
                             <input type="hidden" id="edit-material-id" value="">
                             <label for="edit-nome-material" class="label">
                                 Nome
