@@ -103,10 +103,10 @@ document.querySelectorAll('.btn-editar').forEach(btnEditar => {
   btnEditar.addEventListener('click', abrirModalEditar);
 });
 
-//Excluir elemento Editar elemento
-document.querySelectorAll('.btn-excluir').forEach(btnExcluir => {
-  btnExcluir.addEventListener('click', excluirRegisto);
-})
+// //Excluir elemento Editar elemento
+// document.querySelectorAll('.btn-excluir').forEach(btnExcluir => {
+//   btnExcluir.addEventListener('click', excluirRegisto);
+// })
 
 //Ver registo do material
 document.querySelectorAll('.btn-ver').forEach(btnVer => {
