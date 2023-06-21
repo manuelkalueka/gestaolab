@@ -14,8 +14,7 @@ function authenticationMiddleware(req, res, next) {
   res.redirect('/login');
 }
 
-//Data
-
+//Data do Sistema
 
 //Rotas do Sistema
 const loginRouter = require('./routes/login');

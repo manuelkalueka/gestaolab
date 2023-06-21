@@ -1,22 +1,49 @@
 const formValidate = document.querySelector('#form-validate');
+const editFormValidate = document.querySelector('#edit-form-validate');
+
 if (formValidate) {
   formValidate.addEventListener('submit', (evento) => {
     const nome = document.getElementById('nome-material');
     const capacidade = document.getElementById('capacidade');
-    const estado = document.getElementsByName('estado');
+    const estados = document.querySelectorAll('.n-estado');
     const tipoMaterial = document.querySelector('#tipo-material');
+    const observacoes = document.querySelector('#observacoes');
 
     if (tipoMaterial[0].selected) {
 
-      if (nome.value === '' || capacidade.value == '') {
+      if (nome.value === '') {
         evento.preventDefault();
         const msgContainer = document.querySelector('.message-alert');
         msgContainer.classList.add('alert-err');
         msgContainer.classList.remove('hide');
-        document.querySelector('#msg').textContent = 'Preecha todos os campos correctamente!';
+        document.querySelector('#msg').textContent = 'Preecha o campo Nome';
         nome.focus();
         return;
       }
+
+      if (capacidade.value == '') {
+        evento.preventDefault();
+        const msgContainer = document.querySelector('.message-alert');
+        msgContainer.classList.add('alert-err');
+        msgContainer.classList.remove('hide');
+        document.querySelector('#msg').textContent = 'Preecha o campo Capacidades do Computador';
+        capacidade.focus();
+        return;
+      }
+
+      estados.forEach(estado => {
+        if (estado.checked) {
+          if (estado.value == 'Danificado' || estado.value == 'Rasoável') {
+            evento.preventDefault();
+            const msgContainer = document.querySelector('.message-alert');
+            msgContainer.classList.add('alert-err');
+            msgContainer.classList.remove('hide');
+            document.querySelector('#msg').textContent = 'Descreve o problema nas Observações!';
+            observacoes.focus();
+            return;
+          }
+        }
+      });
     } else {
 
       if (nome.value === '') {
@@ -24,10 +51,98 @@ if (formValidate) {
         const msgContainer = document.querySelector('.message-alert');
         msgContainer.classList.add('alert-err');
         msgContainer.classList.remove('hide');
-        document.querySelector('#msg').textContent = 'Preecha todos os campos correctamente!';
+        document.querySelector('#msg').textContent = 'Preecha o campo Nome';
         nome.focus();
         return;
       }
+
+      estados.forEach(estado => {
+        if (estado.checked) {
+          if (estado.value == 'Danificado' || estado.value == 'Rasoável') {
+            evento.preventDefault();
+            const msgContainer = document.querySelector('.message-alert');
+            msgContainer.classList.add('alert-err');
+            msgContainer.classList.remove('hide');
+            document.querySelector('#msg').textContent = 'Descreve o problema nas observações!';
+            observacoes.focus();
+            return;
+          }
+        }
+      });
+    }
+
+  })
+}
+
+//PARA O FORMULARIO EDITAR
+if (editFormValidate) {
+  editFormValidate.addEventListener('submit', (evento) => {
+    const nome = document.querySelector('#edit-nome-material');
+    const capacidade = document.getElementById('edit-capacidade');
+    const estados = document.querySelectorAll('.edit-estado');
+    const tipoMaterial = document.querySelector('#edit-tipo-material');
+    const observacoes = document.querySelector('#edit-observacoes');
+
+    if (tipoMaterial[0].selected) {
+
+      if (nome.value == '') {
+        evento.preventDefault();
+        const msgContainer = document.querySelectorAll('.message-alert')[1];
+        msgContainer.classList.add('alert-err');
+        msgContainer.classList.remove('hide');
+        document.querySelector('#edit-msg').textContent = 'Preecha o campo Nome';
+        nome.focus();
+        return;
+      }
+
+      if (capacidade.value == '') {
+        evento.preventDefault();
+        const msgContainer = document.querySelectorAll('.message-alert')[1];
+        msgContainer.classList.add('alert-err');
+        msgContainer.classList.remove('hide');
+        document.querySelector('#edit-msg').textContent = 'Preecha o campo Capacidades do Computador';
+        capacidade.focus();
+        return;
+      }
+
+      estados.forEach(estado => {
+        if (estado.checked) {
+          if (estado.value == 'Danificado' || estado.value == 'Rasoável') {
+            evento.preventDefault();
+            const msgContainer = document.querySelectorAll('.message-alert')[1];
+            msgContainer.classList.add('alert-err');
+            msgContainer.classList.remove('hide');
+            document.querySelector('#edit-msg').textContent = 'Descreve o problema nas Observações!';
+            observacoes.focus();
+            return;
+          }
+        }
+      });
+    } else {
+
+      if (nome.value === '') {
+        evento.preventDefault();
+        const msgContainer = document.querySelectorAll('.message-alert')[1];
+        msgContainer.classList.add('alert-err');
+        msgContainer.classList.remove('hide');
+        document.querySelector('#edit-msg').textContent = 'Preecha o campo Nome';
+        nome.focus();
+        return;
+      }
+
+      estados.forEach(estado => {
+        if (estado.checked) {
+          if (estado.value == 'Danificado' || estado.value == 'Rasoável') {
+            evento.preventDefault();
+            const msgContainer = document.querySelector('.message-alert');
+            msgContainer.classList.add('alert-err');
+            msgContainer.classList.remove('hide');
+            document.querySelector('#msg').textContent = 'Descreve o problema nas observações!';
+            observacoes.focus();
+            return;
+          }
+        }
+      });
     }
 
   })

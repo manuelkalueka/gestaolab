@@ -1,28 +1,3 @@
-/*
-
-function validarMaterial() {
-    const nomeElement = document.querySelector('#nome');
-    const marcaElemnt = document.querySelector('#marca');
-    const modeloElemnt = document.querySelector('#modelo');
-    const tipoMaterialElemnt = document.querySelector('#tipo-material');
-    const dataCompraElement = document.querySelector('#data-compra');
-    const estadoElement = document.querySelector('#estado-material');
-    const capacidadeElement = document.querySelector('#capacidade');
-    const temProgramaElement = document.querySelectorAll('tem_programas');
-
-    const mesaElement = document.querySelector('#mesa');
-    const observacoes = document.querySelector('#observacoes');
-
-    if (nomeElement.value == '' || nomeElement.value == null) {
-        nomeElement.focus();
-        nomeElement.style.outline = '1px solid red';
-        return;
-    }
-
-    alert('nome invalido');
-}
-
-document.querySelector('#btnCadastrar').addEventListener('click', validarMaterial()); //ToDo */
 
 //Ativa o input modelo
 document.querySelector('#marca-material').addEventListener('blur', (evento) => {
@@ -57,12 +32,35 @@ tipoMaterial.addEventListener('change', (evento) => {
     }
 });
 
+const editTipoMaterial = document.querySelector('#edit-tipo-material');
+editTipoMaterial.addEventListener('change', (evento) => {
+    for (let i = 0; i < editTipoMaterial.length; i++) {
+        const capacidade = document.querySelector('#edit-capacidade');
+        const programas = document.getElementsByClassName('edit-programa');
+
+        if (!editTipoMaterial[0].selected) {
+
+            capacidade.disabled = true;
+            for (let i = 0; i < programas.length; i++) {
+                programas[i].disabled = true;
+            }
+            break;
+        } else {
+
+            capacidade.disabled = false;
+            for (let i = 0; i < programas.length; i++) {
+                programas[i].disabled = false;
+            }
+            break;
+        }
+    }
+});
 
 //pega dados para editar
-async function getDadosForEdition(botao) {
-    const materialId = botao.dataset.materialId;
+async function getDadosForEdition(id) {
+    const materialId = id;
     document.querySelector('#edit-material-id').value = materialId;
-    let newBody = {};
+    // let newBody = {};
 
     await fetch('/materiais/' + materialId, {
         method: 'GET'
@@ -116,18 +114,18 @@ async function getDadosForEdition(botao) {
 
                 const observacoes = document.querySelector('#edit-observacoes').value = dados.observacoes;
 
-                newBody = {
-                    nome: nome,
-                    marca: marca,
-                    modelo: modelo,
-                    tipo_material: tipo,
-                    estado: estado,
-                    data_compra: dataCompra,
-                    capacidade: capacidade,
-                    tem_programas: temPograma,
-                    mesa: mesa,
-                    observacoes: observacoes
-                }
+                // newBody = {
+                //     nome: nome,
+                //     marca: marca,
+                //     modelo: modelo,
+                //     tipo_material: tipo,
+                //     estado: estado,
+                //     data_compra: dataCompra,
+                //     capacidade: capacidade,
+                //     tem_programas: temPograma,
+                //     mesa: mesa,
+                //     observacoes: observacoes
+                // }
             });
         })
         .catch(error => {
@@ -151,10 +149,55 @@ async function updateRegisto(id, body) {
     }
 
 }
+
+//pega dados para ver
+async function getMaterial(id) {
+    try {
+        const materialId = id;
+
+        const response = await fetch('/materiais/' + materialId);
+        const data = await response.json();
+
+        await data.forEach((material) => {
+            let tipoMaterial = [{ pc: "Computador", key: "Teclado", mo: "Mouse", oth: "Outro", up: "UPS" }];
+            document.querySelector('.modal-card-title.ver-nome').innerHTML = material.nome;
+            document.querySelector('.ver-marca-material').innerHTML = material.marca;
+            document.querySelector('.ver-modelo-material').innerHTML = material.modelo;
+            const verTipo = document.querySelector('.ver-tipo-material');
+            tipoMaterial.forEach(tipo => {
+                if ("pc" == material.tipo_material) {
+                    verTipo.innerHTML = tipo.pc;
+                }
+                if ("key" == material.tipo_material) {
+                    verTipo.innerHTML = tipo.key;
+                }
+                if ("mo" == material.tipo_material) {
+                    verTipo.innerHTML = tipo.mo;
+                }
+                if ("up" == material.tipo_material) {
+                    verTipo.innerHTML = tipo.up;
+                }
+                if ("oth" == material.tipo_material) {
+                    verTipo.innerHTML = tipo.oth;
+                }
+            })
+            document.querySelector('.ver-estado').innerHTML = material.estado;
+
+            document.querySelector('.ver-capacidade').innerHTML = material.capacidade;
+            document.querySelector('.ver-programas').innerHTML = material.tem_programas;
+            document.querySelector('.ver-data-compra').innerHTML = moment(material.data_compra.substring(0, 10)).format('DD-MM-YYYY');
+            document.querySelector('.ver-observacoes').innerHTML = material.observacoes;
+        })
+    }
+    catch (erro) {
+        console.log("Houve um erro " + erro.message);
+    }
+}
+
 //editar mostrar as info
-document.querySelectorAll('.btn-editar').forEach(botao => {
-    botao.addEventListener('click', getDadosForEdition(botao));
-});
+// document.querySelectorAll('.btn-editar').forEach(botao => {
+//     botao.addEventListener('click', getDadosForEdition(botao));
+// });
 
 //mensagem de delete all
 function showDeleteAllMessage() {

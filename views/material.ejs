@@ -69,9 +69,9 @@
                             <td class="grid-data">
                                 <span class="actions-list">
                                     <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
-                                            class="fa fa-eye"></i></a>
+                                            class="fa fa-eye" onclick="getMaterial('<%=material.id%>')"></i></a>
                                     <a href="#" class="btn-editar" title="Editar Registo"
-                                        data-material-id="<%=material.id%>">
+                                        onclick="getDadosForEdition('<%=material.id%>')">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                     <!-- Form Eliminar-->
@@ -115,13 +115,14 @@
                     Registos
                 </button>
             </form>
-
+            <!-- Mensage de Alerta-->
             <p class="message-box oculto">
                 <span>
                     <i class="fa-solid fa-check" id="icone-message"></i>
                 </span>
-                <span id="message">Feito com sucesso, abosoluto</span>
+                <span id="message"></span>
             </p>
+
         </main>
 
         <div class="modal" id="modal-novo">
@@ -175,7 +176,7 @@
                                         <option value="key">Teclado</option>
                                         <option value="mo">Mouse</option>
                                         <option value="up">UPS</option>
-                                        <option value="other">Outro</option>
+                                        <option value="oth">Outro</option>
                                     </select>
                                 </div>
                             </div>
@@ -196,13 +197,16 @@
                                 Estado
                             </label>
                             <div class="control">
-                                <input type="radio" class="radio" id="rd-danificado" name="estado" value="Danificado">
+                                <input type="radio" class="radio n-estado" id="rd-danificado" name="estado"
+                                    value="Danificado">
                                 <span>Danificado</span>
 
-                                <input type="radio" class="radio" id="rd-bom" name="estado" checked value="Bom">
+                                <input type="radio" class="radio n-estado" id="rd-bom" name="estado" checked
+                                    value="Bom">
                                 <span>Bom</span>
 
-                                <input type="radio" class="radio" id="rd-rasoavel" name="estado" value="Rasoável">
+                                <input type="radio" class="radio n-estado" id="rd-rasoavel" name="estado"
+                                    value="Rasoável">
                                 <span>Rasoável</span>
                             </div>
                         </div>
@@ -211,7 +215,8 @@
                             <label for="capacidade" class="label">Capacidade *</label>
                             <div class="control">
                                 <input type="text" class="input" id="capacidade" name="capacidade"
-                                    placeholder="Ex.: Ram de 4gb processador intel 2.4GHz HDD 500Gb" maxlength="45">
+                                    placeholder="Ex.:Windows 10 Pro, Ram de 4gb processador intel 2.4GHz HDD 500Gb"
+                                    maxlength="70">
                             </div>
                         </div>
 
@@ -274,8 +279,12 @@
                 </header>
 
                 <section class="modal-card-body">
+
+                    <div class="message-alert hide">
+                        <span id="edit-msg"></span>
+                    </div>
                     <!-- Form de Edicao de Material-->
-                    <form id="form-validate" class="form-edit" method="post">
+                    <form id="edit-form-validate" class="form-edit" method="post" action="">
                         <div class="field">
                             <input type="hidden" id="edit-material-id" value="">
                             <label for="edit-nome-material" class="label">
@@ -314,7 +323,7 @@
                                         <option value="key">Teclado</option>
                                         <option value="mo">Mouse</option>
                                         <option value="up">UPS</option>
-                                        <option value="other">Outro</option>
+                                        <option value="oth">Outro</option>
                                     </select>
                                 </div>
                             </div>
@@ -335,16 +344,16 @@
                                 Estado
                             </label>
                             <div class="control">
-                                <input type="radio" class="radio" id="edit-rd-danificado" data-edit-radio="edit-estado"
-                                    name="estado" value="Danificado">
+                                <input type="radio" class="radio edit-estado" id="edit-rd-danificado"
+                                    data-edit-radio="edit-estado" name="estado" value="Danificado">
                                 <span>Danificado</span>
 
-                                <input type="radio" class="radio" id="edit-rd-bom" data-edit-radio="edit-estado"
-                                    name="estado" checked value="Bom">
+                                <input type="radio" class="radio edit-estado" id="edit-rd-bom"
+                                    data-edit-radio="edit-estado" name="estado" checked value="Bom">
                                 <span>Bom</span>
 
-                                <input type="radio" class="radio" id="edit-rd-rasoavel" data-edit-radio="edit-estado"
-                                    name="estado" value="Rasoável">
+                                <input type="radio" class="radio edit-estado" id="edit-rd-rasoavel"
+                                    data-edit-radio="edit-estado" name="estado" value="Rasoável">
                                 <span>Rasoável</span>
                             </div>
                         </div>
@@ -353,7 +362,8 @@
                             <label for="edit-capacidade" class="label">Capacidade</label>
                             <div class="control">
                                 <input type="text" class="input" id="edit-capacidade" name="capacidade"
-                                    placeholder="Ex.: Ram de 4gb processador intel 2.4GHz HDD 500Gb" maxlength="45">
+                                    placeholder="Ex.:Windows 10 Pro, Ram de 4gb processador intel 2.4GHz HDD 500Gb"
+                                    maxlength="70">
                             </div>
                         </div>
 
@@ -362,11 +372,11 @@
                                 Tem programas
                             </label>
                             <div class="control">
-                                <input type="radio" class="radio n-programa" id="edit-rd-sim"
+                                <input type="radio" class="radio edit-programa" id="edit-rd-sim"
                                     data-edit-programas="edit-programas" name="tem_programas" checked value="Sim">
                                 <span>Sim</span>
 
-                                <input type="radio" class="radio n-programa" id="edit-rd-nao"
+                                <input type="radio" class="radio edit-programa" id="edit-rd-nao"
                                     data-edit-programas="edit-programas" name="tem_programas" value="Não">
                                 <span>Não</span>
                             </div>
@@ -412,48 +422,50 @@
             <div class="modal-background"></div>
             <div class="modal-card">
                 <header class="modal-card-head">
-                    <p class="modal-card-title">NOME DO MATERIAL</p>
+                    <p class="modal-card-title ver-nome"></p>
                     <button class="delete" aria-label="close" id="close"></button>
                 </header>
 
                 <section class="modal-card-body">
                     <div class="ver-body">
                         <div class="foto-material">
-                            NOME DO MATERIAL
+
                         </div>
                         <div class="descricao">
                             <span class="desc-campo">
-                                Marca: <span>
+                                Marca:
+                                <span class="ver-marca-material">
 
                                 </span>
                             </span>
                             <span class="desc-campo">
-                                Modelo: <span>
+                                Modelo:
+                                <span class="ver-modelo-material">
 
                                 </span>
                             </span>
                             <span class="desc-campo">
-                                Tipo de Material: <span>
+                                Tipo de Material: <span class="ver-tipo-material">
 
                                 </span>
                             </span>
                             <span class="desc-campo">
-                                Estado: <span>
+                                Estado: <span class="ver-estado">
 
                                 </span>
                             </span>
                             <span class="desc-campo">
-                                Data de Compra: <span>
+                                Data de Compra: <span class="ver-data-compra">
 
                                 </span>
                             </span>
                             <span class="desc-campo">
-                                Capacidade <span>
+                                Capacidade: <span class="ver-capacidade">
 
                                 </span>
                             </span>
                             <span class="desc-campo">
-                                Tem Programas <span>
+                                Tem Programas: <span class="ver-programas">
 
                                 </span>
                             </span>
@@ -462,9 +474,10 @@
                             </span>
                             </span>
                             <span class="desc-campo">
-                                Observações: <span>
+                                Observações:
+                                <div class="ver-observacoes">
 
-                                </span>
+                                </div>
                             </span>
                         </div>
                     </div>

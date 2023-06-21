@@ -358,10 +358,13 @@ input.input.input-add {
 
 .foto-material {
   background-color: #999a9b;
+  background-image: url('../images/gestaolab-logo.png');
+  background-size: cover;
+  border: 2px solid #ab9678;
   border-radius: var(--border_rad);
-  width: 40%;
+  width: 25%;
 
-  font-size: 1.3em;
+  font-size: 0.9em;
   color: var(--light);
 
   display: flex;
@@ -370,16 +373,22 @@ input.input.input-add {
 }
 
 .descricao {
-  width: 60%;
+  width: 75%;
   padding: 1em;
 }
 
 .desc-campo {
   display: block;
+  font-size: 0.9em;
+  font-weight: lighter;
+}
+
+div.ver-observacoes {/*Fazer com ela deixe de Quebrar*/
+  height: auto;
 }
 
 .desc-campo > span {
-  font-weight: bold;
+  font-style: oblique;
 }
 
 p.oculto {

@@ -90,7 +90,6 @@ router.get('/materiais/:id', (req, res, next) => {
 
 router.put('/materiais/:id', (req, res, next) => {
     const { id } = req.params;
-    console.log(req.body + " Meu Body");
     database('materiais')
         .where('id', id)
         .update(req.body)
@@ -99,7 +98,7 @@ router.put('/materiais/:id', (req, res, next) => {
                 return res.send(400)
             }
 
-            res.json(result);
+            res.redirect('/materiais');
         }, next);
 });
 
