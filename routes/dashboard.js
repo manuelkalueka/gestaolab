@@ -17,8 +17,11 @@ router.get('/dashboard', async (req, res, next) => {
         const [Pc_incompleto] = await database('materiais')
             .where({ tipo_material: 'pc', estado: 'Rasoável' })
             .count('*', { as: 'total_pc_incompleto' });
-
-        console.log(Pc_incompleto);
+        const [total_materiais] = await database('materiais')
+            .count('*', { as: 'total_materiais' });
+        const [pc_bons] = await database('materiais')
+            .where({ tipo_material: 'pc', estado: 'Bom' })
+            .count('*', { as: 'total_pc_bons' });
 
         res.render('dashboard', {
             title: TITULO_PAGE,
@@ -26,6 +29,8 @@ router.get('/dashboard', async (req, res, next) => {
             total_pc: PC.total_pc,
             total_pc_avaria: PC_avariados.total_pc_avariados,
             total_pc_incompleto: Pc_incompleto.total_pc_incompleto,
+            total_materiais: total_materiais.total_materiais,
+            total_pc_bons: pc_bons.total_pc_bons,
             sessao: req.session,
             usuario: req.user
         });

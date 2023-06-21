@@ -90,19 +90,11 @@ body {
 .card-icon > i.fa-display + .quant-card,
 .card-icon > i.fa-database,
 .card-icon > i.fa-database + .quant-card,
-.card-icon > i.fa-person-chalkboard,
-.card-icon > i.fa-person-chalkboard + .quant-card {
+.card-icon > i.fa-gears,
+.card-icon > i.fa-gears + .quant-card,
+.card-icon > i.fa-computer,
+.card-icon > i.fa-computer + .quant-card {
   color: var(--info);
-}
-
-.card-icon > i.fa-computer,
-.card-icon > i.fa-computer + .quant-card {
-  color: var(--success);
-}
-
-.card-icon > i.fa-computer,
-.card-icon > i.fa-computer + .quant-card {
-  color: var(--success);
 }
 
 .card-icon > i.fa-desktop,
@@ -113,6 +105,11 @@ body {
 .card-icon > i.fa-keyboard,
 .card-icon > i.fa-keyboard + .quant-card {
   color: var(--warning);
+}
+
+.card-icon > i.fa-solid.fa-computer,
+.card-icon > i.fa-solid.fa-computer + .quant-card {
+  color: var(--success);
 }
 
 .foot-title {
