@@ -8,9 +8,19 @@ const TITLE = "Materiais do Laboratório";
 
 router.get("/materiais", async (req, res, next) => {
     try {
+        const numeroPagina = (req.query.pagina) || 1; //pagina actual
+        const registosPorPagina = 6;
+        const deslocamento = registosPorPagina * (numeroPagina - 1);
+
         const dadosMateriais = await database('materiais')
             .limit(6)
+            .offset(deslocamento)
             .orderBy('nome', 'asc');
+        const [total_materiais] = await database('materiais')
+            .count('*', { as: 'total_materiais' });
+
+        const totalPaginas = Math.ceil(total_materiais.total_materiais / registosPorPagina);
+
         const dadosMesas = await database('mesas')
             .orderBy('nome', 'asc');
         const [user] = await database('usuarios')
@@ -21,6 +31,8 @@ router.get("/materiais", async (req, res, next) => {
             {
                 title: TITLE,
                 materiais: dadosMateriais,
+                paginaActual: numeroPagina,
+                totalPaginas: totalPaginas,
                 mesas: dadosMesas,
                 message: null,
                 sessao: req.session,

@@ -94,17 +94,19 @@
             </table>
 
             <nav class="pagination" role="navigation" aria-label="pagination">
-                <a class="pagination-previous is-disabled" title="Esta é a primeira página">Anterior</a>
-                <a class="pagination-next">Próxima</a>
+
+                <a class="pagination-previous" href="/materiais?pagina=<%= paginaActual-1 %>">
+                    Anterior
+                </a>
+                <a class="pagination-next" href="/materiais?pagina=<%%>">
+                    Próxima
+                </a>
                 <ul class="pagination-list">
                     <li>
-                        <a class="pagination-link is-current" aria-label="Page 1" aria-current="page">1</a>
-                    </li>
-                    <li>
-                        <a class="pagination-link" aria-label="Goto page 2">2</a>
-                    </li>
-                    <li>
-                        <a class="pagination-link" aria-label="Goto page 3">3</a>
+                        <a class="pagination-link is-current" aria-label="Page 1" aria-current="page"
+                            href="/materiais?pagina=<%=paginaActual%>">
+                            <%=paginaActual%>
+                        </a>
                     </li>
                 </ul>
             </nav>
