@@ -33,7 +33,7 @@ if (formValidate) {
 
       estados.forEach(estado => {
         if (estado.checked) {
-          if (estado.value == 'Danificado' || estado.value == 'Rasoável') {
+          if ((estado.value == 'Danificado' || estado.value == 'Rasoável') && observacoes.value == '') {
             evento.preventDefault();
             const msgContainer = document.querySelector('.message-alert');
             msgContainer.classList.add('alert-err');
@@ -58,7 +58,7 @@ if (formValidate) {
 
       estados.forEach(estado => {
         if (estado.checked) {
-          if (estado.value == 'Danificado' || estado.value == 'Rasoável') {
+          if ((estado.value == 'Danificado' || estado.value == 'Rasoável') && observacoes.value == '') {
             evento.preventDefault();
             const msgContainer = document.querySelector('.message-alert');
             msgContainer.classList.add('alert-err');
@@ -107,7 +107,7 @@ if (editFormValidate) {
 
       estados.forEach(estado => {
         if (estado.checked) {
-          if (estado.value == 'Danificado' || estado.value == 'Rasoável') {
+          if ((estado.value == 'Danificado' || estado.value == 'Rasoável') && observacoes.value == '') {
             evento.preventDefault();
             const msgContainer = document.querySelectorAll('.message-alert')[1];
             msgContainer.classList.add('alert-err');
@@ -132,7 +132,7 @@ if (editFormValidate) {
 
       estados.forEach(estado => {
         if (estado.checked) {
-          if (estado.value == 'Danificado' || estado.value == 'Rasoável') {
+          if ((estado.value == 'Danificado' || estado.value == 'Rasoável') && observacoes.value == '') {
             evento.preventDefault();
             const msgContainer = document.querySelector('.message-alert');
             msgContainer.classList.add('alert-err');

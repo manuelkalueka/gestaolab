@@ -358,7 +358,7 @@ input.input.input-add {
 
 .foto-material {
   background-color: #999a9b;
-  background-image: url('../images/gestaolab-logo.png');
+  background-image: url("../images/gestaolab-logo.png");
   background-size: cover;
   border: 2px solid #ab9678;
   border-radius: var(--border_rad);
@@ -383,7 +383,8 @@ input.input.input-add {
   font-weight: lighter;
 }
 
-div.ver-observacoes {/*Fazer com ela deixe de Quebrar*/
+div.ver-observacoes {
+  /*Fazer com ela deixe de Quebrar*/
   height: auto;
 }
 
@@ -427,5 +428,27 @@ p.oculto {
   to {
     opacity: 1;
     transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Estilos para o loader */
+.loader {
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #3498db;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+  margin: 0 auto;
+  margin-top: 200px;
+}
+
+/* Animação do loader */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

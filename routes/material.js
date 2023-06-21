@@ -13,6 +13,10 @@ router.get("/materiais", async (req, res, next) => {
             .orderBy('nome', 'asc');
         const dadosMesas = await database('mesas')
             .orderBy('nome', 'asc');
+        const [user] = await database('usuarios')
+            .where('username', req.user.username)
+            .select('id');
+
         res.render("material",
             {
                 title: TITLE,
@@ -20,11 +24,12 @@ router.get("/materiais", async (req, res, next) => {
                 mesas: dadosMesas,
                 message: null,
                 sessao: req.session,
-                usuario: req.user
+                usuario: req.user,//objecto com os dados do usuario
+                userId: user.id
             });
     } catch (erro) {
         console.log(erro);
-        res.status(500).send("Erro ao listar os dados");
+        res.status(500).redirect('/');
     }
 });
 

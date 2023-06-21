@@ -7,54 +7,69 @@ document.querySelector('#marca-material').addEventListener('blur', (evento) => {
 
 document.querySelector('#observacoes').value = '';
 
-const tipoMaterial = document.querySelector('#tipo-material');
 
-tipoMaterial.addEventListener('change', (evento) => {
-    for (let i = 0; i < tipoMaterial.length; i++) {
-        const capacidade = document.querySelector('#capacidade');
-        const programas = document.getElementsByClassName('n-programa');
+function novoEstadoTipoMaterial() {
+    const tipoMaterial = document.querySelector('#tipo-material');
 
-        if (!tipoMaterial[0].selected) {
+    tipoMaterial.addEventListener('change', (evento) => {
+        for (let i = 0; i < tipoMaterial.length; i++) {
+            const capacidade = document.querySelector('#capacidade');
+            const programas = document.getElementsByClassName('n-programa');
 
-            capacidade.disabled = true;
-            for (let i = 0; i < programas.length; i++) {
-                programas[i].disabled = true;
+            if (!tipoMaterial[0].selected) {
+
+                capacidade.value = '';
+                capacidade.disabled = true;
+                for (let i = 0; i < programas.length; i++) {
+                    const naoTemPrograma = document.querySelector('#rd-nao');
+                    naoTemPrograma.checked = true;
+                    programas[i].disabled = true;
+                }
+                break;
+            } else {
+
+                capacidade.disabled = false;
+                for (let i = 0; i < programas.length; i++) {
+                    programas[i].disabled = false;
+                }
+                break;
             }
-            break;
-        } else {
-
-            capacidade.disabled = false;
-            for (let i = 0; i < programas.length; i++) {
-                programas[i].disabled = false;
-            }
-            break;
         }
-    }
-});
+    });
+}
 
-const editTipoMaterial = document.querySelector('#edit-tipo-material');
-editTipoMaterial.addEventListener('change', (evento) => {
-    for (let i = 0; i < editTipoMaterial.length; i++) {
-        const capacidade = document.querySelector('#edit-capacidade');
-        const programas = document.getElementsByClassName('edit-programa');
+function ediEstadoTipoMaterial() {
 
-        if (!editTipoMaterial[0].selected) {
+    const editTipoMaterial = document.querySelector('#edit-tipo-material');
+    editTipoMaterial.addEventListener('change', (evento) => {
+        for (let i = 0; i < editTipoMaterial.length; i++) {
+            const capacidade = document.querySelector('#edit-capacidade');
+            const programas = document.getElementsByClassName('edit-programa');
 
-            capacidade.disabled = true;
-            for (let i = 0; i < programas.length; i++) {
-                programas[i].disabled = true;
+            if (!editTipoMaterial[0].selected) {
+
+                capacidade.value = '';
+                capacidade.disabled = true;
+                for (let i = 0; i < programas.length; i++) {
+                    const naoTemPrograma = document.querySelector('#edit-rd-nao');
+                    naoTemPrograma.checked = true;
+                    programas[i].disabled = true;
+                }
+                break;
+            } else {
+
+                capacidade.disabled = false;
+                for (let i = 0; i < programas.length; i++) {
+                    programas[i].disabled = false;
+                }
+                break;
             }
-            break;
-        } else {
-
-            capacidade.disabled = false;
-            for (let i = 0; i < programas.length; i++) {
-                programas[i].disabled = false;
-            }
-            break;
         }
-    }
-});
+    });
+}
+
+novoEstadoTipoMaterial();
+ediEstadoTipoMaterial();
 
 //pega dados para editar
 async function getDadosForEdition(id) {
@@ -126,6 +141,8 @@ async function getDadosForEdition(id) {
                 //     mesa: mesa,
                 //     observacoes: observacoes
                 // }
+
+                SalvarEdicao(materialId);
             });
         })
         .catch(error => {
@@ -135,27 +152,27 @@ async function getDadosForEdition(id) {
     //updateRegisto(materialId, newBody);
 }
 
-async function updateRegisto(id, body) {
+// async function updateRegisto(id, body) {
 
-    try {
-        const response = fetch('/materiais/' + id, {
-            method: 'PUT',
-            body: JSON.stringify(body)
-        });
+//     try {
+//         const response = fetch('/materiais/' + id, {
+//             method: 'PUT',
+//             body: JSON.stringify(body)
+//         });
 
-        const data = (await response).json();
-    } catch (erro) {
-        console.log("Ocorreu um erro ao actualizar " + erro.message);
-    }
+//         const data = (await response).json();
+//     } catch (erro) {
+//         console.log("Ocorreu um erro ao actualizar " + erro.message);
+//     }
 
-}
+// }
 
 //pega dados para ver
 async function getMaterial(id) {
     try {
         const materialId = id;
 
-        const response = await fetch('/materiais/' + materialId);
+        const response = await fetch('/materiais/' + materialId);//pega os dados para editar
         const data = await response.json();
 
         await data.forEach((material) => {
@@ -244,28 +261,6 @@ btnLimparTudo.addEventListener('click', () => {
     });
 });
 
-//Criar Novo material
-/*
-const formularioDados = document.querySelector('.form-cadastro');
-formularioDados.addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    const data = new FormData(formularioDados);//verificar os dados daqui
-    console.log(JSON.parse(data));
-
-    fetch('/materiais/cadastrar', {
-        method: 'POST',
-        body: data,
-    })
-        .then((response) => response.json())
-        .then((result) => {
-
-        })
-        .catch((erro) => {
-            console.log(erro);
-        })
-});*/
-
 async function getMateriais() {
     try {
         const response = await fetch('/materiais/listar');
@@ -345,6 +340,11 @@ async function getMateriais() {
     } catch (erro) {
         console.log("Houve um erro " + erro);
     }
+}
+
+function SalvarEdicao(id) {
+    const formEditar = document.querySelector('.form-edit');
+    formEditar.setAttribute('action', '/materiais/' + id);
 }
 
 getMateriais();

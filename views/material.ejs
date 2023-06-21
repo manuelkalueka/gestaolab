@@ -225,12 +225,12 @@
                                 Tem programas
                             </label>
                             <div class="control">
-                                <input type="radio" class="radio n-programa" id="rd-sim" name="tem_programas" checked
+                                <input type="radio" class="radio n-programa" id="rd-sim" name="tem_programas"
                                     value="Sim">
                                 <span>Sim</span>
 
                                 <input type="radio" class="radio n-programa" id="rd-nao" name="tem_programas"
-                                    value="Não">
+                                    value="Não" checked>
                                 <span>Não</span>
                             </div>
                         </div>
@@ -284,8 +284,9 @@
                         <span id="edit-msg"></span>
                     </div>
                     <!-- Form de Edicao de Material-->
-                    <form id="edit-form-validate" class="form-edit" method="post" action="">
+                    <form id="edit-form-validate" class="form-edit" method="post">
                         <div class="field">
+                            <input type="hidden" name="_method" value="put">
                             <input type="hidden" id="edit-material-id" value="">
                             <label for="edit-nome-material" class="label">
                                 Nome
@@ -319,7 +320,7 @@
                             <div class="control">
                                 <div class="select">
                                     <select id="edit-tipo-material" name="tipo_material">
-                                        <option value="pc" selected>Computador</option>
+                                        <option value="pc">Computador</option>
                                         <option value="key">Teclado</option>
                                         <option value="mo">Mouse</option>
                                         <option value="up">UPS</option>
@@ -349,7 +350,7 @@
                                 <span>Danificado</span>
 
                                 <input type="radio" class="radio edit-estado" id="edit-rd-bom"
-                                    data-edit-radio="edit-estado" name="estado" checked value="Bom">
+                                    data-edit-radio="edit-estado" name="estado" value="Bom">
                                 <span>Bom</span>
 
                                 <input type="radio" class="radio edit-estado" id="edit-rd-rasoavel"
@@ -373,7 +374,7 @@
                             </label>
                             <div class="control">
                                 <input type="radio" class="radio edit-programa" id="edit-rd-sim"
-                                    data-edit-programas="edit-programas" name="tem_programas" checked value="Sim">
+                                    data-edit-programas="edit-programas" name="tem_programas" value="Sim">
                                 <span>Sim</span>
 
                                 <input type="radio" class="radio edit-programa" id="edit-rd-nao"
