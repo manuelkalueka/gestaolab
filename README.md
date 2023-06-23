@@ -2,3 +2,5 @@
 Sistema de Gestão para o Laboratório de Informática do IMPU
 # Instruções Básicas de uso
 # npm install
+# Baixar a Base de Dados no Link abaixo e rodar na porta 3306:
+https://github.com/manuelkalueka/copiaDb
