@@ -7,4 +7,4 @@ https://github.com/manuelkalueka/copiaDb
 # Logar no Sistema com
 # usuario: admin
 # senha: 1234
-# Disponível para telas de Desktop
+# Disponível apenas para telas de Desktop
