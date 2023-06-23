@@ -27,6 +27,7 @@
                     <thead class="grid-header">
                         <tr>
                             <th scope="col" class="grid-title">Nome</th>
+                            <th scope="col" class="grid-title">Nº Máximo de Computadores</th>
                             <th scope="col" class="grid-title">Estado</th>
                             <th scope="col" class="grid-title">Acções</th>
                         </tr>
@@ -42,17 +43,35 @@
                                 </td>
 
                                 <td class="grid-data">
+                                    <%= mesa.num_maximo_pc %>
+                                </td>
+
+                                <td class="grid-data">
                                     <%= mesa.estado %>
                                 </td>
                                 <td class="grid-data">
-                                    <span class="actions-list">
-                                        <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
-                                                class="fa fa-eye"></i></a>
-                                        <a href="#" class="btn-editar" title="Editar Registo"><i
-                                                class="fa fa-edit"></i></a>
-                                        <a href="#" class="btn-excluir" title="Excluir Registo"><i
-                                                class="fa fa-trash"></i></a>
-                                    </span>
+                                    <% if (usuario.tipo_conta=='administrador' ) { %>
+                                        <span class="actions-list">
+                                            <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
+                                                    class="fa fa-eye" onclick="getMesa('<%=mesa.id%>')"></i></a>
+                                            <a href="#" class="btn-editar" title="Editar Registo"
+                                                onclick="getDadosForEdition('<%=mesa.id%>')">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <!-- Form Eliminar-->
+                                            <form action="/mesas/<%=mesa.id%>" method="post" class="deleteRegisto">
+                                                <input type="hidden" name="_method" value="delete">
+                                                <button type="submit" class="btn-excluir" title="Excluir Registo"><i
+                                                        class="fa fa-trash"></i></button>
+                                            </form>
+                                            <!-- Fim Form Eliminar-->
+                                        </span>
+                                        <% } else { %>
+                                            <span class="actions-list">
+                                                <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
+                                                        class="fa fa-eye" onclick="getMesa('<%=mesa.id%>')"></i></a>
+                                            </span>
+                                            <%}%>
                                 </td>
 
                             </tr>
@@ -78,24 +97,29 @@
                         </li>
                     </ul>
                 </nav>
-                <button type="reset" class="button is-danger" id="btnLimparGrid">Eliminar Todos
-                    Registos
-                </button>
-            </div>
+                <!--
+                <form method="post" id="form-deleteAll">
+                    <input type="hidden" name="_method" value="delete">
 
-            <p style="color:red;">
-                <label>
-                    <%= message%>
-                </label>
-            </p>
+                    <button type="submit" class="button is-danger" id="btnLimparGrid">Eliminar Todos
+                        Registos
+                    </button>
+                </form> -->
 
+                <!-- Mensage de Alerta-->
+                <p class="message-box oculto">
+                    <span>
+                        <i class="fa-solid fa-check" id="icone-message"></i>
+                    </span>
+                    <span id="message"></span>
+                </p>
         </main>
 
         <div class="modal" id="modal-novo">
             <div class="modal-background"></div>
             <div class="modal-card">
                 <header class="modal-card-head">
-                    <p class="modal-card-title">Cadastro de mesa</p>
+                    <p class="modal-card-title">Cadastro de Mesas</p>
                     <button class="delete" aria-label="close" id="close"></button>
                 </header>
 
@@ -104,7 +128,7 @@
                         <span id="msg"></span>
                     </div>
 
-                    <form action="/mesas" method="post" id="form-validate">
+                    <form action="/mesas/cadastrar" method="post" id="form-validate-mesa">
                         <div class="field">
                             <label for="nome-mesa" class="label">
                                 Nome *
@@ -112,6 +136,16 @@
                             <div class="control">
                                 <input type="text" class="input" id="nome-mesa" maxlength="80"
                                     placeholder="Digite o nome" name="nome">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="num_maximo_pc" class="label">
+                                Número Máximo de Computadores *
+                            </label>
+                            <div class="control">
+                                <input type="number" class="input" id="num_maximo_pc" min="0"
+                                    placeholder="Digite o número máximo de Computadores" name="num_maximo_pc">
                             </div>
                         </div>
 
@@ -135,7 +169,7 @@
                         <div class="field">
                             <footer class="modal-card-foot">
                                 <button type="submit" class="button is-primary" id="btnCadastrar">Cadastrar</button>
-                                <button type="reset" class="button" id="btnCancelar">Cancelar</button>
+                                <a href="/mesas" class="button" id="btnCancelar">Cancelar</a>
                             </footer>
                         </div>
                     </form>
@@ -154,121 +188,57 @@
                 </header>
 
                 <section class="modal-card-body">
+                    <div class="message-alert hide">
+                        <span id="edit-msg"></span>
+                    </div>
                     <!-- Form de Edicao de mesa-->
-                    <form action="/materiais" method="post">
+                    <form id="edit-form-validate-mesa" class="form-edit" method="post">
                         <div class="field">
-                            <label for="nome-mesa" class="label">
+                            <input type="hidden" name="_method" value="put">
+                            <input type="hidden" id="edit-mesa-id" value="">
+                            <label for="edit-nome-mesa" class="label">
                                 Nome
                             </label>
                             <div class="control">
-                                <input type="text" class="input" id="nome-mesa" maxlength="80"
-                                    placeholder="Digite o nome" name="nome" required>
+                                <input type="text" class="input" id="edit-nome-mesa" maxlength="80"
+                                    placeholder="Digite o nome" name="nome">
                             </div>
                         </div>
 
                         <div class="field">
-                            <label for="marca-mesa" class="label">
-                                Marca
+                            <label for="edit-num-max-mesa" class="label">
+                                Nº Máximo de Computadores
                             </label>
                             <div class="control">
-                                <input type="text" class="input" id="marca-mesa" maxlength="25"
-                                    placeholder="Digite a marca" name="marca" value="Sem marca">
-                            </div>
-
-                            <label for="modelo-mesa" class="label">
-                                Modelo
-                            </label>
-                            <div class="control">
-                                <input type="text" class="input" id="modelo-mesa" maxlength="25"
-                                    placeholder="Digite o modelo" name="modelo" disabled>
+                                <input type="number" class="input" id="edit-num-max-mesa"
+                                    placeholder="Digite o nº máximo de Computadores" name="num_maximo_pc" min="0">
                             </div>
                         </div>
 
                         <div class="field">
-                            <label class="label" for="tipo-mesa">Tipo de mesa</label>
-                            <div class="control">
-                                <div class="select">
-                                    <select id="tipo-mesa" name="tipo_mesa">
-                                        <option value="pc" selected>Computador</option>
-                                        <option value="key">Teclado</option>
-                                        <option value="mo">Mouse</option>
-                                        <option value="up">UPS</option>
-                                        <option value="other">Outro</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label for="data-compra" class="label">
-                                Data de Compra
-                            </label>
-
-                            <div class="control">
-                                <input type="date" class="input" id="data-compra" name="data_compra">
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label for="estado-mesa" class="label">
+                            <label class="label">
                                 Estado
                             </label>
                             <div class="control">
-                                <input type="radio" class="radio" id="rd-danificado" name="estado">
-                                <span>Danificado</span>
+                                <input type="radio" class="radio edit-estado-mesa" id="rd-vazia" name="estado"
+                                    value="Vazia">
+                                <span>Vazia</span>
 
-                                <input type="radio" class="radio" id="rd-bom" name="estado" checked>
-                                <span>Bom</span>
+                                <input type="radio" class="radio edit-estado-mesa" id="rd-espaco-livre" name="estado"
+                                    checked value="Espaço Livre">
+                                <span>Espaço Livre</span>
 
-                                <input type="radio" class="radio" id="rd-rasoavel" name="estado">
-                                <span>Rasoável</span>
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label for="capacidade" class="label">Capacidade *</label>
-                            <div class="control">
-                                <input type="text" class="input" id="capacidade" name="capacidade"
-                                    placeholder="Ex.: Ram de 4gb processador intel 2.4GHz HDD 500Gb" maxlength="45"
-                                    required>
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label for="estado-mesa" class="label">
-                                Tem programas
-                            </label>
-                            <div class="control">
-                                <input type="radio" class="radio" id="rd-sim" name="tem_programas" checked value="não">
-                                <span>Sim</span>
-
-                                <input type="radio" class="radio" id="rd-nao" name="tem_programas" value="não">
-                                <span>Não</span>
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label for="mesa" class="label">Nº Mesa</label>
-                            <div class="control">
-                                <input type="number" class="input" id="mesa" name="mesa"
-                                    placeholder="Digite o número da mesa" required>
-                            </div>
-                        </div>
-
-                        <div class="field">
-                            <label class="label">Observações</label>
-                            <div class="control">
-                                <textarea class="textarea" placeholder="Ex.: Este mesa é....." rows="1"
-                                    autocomplete="on" name="observacoes">
-                                </textarea>
+                                <input type="radio" class="radio edit-estado-mesa" id="rd-cheia" name="estado"
+                                    value="Cheia">
+                                <span>Cheia</span>
                             </div>
                         </div>
 
                         <div class="field">
                             <footer class="modal-card-foot">
-                                <button type="submit" class="button is-primary is-info" id="btnGuardar">Guardar
-                                    Alterações</button>
-                                <button type="reset" class="button is-danger" id="btnCancelar">Cancelar</button>
+                                <button type="submit" class="button is-primary" id="btnSalvar">Salvar
+                                    alterações</button>
+                                <a href="/mesas" class="button" id="btnCancelar">Cancelar</a>
                             </footer>
                         </div>
                     </form>
@@ -283,14 +253,30 @@
             <div class="modal-background"></div>
             <div class="modal-card">
                 <header class="modal-card-head">
-                    <p class="modal-card-title">NOME DO mesa</p>
+                    <p class="modal-card-title ver-nome"></p>
                     <button class="delete" aria-label="close" id="close"></button>
                 </header>
 
                 <section class="modal-card-body">
-                    <h1>
-                        Sobre o mesa aqui
-                    </h1>
+                    <div class="ver-body">
+                        <div class="foto-mesa">
+
+                        </div>
+                        <div class="descricao">
+                            <span class="desc-campo">
+                                Nº Máximo de Computadores:
+                                <span class="ver-numero-max-pc">
+
+                                </span>
+                            </span>
+                            <span class="desc-campo">
+                                Estado:
+                                <span class="ver-estado">
+
+                                </span>
+                            </span>
+                        </div>
+                    </div>
                 </section>
             </div>
         </div>
@@ -299,5 +285,6 @@
         <script src="/javascripts/base.js"></script>
         <script src="/javascripts/header.js"></script>
         <script src="/javascripts/sidebar.js"></script>
+        <script src="/javascripts/mesas.js" defer></script>
 
         <%- include('./partials/footer.ejs') %>

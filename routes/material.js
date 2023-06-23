@@ -8,18 +8,6 @@ const TITLE = "Materiais do Laboratório";
 
 router.get("/materiais", async (req, res, next) => {
     try {
-        const numeroPagina = (req.query.pagina) || 1; //pagina actual
-        const registosPorPagina = 6;
-        const deslocamento = registosPorPagina * (numeroPagina - 1);
-
-        const dadosMateriais = await database('materiais')
-            .limit(6)
-            .offset(deslocamento)
-            .orderBy('nome', 'asc');
-        const [total_materiais] = await database('materiais')
-            .count('*', { as: 'total_materiais' });
-
-        const totalPaginas = Math.ceil(total_materiais.total_materiais / registosPorPagina);
 
         const dadosMesas = await database('mesas')
             .orderBy('nome', 'asc');
@@ -27,12 +15,41 @@ router.get("/materiais", async (req, res, next) => {
             .where('username', req.user.username)
             .select('id');
 
+        async function pagination(table) {
+            const numeroPagina = (req.query.pagina) || 1; //pagina actual
+            const registosPorPagina = 6;
+            const deslocamento = registosPorPagina * (parseInt(numeroPagina) - 1);
+
+            const dadosMateriais = await database(table)
+                .limit(6)
+                .offset(deslocamento)
+                .orderBy('nome', 'asc');
+            const [total] = await database(table)
+                .count('*', { as: 'total' });
+
+            const totalPaginas = Math.ceil(parseInt(total.total) / registosPorPagina);
+
+            return {
+                dadosMateriais,
+                totalPaginas,
+                numeroPagina,
+                deslocamento,
+            }
+        }
+
+        const dadosPaginados = await pagination('materiais');
+
+        const paginas = {
+            actual: dadosPaginados.numeroPagina,
+            anterior: parseInt(dadosPaginados.numeroPagina) - 1,
+            proxima: parseInt(dadosPaginados.numeroPagina) + 1 === dadosPaginados.totalPaginas ? dadosPaginados.totalPaginas : parseInt(dadosPaginados.numeroPagina) + 1,
+            total: dadosPaginados.totalPaginas
+        }
         res.render("material",
             {
                 title: TITLE,
-                materiais: dadosMateriais,
-                paginaActual: numeroPagina,
-                totalPaginas: totalPaginas,
+                materiais: dadosPaginados.dadosMateriais,
+                paginas: paginas,
                 mesas: dadosMesas,
                 message: null,
                 sessao: req.session,
@@ -45,17 +62,17 @@ router.get("/materiais", async (req, res, next) => {
     }
 });
 
-router.get("/materiais/listar", async (req, res, next) => {
-    try {
-        const dados = await database('materiais')
-            .limit(6)
-            .orderBy('nome', 'asc');
-        res.json(dados);
-    } catch (erro) {
-        console.log(erro);
-        res.status(500).send("Erro ao listar os dados");
-    }
-});
+// router.get("/materiais/listar", async (req, res, next) => {
+//     try {
+//         const dados = await database('materiais')
+//             .limit(6)
+//             .orderBy('nome', 'asc');
+//         res.json(dados);
+//     } catch (erro) {
+//         console.log(erro);
+//         res.status(500).send("Erro ao listar os dados");
+//     }
+// });
 
 router.post('/materiais/cadastrar', async (req, res, next) => {
     const reqDados = req.body;
@@ -91,9 +108,9 @@ router.post('/materiais/cadastrar', async (req, res, next) => {
     }
 });
 
-router.get('/materiais/:id', (req, res, next) => {
+router.get('/materiais/:id', async (req, res, next) => {
     const { id } = req.params;
-    database('materiais')
+    await database('materiais')
         .where('id', id)
         .then((result) => {
             if (!result) {
@@ -105,9 +122,9 @@ router.get('/materiais/:id', (req, res, next) => {
         }, next);
 });
 
-router.put('/materiais/:id', (req, res, next) => {
+router.put('/materiais/:id', async (req, res, next) => {
     const { id } = req.params;
-    database('materiais')
+    await database('materiais')
         .where('id', id)
         .update(req.body)
         .then(result => {
@@ -120,10 +137,10 @@ router.put('/materiais/:id', (req, res, next) => {
 });
 
 //Apagar apenas um unico resgisto
-router.delete('/materiais/:id', (req, res, next) => {
+router.delete('/materiais/:id', async (req, res, next) => {
     const { id } = req.params;
     // console.log("deletando" + id);
-    database('materiais')
+    await database('materiais')
         .where("id", id)
         .delete()
         .then((result) => {
@@ -135,8 +152,8 @@ router.delete('/materiais/:id', (req, res, next) => {
 });
 
 //apaga todos os registos da BD
-router.delete('/materiais', (req, res, next) => {
-    database('materiais')
+router.delete('/materiais', async (req, res, next) => {
+    await database('materiais')
         .truncate()
         .then(() => {
             res.redirect('/materiais');

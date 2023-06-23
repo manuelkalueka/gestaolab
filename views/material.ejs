@@ -67,22 +67,28 @@
                                 <%= material.estado %>
                             </td>
                             <td class="grid-data">
-                                <span class="actions-list">
-                                    <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
-                                            class="fa fa-eye" onclick="getMaterial('<%=material.id%>')"></i></a>
-                                    <a href="#" class="btn-editar" title="Editar Registo"
-                                        onclick="getDadosForEdition('<%=material.id%>')">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                    <!-- Form Eliminar-->
-                                    <form action="/materiais/<%=material.id%>" method="post" class="deleteRegisto">
-                                        <input type="hidden" name="_method" value="delete">
-                                        <button type="submit" class="btn-excluir" title="Excluir Registo"><i
-                                                class="fa fa-trash"></i></button>
-                                    </form>
-                                    <!-- Fim Form Eliminar-->
-                                </span>
-
+                                <% if (usuario.tipo_conta=='administrador' ) { %>
+                                    <span class="actions-list">
+                                        <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
+                                                class="fa fa-eye" onclick="getMaterial('<%=material.id%>')"></i></a>
+                                        <a href="#" class="btn-editar" title="Editar Registo"
+                                            onclick="getDadosForEdition('<%=material.id%>')">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <!-- Form Eliminar-->
+                                        <form action="/materiais/<%=material.id%>" method="post" class="deleteRegisto">
+                                            <input type="hidden" name="_method" value="delete">
+                                            <button type="submit" class="btn-excluir" title="Excluir Registo"><i
+                                                    class="fa fa-trash"></i></button>
+                                        </form>
+                                        <!-- Fim Form Eliminar-->
+                                    </span>
+                                    <% } else { %>
+                                        <span class="actions-list">
+                                            <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
+                                                    class="fa fa-eye" onclick="getMaterial('<%=material.id%>')"></i></a>
+                                        </span>
+                                        <%}%>
                             </td>
 
                         </tr>
@@ -95,17 +101,17 @@
 
             <nav class="pagination" role="navigation" aria-label="pagination">
 
-                <a class="pagination-previous" href="/materiais?pagina=<%= paginaActual-1 %>">
+                <a class="pagination-previous" href="/materiais?pagina=<%= paginas.anterior %>">
                     Anterior
                 </a>
-                <a class="pagination-next" href="/materiais?pagina=<%%>">
+                <a class="pagination-next" href="/materiais?pagina=<%=paginas.proxima%>">
                     Próxima
                 </a>
                 <ul class="pagination-list">
                     <li>
                         <a class="pagination-link is-current" aria-label="Page 1" aria-current="page"
-                            href="/materiais?pagina=<%=paginaActual%>">
-                            <%=paginaActual%>
+                            href="/materiais?pagina=<%=paginas.actual%>">
+                            <%=paginas.actual%>
                         </a>
                     </li>
                 </ul>

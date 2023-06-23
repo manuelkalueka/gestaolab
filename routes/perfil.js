@@ -5,7 +5,7 @@ const TITLE = "Perfil de Usuário";
 router.get("/perfil", (req, res, next) => {
   res.render("perfil", {
     title: TITLE, sessao: req.session,
-    usuario: req.user,
+    usuario: req.user
   });
 });
 

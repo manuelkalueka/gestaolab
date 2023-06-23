@@ -5,7 +5,198 @@
             <h1 class="title">
                 <%=title%>
             </h1>
+
+            <section class="perfil-container">
+
+                <div class="perfil-quick">
+
+                    <div class="avatar-container">
+                        <img src="/images/person/avatar-profile.webp" alt="avatar" class="avatar" style="width: 150px;">
+                    </div>
+                    <div class="info">
+                        <h5 class="username">
+                            <%=usuario.username%>
+                        </h5>
+                        <p class="tipo_conta">
+                            <%=usuario.tipo_conta%>
+                        </p>
+                    </div>
+                    <div class="button-container">
+                        <button type="button" class="button is-primary" onclick="abrirModalEditar()">Editar
+                            Perfil</button>
+                    </div>
+                </div>
+                <div class="perfil-detail">
+                    <span class="block">
+                        <p class="label-perfil">Nome Completo</p>
+                        <p class="nome-completo">
+                            <%=usuario.nome_completo%>
+                        </p>
+                    </span>
+                    <hr>
+
+                    <span class="block">
+                        <p class="label-perfil">Género</p>
+                        <p class="genero">
+                            <%=usuario.genero%>
+                        </p>
+                    </span>
+                    <hr>
+                    <span class="block">
+                        <p class="label-perfil">BI</p>
+                        <p class="num-bi">
+                            <%=usuario.bi%>
+                        </p>
+                    </span>
+                    <hr>
+                    <span class="block">
+                        <p class="label-perfil">Estado da Conta</p>
+                        <p class="estado">
+                            <%=usuario.estado%>
+                        </p>
+                    </span>
+                </div>
+            </section>
+
+
+            <!-- Modal editar Perfil-->
+            <div class="modal" id="modal-editar">
+                <div class="modal-background"></div>
+                <div class="modal-card">
+                    <header class="modal-card-head">
+                        <p class="modal-card-title">Editar Perfil</p>
+                        <button class="delete" aria-label="close" id="close"></button>
+                    </header>
+
+                    <section class="modal-card-body">
+
+                        <div class="message-alert hide">
+                            <span id="edit-msg"></span>
+                        </div>
+                        <!-- Form de Edicao de Perfil-->
+                        <form id="edit-form-validate" class="form-edit" method="post">
+                            <div class="field">
+                                <input type="hidden" name="_method" value="put">
+                                <input type="hidden" id="edit-material-id" value="">
+                                <label for="edit-nome-material" class="label">
+                                    Nome
+                                </label>
+                                <div class="control">
+                                    <input type="text" class="input" id="edit-nome-material" maxlength="80"
+                                        placeholder="Digite o nome" name="nome">
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label for="edit-marca-material" class="label">
+                                    Marca
+                                </label>
+                                <div class="control">
+                                    <input type="text" class="input" id="edit-marca-material" maxlength="25"
+                                        placeholder="Digite a marca" name="marca">
+                                </div>
+
+                                <label for="edit-modelo-material" class="label">
+                                    Modelo
+                                </label>
+                                <div class="control">
+                                    <input type="text" class="input" id="edit-modelo-material" maxlength="25"
+                                        placeholder="Digite o modelo" name="modelo">
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label class="label" for="edit-tipo-material">Tipo de Material</label>
+                                <div class="control">
+                                    <div class="select">
+                                        <select id="edit-tipo-material" name="tipo_material">
+                                            <option value="pc">Computador</option>
+                                            <option value="key">Teclado</option>
+                                            <option value="mo">Mouse</option>
+                                            <option value="up">UPS</option>
+                                            <option value="oth">Outro</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label for="edit-data-compra" class="label">
+                                    Data de Compra
+                                </label>
+
+                                <div class="control">
+                                    <input type="date" class="input" id="edit-data-compra" name="data_compra">
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label class="label">
+                                    Estado
+                                </label>
+                                <div class="control">
+                                    <input type="radio" class="radio edit-estado" id="edit-rd-danificado"
+                                        data-edit-radio="edit-estado" name="estado" value="Danificado">
+                                    <span>Danificado</span>
+
+                                    <input type="radio" class="radio edit-estado" id="edit-rd-bom"
+                                        data-edit-radio="edit-estado" name="estado" value="Bom">
+                                    <span>Bom</span>
+
+                                    <input type="radio" class="radio edit-estado" id="edit-rd-rasoavel"
+                                        data-edit-radio="edit-estado" name="estado" value="Rasoável">
+                                    <span>Rasoável</span>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label for="edit-capacidade" class="label">Capacidade</label>
+                                <div class="control">
+                                    <input type="text" class="input" id="edit-capacidade" name="capacidade"
+                                        placeholder="Ex.:Windows 10 Pro, Ram de 4gb processador intel 2.4GHz HDD 500Gb"
+                                        maxlength="70">
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label class="label">
+                                    Tem programas
+                                </label>
+                                <div class="control">
+                                    <input type="radio" class="radio edit-programa" id="edit-rd-sim"
+                                        data-edit-programas="edit-programas" name="tem_programas" value="Sim">
+                                    <span>Sim</span>
+
+                                    <input type="radio" class="radio edit-programa" id="edit-rd-nao"
+                                        data-edit-programas="edit-programas" name="tem_programas" value="Não">
+                                    <span>Não</span>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label for="edit-observacoes" class="label">Observações</label>
+                                <div class="control">
+                                    <textarea id="edit-observacoes" class="textarea"
+                                        placeholder="Ex.: Este material é....." rows="1" name="observacoes">
+                                </textarea>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <footer class="modal-card-foot">
+                                    <button type="submit" class="button is-primary" id="btnSalvar">Salvar
+                                        alterações</button>
+                                    <a href="/perfil" class="button" id="btnCancelar">Cancelar</a>
+                                </footer>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </div>
+            <!-- Fim Modal editar Perfil-->
         </main>
+        <script src="/javascripts/moment.js"></script>
+        <script src="/javascripts/base.js" defer></script>
         <script src="/javascripts/header.js" defer></script>
 
 
