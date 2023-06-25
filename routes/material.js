@@ -20,17 +20,17 @@ router.get("/materiais", async (req, res, next) => {
             const registosPorPagina = 6;
             const deslocamento = registosPorPagina * (parseInt(numeroPagina) - 1);
 
-            const dadosMateriais = await database(table)
+            const dadosTable = await database(table)
                 .limit(6)
                 .offset(deslocamento)
                 .orderBy('nome', 'asc');
             const [total] = await database(table)
                 .count('*', { as: 'total' });
+            const resultado = Math.ceil(parseInt(total.total) / registosPorPagina);
 
-            const totalPaginas = Math.ceil(parseInt(total.total) / registosPorPagina);
-
+            const totalPaginas = resultado == 0 ? 1 : resultado;
             return {
-                dadosMateriais,
+                dadosTable,
                 totalPaginas,
                 numeroPagina,
                 deslocamento,
@@ -41,14 +41,15 @@ router.get("/materiais", async (req, res, next) => {
 
         const paginas = {
             actual: dadosPaginados.numeroPagina,
-            anterior: parseInt(dadosPaginados.numeroPagina) - 1,
-            proxima: parseInt(dadosPaginados.numeroPagina) + 1 === dadosPaginados.totalPaginas ? dadosPaginados.totalPaginas : parseInt(dadosPaginados.numeroPagina) + 1,
+            anterior: parseInt(dadosPaginados.numeroPagina) - 1 < 1 ? 1 : parseInt(dadosPaginados.numeroPagina) - 1,
+            proxima: parseInt(dadosPaginados.numeroPagina) + 1 > parseInt(dadosPaginados.totalPaginas) ? parseInt(dadosPaginados.totalPaginas) : parseInt(dadosPaginados.numeroPagina) + 1,
             total: dadosPaginados.totalPaginas
         }
+
         res.render("material",
             {
                 title: TITLE,
-                materiais: dadosPaginados.dadosMateriais,
+                materiais: dadosPaginados.dadosTable,
                 paginas: paginas,
                 mesas: dadosMesas,
                 message: null,

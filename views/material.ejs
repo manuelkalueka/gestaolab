@@ -7,26 +7,33 @@
             </h1>
 
             <div class="top-elements">
-                <button type="button" id="btn-novo" class="button is-info">Novo
-                    Material
-                </button>
-
-                <form method="get">
-                    <span class="search-area">
-                        <input type="search" name="pesquisa" placeholder="Pesquisar registo..." class="input-search">
-                        <button type="submit" class="btn-search">
-                            <i class="fa fa-search is-left icon"></i>
+                <% if (usuario.tipo_conta=='administrador' ) { %>
+                    <button type="button" id="btn-novo" class="button is-info">Novo
+                        Material
+                    </button>
+                    <% } else { %>
+                        <button type="button" id="btn-novo" class="button is-info" disabled>Novo
+                            Material
                         </button>
-                    </span>
-                </form>
+                        <%}%>
+
+                            <form method="get">
+                                <span class="search-area">
+                                    <input type="search" name="pesquisa" placeholder="Pesquisar registo..."
+                                        class="input-search">
+                                    <button type="submit" class="btn-search">
+                                        <i class="fa fa-search is-left icon"></i>
+                                    </button>
+                                </span>
+                            </form>
             </div>
 
             <table class="table is-striped is-hoverable is-fullwidth">
                 <thead class="grid-header">
                     <tr>
                         <th scope="col" class="grid-title">Nome</th>
-                        <th scope="col" class="grid-title">Modelo</th>
                         <th scope="col" class="grid-title">Marca</th>
+                        <th scope="col" class="grid-title">Modelo</th>
                         <th scope="col" class="grid-title">Mesa</th>
                         <th scope="col" class="grid-title">Capacidade</th>
                         <th scope="col" class="grid-title">Programas</th>
@@ -67,14 +74,18 @@
                                 <%= material.estado %>
                             </td>
                             <td class="grid-data">
+
                                 <% if (usuario.tipo_conta=='administrador' ) { %>
                                     <span class="actions-list">
                                         <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
-                                                class="fa fa-eye" onclick="getMaterial('<%=material.id%>')"></i></a>
+                                                class="fa fa-eye" onclick="getMaterial('<%=material.id%>')"></i>
+                                        </a>
+
                                         <a href="#" class="btn-editar" title="Editar Registo"
                                             onclick="getDadosForEdition('<%=material.id%>')">
                                             <i class="fa fa-edit"></i>
                                         </a>
+
                                         <!-- Form Eliminar-->
                                         <form action="/materiais/<%=material.id%>" method="post" class="deleteRegisto">
                                             <input type="hidden" name="_method" value="delete">
@@ -100,36 +111,52 @@
             </table>
 
             <nav class="pagination" role="navigation" aria-label="pagination">
-
+                <a class="pagination-previous" href="/materiais?pagina=1">
+                    Primeiro
+                </a>
                 <a class="pagination-previous" href="/materiais?pagina=<%= paginas.anterior %>">
                     Anterior
                 </a>
                 <a class="pagination-next" href="/materiais?pagina=<%=paginas.proxima%>">
                     Próxima
                 </a>
+                <a class="pagination-next" href="/materiais?pagina=<%=paginas.total%>">
+                    Último
+                </a>
                 <ul class="pagination-list">
                     <li>
-                        <a class="pagination-link is-current" aria-label="Page 1" aria-current="page"
+                        <a class="pagination-link is-current" aria-current="page"
                             href="/materiais?pagina=<%=paginas.actual%>">
-                            <%=paginas.actual%>
+                            <%=paginas.actual%> de <%=paginas.total%>
                         </a>
                     </li>
                 </ul>
             </nav>
-            <form method="post" id="form-deleteAll">
-                <input type="hidden" name="_method" value="delete">
 
-                <button type="submit" class="button is-danger" id="btnLimparGrid">Eliminar Todos
-                    Registos
-                </button>
-            </form>
-            <!-- Mensage de Alerta-->
-            <p class="message-box oculto">
-                <span>
-                    <i class="fa-solid fa-check" id="icone-message"></i>
-                </span>
-                <span id="message"></span>
-            </p>
+            <% if (usuario.tipo_conta=='administrador' ) { %>
+                <form method="post" id="form-deleteAll">
+                    <input type="hidden" name="_method" value="delete">
+
+                    <button type="submit" class="button is-danger" id="btnLimparGrid">Eliminar Todos
+                        Registos
+                    </button>
+                </form>
+                <% } else { %>
+                    <form method="post" id="form-deleteAll">
+                        <input type="hidden" name="_method" value="delete">
+
+                        <button type="submit" class="button is-danger" id="btnLimparGrid" disabled>Eliminar Todos
+                            Registos
+                        </button>
+                    </form>
+                    <%}%>
+                        <!-- Mensage de Alerta-->
+                        <p class="message-box oculto">
+                            <span>
+                                <i class="fa-solid fa-check" id="icone-message"></i>
+                            </span>
+                            <span id="message"></span>
+                        </p>
 
         </main>
 
@@ -272,7 +299,6 @@
                             </footer>
                         </div>
                     </form>
-
                 </section>
             </div>
         </div>

@@ -10,17 +10,25 @@
             <div>
 
                 <div class="top-elements">
-                    <button type="button" id="btn-novo" class="button is-info" data-target="modal-novo">Nova
-                        mesa</button>
-                    <form action="#" method="get">
-                        <span class="search-area">
-                            <input type="search" name="pesquisa-registo" placeholder="Pesquisar registo..."
-                                class="input-search">
-                            <button type="submit" class="btn-search">
-                                <i class="fa fa-search is-left icon"></i>
+                    <% if (usuario.tipo_conta=='administrador' ) { %>
+                        <button type="button" id="btn-novo" class="button is-info">Novo
+                            Material
+                        </button>
+                        <% } else { %>
+                            <button type="button" id="btn-novo" class="button is-info" disabled>Novo
+                                Material
                             </button>
-                        </span>
-                    </form>
+                            <%}%>
+
+                                <form action="#" method="get">
+                                    <span class="search-area">
+                                        <input type="search" name="pesquisa-registo" placeholder="Pesquisar registo..."
+                                            class="input-search">
+                                        <button type="submit" class="btn-search">
+                                            <i class="fa fa-search is-left icon"></i>
+                                        </button>
+                                    </span>
+                                </form>
                 </div>
 
                 <table class="table is-striped is-hoverable is-fullwidth">

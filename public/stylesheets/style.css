@@ -356,7 +356,8 @@ input.input.input-add {
   justify-content: flex-start;
 }
 
-.foto-material, .foto-mesa {
+.foto-material,
+.foto-mesa {
   background-color: #999a9b;
   background-image: url("../images/gestaolab-logo.png");
   background-size: cover;
@@ -386,10 +387,11 @@ input.input.input-add {
 div.ver-observacoes {
   /*Fazer com ela deixe de Quebrar*/
   height: auto;
+  color: #999a9b;
 }
 
 .desc-campo > span {
-  font-style: oblique;
+  color: #999a9b;
 }
 
 p.oculto {
@@ -472,7 +474,7 @@ p.oculto {
   margin: 10px 0;
 }
 
-.username{
+.username {
   font-weight: 700;
 }
 
