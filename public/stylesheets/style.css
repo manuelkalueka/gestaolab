@@ -461,8 +461,14 @@ p.oculto {
   background-color: #e6e1e1;
 }
 
-.button-container button {
+.button-container a.button {
   width: 100%;
+  background-color: var(--color3);
+  transition: 500ms ease-in-out;
+}
+
+.button-container a.button:hover {
+  background-color: var(--color5);
 }
 
 .info {

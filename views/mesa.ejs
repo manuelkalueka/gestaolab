@@ -11,12 +11,12 @@
 
                 <div class="top-elements">
                     <% if (usuario.tipo_conta=='Administrador' ) { %>
-                        <button type="button" id="btn-novo" class="button is-info">Novo
-                            Material
+                        <button type="button" id="btn-novo" class="button is-info">Nova
+                            Mesa
                         </button>
                         <% } else { %>
-                            <button type="button" id="btn-novo" class="button is-info" disabled>Novo
-                                Material
+                            <button type="button" id="btn-novo" class="button is-info" disabled>Nova
+                                Mesa
                             </button>
                             <%}%>
 
@@ -91,17 +91,24 @@
                 </table>
 
                 <nav class="pagination" role="navigation" aria-label="pagination">
-                    <a class="pagination-previous is-disabled" title="Esta é a primeira página">Anterior</a>
-                    <a class="pagination-next">Próxima</a>
+                    <a class="pagination-previous" href="/mesas?pagina=1">
+                        Primeiro
+                    </a>
+                    <a class="pagination-previous" href="/mesas?pagina=<%= paginas.anterior %>">
+                        Anterior
+                    </a>
+                    <a class="pagination-next" href="/mesas?pagina=<%=paginas.proxima%>">
+                        Próxima
+                    </a>
+                    <a class="pagination-next" href="/mesas?pagina=<%=paginas.total%>">
+                        Último
+                    </a>
                     <ul class="pagination-list">
                         <li>
-                            <a class="pagination-link is-current" aria-label="Page 1" aria-current="page">1</a>
-                        </li>
-                        <li>
-                            <a class="pagination-link" aria-label="Goto page 2">2</a>
-                        </li>
-                        <li>
-                            <a class="pagination-link" aria-label="Goto page 3">3</a>
+                            <a class="pagination-link is-current" aria-current="page"
+                                href="/mesas?pagina=<%=paginas.actual%>">
+                                <%=paginas.actual%> de <%=paginas.total%>
+                            </a>
                         </li>
                     </ul>
                 </nav>

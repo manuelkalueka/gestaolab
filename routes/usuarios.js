@@ -51,6 +51,19 @@ router.get("/usuarios", async (req, res, next) => {
     }
 });
 
+router.get('/usuarios/:id', async (req, res, next) => {
+    const { id } = req.params;
+    await database('usuarios')
+        .where('id', id)
+        .then((result) => {
+            if (!result) {
+                res.send(400);
+                return;
+            }
+
+            res.json(result);
+        }, next);
+})
 
 router.post('/usuarios', (req, res, next) => {
     res.redirect('/usuarios')
@@ -106,11 +119,12 @@ router.get('/usuarios/edit-user/:id', async (req, res, next) => {
             res.send(400);
             return;
         }
-        console.log(usuarioEditar);
+        const plainPass = usuarioEditar.password;
         res.render('edit-user', {
             title: 'Editar Usuário',
             usuario: req.user,
-            usuarioEditar: usuarioEditar
+            usuarioEditar: usuarioEditar,
+            plainPass
         });
     } catch (erro) {
         console.log(erro.message);

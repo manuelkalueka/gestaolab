@@ -63,7 +63,7 @@
                                     <span class="actions-list">
                                         <%if(usuario.tipo_conta== 'Administrador' ){%>
                                             <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
-                                                    class="fa fa-eye"></i>
+                                                    class="fa fa-eye" onclick="getUser('<%=ListaUsuario.id%>')"></i>
                                             </a>
 
                                             <a href="/usuarios/edit-user/<%=ListaUsuario.id%>" class="btn-editar"
@@ -82,7 +82,7 @@
                                             <!-- Fim Form Eliminar-->
                                             <%}else {%>
                                                 <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
-                                                        class="fa fa-eye"></i>
+                                                        class="fa fa-eye" onclick="getUser('<%=ListaUsuario.id%>')"></i>
                                                 </a>
                                                 <%}%>
 
@@ -122,7 +122,54 @@
                 </ul>
             </nav>
         </main>
+
+        <!-- Modal ver registo-->
+        <div class="modal" id="modal-ver">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title ver-nome"></p>
+                    <button class="delete" aria-label="close" id="close"></button>
+                </header>
+
+                <section class="modal-card-body">
+                    <div class="ver-body">
+                        <div class="foto-mesa">
+
+                        </div>
+                        <div class="descricao">
+                            <span class="desc-campo">
+                                BI:
+                                <span class="ver-bi">
+
+                                </span>
+                            </span>
+                            <span class="desc-campo">
+                                Genero:
+                                <span class="ver-genero">
+
+                                </span>
+                            </span>
+                            <span class="desc-campo">
+                                Tipo de Conta:
+                                <span class="ver-tipoConta">
+
+                                </span>
+                            </span>
+                            <span class="desc-campo">
+                                Estado:
+                                <span class="ver-estado">
+
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <!-- Fim Modal ver registo-->
         <script src="/javascripts/base.js"></script>
         <script src="/javascripts/header.js"></script>
         <script src="/javascripts/sidebar.js"></script>
+        <script src="/javascripts/usuarios.js" defer></script>
         <%- include('./partials/footer.ejs')%>
