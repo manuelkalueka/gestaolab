@@ -1,23 +1,19 @@
-function selectItem(index) {
-    const sidebarItems = document.querySelectorAll('.item-menu');
+function MarcaPaginaAtiva() {
+    const paginaActual = window.location.pathname.split('/').pop();
+    const links = document.querySelectorAll('.item-menu a');
+    links.forEach(link => {
+        const linkUrl = link.getAttribute('href').split('/').pop();
 
-    sidebarItems.forEach((item, i) => {
-        if (i === index) {
-            item.classList.add('active-item');
+        console.log(linkUrl + "\n");
+        console.log(paginaActual);
+
+        if (linkUrl == paginaActual) {
+            link.classList.add('active-item');
         } else {
-            item.classList.remove('active-item');
+
+            link.classList.remove('active-item');
         }
     });
 }
-/*
 
-const btnMenu = document.querySelector('#btn-menu');
-const menuLateral = document.querySelector('.menu-lateral');
-
-function abrirFecharMenu() {//expande o menu lateral
-    const conteudo = document.querySelector('.conteudo');
-    conteudo.classList.toggle('menor');
-    menuLateral.classList.toggle('expandido');//add e remove a classe dinamicamente
-}
-
-btnMenu.addEventListener('click', abrirFecharMenu);*/
+window.addEventListener('DOMContentLoaded', MarcaPaginaAtiva);
