@@ -1,0 +1,134 @@
+<%- include('./partials/header.ejs')%>
+    <%- include('./partials/sidebar.ejs')%>
+        <main class="conteudo">
+            <h1 class="title">
+                <%= title %>
+            </h1>
+
+
+            <div class="columns div_centro">
+                <div class="column">
+                    <div class="form-container">
+                        <form action="/usuarios/edit-user/<%=usuarioEditar.id%>" method="post" id="form-validate">
+                            <input type="hidden" name="_method" value="put">
+
+                            <label class="user-label" for="nome-completo">
+                                Nome Completo
+                            </label>
+
+                            <input type="text" class="input input-add" id="nome-completo" maxlength="80"
+                                placeholder="Digite o Nome Completo" name="nome_completo"
+                                value="<%=usuarioEditar.nome_completo%>">
+
+                            <div class="field">
+                                <label class="user-label" for="username-add">
+                                    Nome de usuário
+                                </label>
+
+                                <input type="text" class="input input-add" id="username-add" maxlength="25"
+                                    placeholder="Digite o nome de usuario" name="username"
+                                    value="<%=usuarioEditar.username%>">
+
+                            </div>
+
+                            <label class="user-label" for="bi">
+                                Número do BI
+                            </label>
+
+                            <input type="text" class="input input-add" id="bi" maxlength="14"
+                                placeholder="Digite o numero do BI" name="bi" value="<%=usuarioEditar.bi%>">
+
+                            <div class="field">
+                                <label class="user-label" for="genero">Gênero</label>
+
+                                <div class="select">
+                                    <select id="genero" name="genero">
+                                        <% if(usuarioEditar.genero=='Masculino' ){%>
+                                            <option value="">Seleciona uma opção</option>
+                                            <option value="Masculino" selected>Masculino</option>
+                                            <option value="Feminino">Feminino</option>
+                                            <%}else {%>
+                                                <option value="">Seleciona uma opção</option>
+                                                <option value="Masculino">Masculino</option>
+                                                <option value="Feminino" selected>Feminino</option>
+                                                <%}%>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label class="user-label" for="password">
+                                    Senha
+                                </label>
+
+                                <input type="password" class="input input-add" id="password" maxlength="80"
+                                    placeholder="Digite a senha" name="password" value="<%=usuarioEditar.password%>">
+                            </div>
+                            <label class="user-label" for="conf-password">
+                                Confirme a senha
+                            </label>
+
+                            <input type="password" class="input input-add" id="conf-password" maxlength="80"
+                                placeholder="Cofirme a senha" value="<%=usuarioEditar.password%>">
+                    </div>
+                    <div class="field">
+                        <div class="field">
+                            <label for="estado-material" class="user-label">
+                                Tipo de Conta
+                            </label>
+                            <div class="control">
+                                <%if(usuarioEditar.tipo_conta=='Professor' ){%>
+                                    <input type="radio" class="radio" id="rd-prof" name="tipo_conta" checked
+                                        value="Professor">
+                                    <span>Professor</span>
+
+                                    <input type="radio" class="radio" id="rd-conv" name="tipo_conta" value="Convidado">
+                                    <span>Convidado</span>
+                                    <input type="radio" class="radio" id="rd-adm" name="tipo_conta"
+                                        value="Administrador">
+                                    <span>Administrador</span>
+
+                                    <%}else if(usuarioEditar.tipo_conta=='Convidado' ){%>
+                                        <input type="radio" class="radio" id="rd-prof" name="tipo_conta"
+                                            value="Professor">
+                                        <span>Professor</span>
+
+                                        <input type="radio" class="radio" id="rd-conv" name="tipo_conta"
+                                            value="Convidado" checked>
+                                        <span>Convidado</span>
+                                        <input type="radio" class="radio" id="rd-adm" name="tipo_conta"
+                                            value="Administrador">
+                                        <span>Administrador</span>
+                                        <%}else{%>
+                                            <input type="radio" class="radio" id="rd-prof" name="tipo_conta"
+                                                value="Professor">
+                                            <span>Professor</span>
+
+                                            <input type="radio" class="radio" id="rd-conv" name="tipo_conta"
+                                                value="Convidado">
+                                            <span>Convidado</span>
+                                            <input type="radio" class="radio" id="rd-adm" name="tipo_conta"
+                                                value="Administrador" checked>
+                                            <span>Administrador</span>
+                                            <%}%>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field right">
+                        <button type="submit" id="btnSalvar" class="button is-info">Salvar Alterações
+                        </button>
+                        <a href="/usuarios" id="btnCancelar" class="button is-danger">Cancelar</a>
+                    </div>
+
+                    </form>
+                </div>
+            </div>
+            </div>
+        </main>
+        <script src="/javascripts/sidebar.js"></script>
+        <script src="/javascripts/header.js"></script>
+        <script src="/javascripts/add-user.js"></script>
+
+        <%- include('./partials/footer.ejs')%>

@@ -30,12 +30,12 @@
                 <label for="username">
                     <i class="fa fa-user"></i>
                     <input type="text" id="username" name="username" maxlength="50" placeholder="Digite o username"
-                        class="campo">
+                        class="campo" autocomplete="username">
                 </label>
                 <label for="password">
                     <i class="fa fa-key"></i>
                     <input type="password" id="password" name="password" maxlength="50" placeholder="Digite a password"
-                        class="campo">
+                        class="campo" autocomplete="current-password">
                 </label>
                 <button type="submit" id="btnEntrar" class="btn">Entrar</button>
 
@@ -52,7 +52,7 @@
     <script src="/javascripts/login.js"></script>
     <script>
         document.querySelector('#username').focus();
-        
+
         const messageLogin = document.querySelector('.message-error');
         if (messageLogin.innerText.length == 0) {
             messageLogin.classList.add('hide');

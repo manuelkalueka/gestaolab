@@ -10,7 +10,7 @@
             <div>
 
                 <div class="top-elements">
-                    <% if (usuario.tipo_conta=='administrador' ) { %>
+                    <% if (usuario.tipo_conta=='Administrador' ) { %>
                         <button type="button" id="btn-novo" class="button is-info">Novo
                             Material
                         </button>
@@ -58,7 +58,7 @@
                                     <%= mesa.estado %>
                                 </td>
                                 <td class="grid-data">
-                                    <% if (usuario.tipo_conta=='administrador' ) { %>
+                                    <% if (usuario.tipo_conta=='Administrador' ) { %>
                                         <span class="actions-list">
                                             <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
                                                     class="fa fa-eye" onclick="getMesa('<%=mesa.id%>')"></i></a>

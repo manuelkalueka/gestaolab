@@ -6,17 +6,21 @@
                 <%= title %>
             </h1>
             <div class="top-elements">
-                <a href="/usuarios/add" id="btn-novo" class="button is-info">Criar usuário</a>
+                <%if(usuario.tipo_conta=='Administrador' ){%>
+                    <a href="/usuarios/add" id="btn-novo" class="button is-info">Criar usuário</a>
+                    <%}else {%>
+                        <a href="#" id="btn-novo" class="button is-info" disabled>Criar usuário</a>
+                        <%}%>
 
-                <form action="#" method="get">
-                    <span class="search-area">
-                        <input type="search" name="pesquisa-registo" placeholder="Pesquisar registo..."
-                            class="input-search">
-                        <button type="submit" class="btn-search">
-                            <i class="fa fa-search is-left icon"></i>
-                        </button>
-                    </span>
-                </form>
+                            <form action="#" method="get">
+                                <span class="search-area">
+                                    <input type="search" name="pesquisa-registo" placeholder="Pesquisar registo..."
+                                        class="input-search">
+                                    <button type="submit" class="btn-search">
+                                        <i class="fa fa-search is-left icon"></i>
+                                    </button>
+                                </span>
+                            </form>
             </div>
 
             <div class="table-container">
@@ -35,34 +39,55 @@
 
                     <tbody class="grid-body">
 
-                        <% lista_usuarios.forEach((usuario)=> { %>
+                        <% lista_usuarios.forEach((ListaUsuario)=> { %>
 
                             <tr>
                                 <td class="grid-data nome-in-table">
-                                    <%= usuario.nome_completo %>
+                                    <%= ListaUsuario.nome_completo %>
                                 </td>
 
                                 <td class="grid-data">
-                                    <%= usuario.bi %>
+                                    <%= ListaUsuario.bi %>
                                 </td>
                                 <td class="grid-data">
-                                    <%= usuario.genero %>
+                                    <%= ListaUsuario.genero %>
                                 </td>
                                 <td class="grid-data">
-                                    <%= usuario.tipo_conta %>
+                                    <%= ListaUsuario.tipo_conta %>
                                 </td>
                                 <td class="grid-data">
-                                    <%= usuario.estado %>
+                                    <%= ListaUsuario.estado %>
                                 </td>
                                 <td class="grid-data">
+
                                     <span class="actions-list">
-                                        <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
-                                                class="fa fa-eye"></i></a>
-                                        <a href="#" class="btn-editar" title="Editar Registo"><i
-                                                class="fa fa-edit"></i></a>
-                                        <a href="#" class="btn-excluir" title="Excluir Registo"><i
-                                                class="fa fa-trash"></i></a>
+                                        <%if(usuario.tipo_conta== 'Administrador' ){%>
+                                            <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
+                                                    class="fa fa-eye"></i>
+                                            </a>
+
+                                            <a href="/usuarios/edit-user/<%=ListaUsuario.id%>" class="btn-editar"
+                                                title="Editar Registo">
+
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+
+                                            <!-- Form Eliminar-->
+                                            <form action="/usuarios/<%=ListaUsuario.id%>" method="post"
+                                                class="deleteRegisto">
+                                                <input type="hidden" name="_method" value="delete">
+                                                <button type="submit" class="btn-excluir" title="Excluir Registo"><i
+                                                        class="fa fa-trash"></i></button>
+                                            </form>
+                                            <!-- Fim Form Eliminar-->
+                                            <%}else {%>
+                                                <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
+                                                        class="fa fa-eye"></i>
+                                                </a>
+                                                <%}%>
+
                                     </span>
+
                                 </td>
 
                             </tr>
@@ -75,17 +100,24 @@
             </div>
 
             <nav class="pagination" role="navigation" aria-label="pagination">
-                <a class="pagination-previous is-disabled" title="Esta é a primeira página">Anterior</a>
-                <a class="pagination-next">Próxima</a>
+                <a class="pagination-previous" href="/usuarios?pagina=1">
+                    Primeiro
+                </a>
+                <a class="pagination-previous" href="/usuarios?pagina=<%= paginas.anterior %>">
+                    Anterior
+                </a>
+                <a class="pagination-next" href="/usuarios?pagina=<%=paginas.proxima%>">
+                    Próxima
+                </a>
+                <a class="pagination-next" href="/usuarios?pagina=<%=paginas.total%>">
+                    Último
+                </a>
                 <ul class="pagination-list">
                     <li>
-                        <a class="pagination-link is-current" aria-label="Page 1" aria-current="page">1</a>
-                    </li>
-                    <li>
-                        <a class="pagination-link" aria-label="Goto page 2">2</a>
-                    </li>
-                    <li>
-                        <a class="pagination-link" aria-label="Goto page 3">3</a>
+                        <a class="pagination-link is-current" aria-current="page"
+                            href="/usuarios?pagina=<%=paginas.actual%>">
+                            <%=paginas.actual%> de <%=paginas.total%>
+                        </a>
                     </li>
                 </ul>
             </nav>

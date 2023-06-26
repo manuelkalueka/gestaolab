@@ -7,7 +7,7 @@
             </h1>
 
             <div class="top-elements">
-                <% if (usuario.tipo_conta=='administrador' ) { %>
+                <% if (usuario.tipo_conta=='Administrador' ) { %>
                     <button type="button" id="btn-novo" class="button is-info">Novo
                         Material
                     </button>
@@ -75,7 +75,7 @@
                             </td>
                             <td class="grid-data">
 
-                                <% if (usuario.tipo_conta=='administrador' ) { %>
+                                <% if (usuario.tipo_conta=='Administrador' ) { %>
                                     <span class="actions-list">
                                         <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
                                                 class="fa fa-eye" onclick="getMaterial('<%=material.id%>')"></i>
@@ -133,7 +133,7 @@
                 </ul>
             </nav>
 
-            <% if (usuario.tipo_conta=='administrador' ) { %>
+            <% if (usuario.tipo_conta=='Administrador' ) { %>
                 <form method="post" id="form-deleteAll">
                     <input type="hidden" name="_method" value="delete">
 
