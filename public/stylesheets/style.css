@@ -520,7 +520,16 @@ span.block,
   font-size: 2em;
 }
 
+.user-guide a{
+  padding-left: 10px;
+  color: #4f4f4f;
+  transition: 1s ease;
+}
 
+.user-guide a:hover{
+  opacity: .7;
+  text-decoration: underline;
+}
 
 /* Animação do loader */
 @keyframes spin {
