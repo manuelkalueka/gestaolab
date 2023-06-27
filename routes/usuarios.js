@@ -69,7 +69,8 @@ router.post('/usuarios', (req, res, next) => {
     res.redirect('/usuarios')
 })
 
-router.get('/usuarios/add', (req, res, next) => {
+router.get('/user/add', (req, res, next) => {
+    console.log("Estou caindo aqui");
     res.render('add-user', { title: 'Criar novo Usuário', usuario: req.user });
 });
 
@@ -189,5 +190,5 @@ router.delete('/usuarios/:id', async (req, res, next) => {
     } catch (erro) {
         console.log(erro.message);
     }
-})
+});
 module.exports = router;

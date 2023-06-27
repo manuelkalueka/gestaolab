@@ -6,8 +6,8 @@
                 <%= title %>
             </h1>
             <div class="top-elements">
-                <%if(usuario.tipo_conta=='Administrador' ){%>
-                    <a href="/usuarios/add" id="btn-novo" class="button is-info">Criar usuário</a>
+                <%if(usuario.tipo_conta=='Administrador'){%>
+                    <a href="/user/add" id="btn-novo" class="button is-info">Criar usuário</a>
                     <%}else {%>
                         <a href="#" id="btn-novo" class="button is-info" disabled>Criar usuário</a>
                         <%}%>
