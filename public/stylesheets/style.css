@@ -505,6 +505,23 @@ span.block,
   margin-top: 200px;
 }
 
+.out-order {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.out-order i {
+  font-size: 12em;
+}
+
+.out-order span {
+  font-size: 2em;
+}
+
+
+
 /* Animação do loader */
 @keyframes spin {
   0% {

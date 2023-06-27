@@ -120,12 +120,11 @@ router.get('/usuarios/edit-user/:id', async (req, res, next) => {
             res.send(400);
             return;
         }
-        const plainPass = usuarioEditar.password;
+
         res.render('edit-user', {
             title: 'Editar Usuário',
             usuario: req.user,
             usuarioEditar: usuarioEditar,
-            plainPass
         });
     } catch (erro) {
         console.log(erro.message);

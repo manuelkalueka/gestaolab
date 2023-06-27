@@ -4,9 +4,6 @@ function MarcaPaginaAtiva() {
     links.forEach(link => {
         const linkUrl = link.getAttribute('href').split('/').pop();
 
-        console.log(linkUrl + "\n");
-        console.log(paginaActual);
-
         if (linkUrl == paginaActual) {
             link.classList.add('active-item');
         } else {
