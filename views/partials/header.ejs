@@ -1,83 +1,75 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <%= title %>
-    </title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <!--- Meter Favicon nas Paginas -->
 
-    <link rel="icon" href="/favicon.ico" type="image/x-icon"> <!--- Meter Favicon nas Paginas -->
-
-    <link rel='stylesheet' href='/stylesheets/style.css'>
-    <link rel='stylesheet' href='/stylesheets/fontawesome/all.css'>
-    <link rel='stylesheet' href='/stylesheets/fontawesome/solid.css'>
-    <link rel="stylesheet" href="/stylesheets/bulma/css/bulma.css">
-    <link rel='stylesheet' href='/stylesheets/header.css'>
-    <link rel='stylesheet' href='/stylesheets/sidebar.css'>
-    <link rel='stylesheet' href='/stylesheets/dashboard.css'>
-    <link rel='stylesheet' href='/stylesheets/about.css'>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/fontawesome/all.css" />
+    <link rel="stylesheet" href="/stylesheets/fontawesome/solid.css" />
+    <link rel="stylesheet" href="/stylesheets/bulma/css/bulma.css" />
+    <link rel="stylesheet" href="/stylesheets/header.css" />
+    <link rel="stylesheet" href="/stylesheets/sidebar.css" />
+    <link rel="stylesheet" href="/stylesheets/dashboard.css" />
+    <link rel="stylesheet" href="/stylesheets/about.css" />
     <script src="/javascripts/moment.js"></script>
     <script src="/javascripts/sidebar.js" defer></script>
-</head>
+    <script src="/javascripts/index.js" defer></script>
+  </head>
 
-<body>
+  <body>
+    <%-include('../loader')%>
     <header>
-        <div class="left-area">
-            <!-- 
+      <div class="left-area">
+        <!-- 
             <div class="btn-menu">
                 <i class="fa fa-bars" id="btn-menu"></i>
             </div> -->
 
-            <h3>Gestão <span>LAB</span></h3>
-        </div>
+        <h3>Gestão <span>LAB</span></h3>
+      </div>
 
-        <div class="right-area">
+      <div class="right-area">
+        <span class="date-display">
+          <span><i class="fa fa-calendar"></i></span>
+          <span class="date-display-info"> </span>
+        </span>
 
-            <span class="date-display">
-                <span><i class="fa fa-calendar"></i></span>
-                <span class="date-display-info">
+        <span class="account btn-account">
+          <span class="icone icon">
+            <i class="fa fa-circle-user"></i>
 
-                </span>
-            </span>
+            <ul class="toggle-account-element hide" id="menu-perfil">
+              <li class="account-element" id="username">
+                <span class="username"> <%= usuario.username%> </span>
+              </li>
 
-            <span class="account btn-account">
-                <span class="icone icon">
-                    <i class="fa fa-circle-user"></i>
+              <li class="account-element link">
+                <a href="/perfil">
+                  <span class="icone icon">
+                    <i class="fa-solid fa-user"></i>
+                  </span>
+                  <span class="text-link"> Perfil </span>
+                </a>
+              </li>
 
-                    <ul class="toggle-account-element hide" id="menu-perfil">
-                        <li class="account-element" id="username">
-                            <span class="username">
-                                <%= usuario.username%>
-                            </span>
-                        </li>
-
-                        <li class="account-element link">
-                            <a href="/perfil">
-                                <span class="icone icon">
-                                    <i class="fa-solid fa-user"></i>
-                                </span>
-                                <span class="text-link">
-                                    Perfil
-                                </span>
-                            </a>
-                        </li>
-
-                        <li class="account-element link">
-                            <a href="/logout">
-                                <span class="icone icon">
-                                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                                </span>
-                                <span class="text-link">
-                                    Sair
-                                </span>
-                            </a>
-                        </li>
-
-                    </ul>
-                </span>
-            </span>
-        </div>
+              <li class="account-element link">
+                <a href="/logout">
+                  <span class="icone icon">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                  </span>
+                  <span class="text-link"> Sair </span>
+                </a>
+              </li>
+            </ul>
+          </span>
+        </span>
+      </div>
     </header>
+  </body>
+</html>

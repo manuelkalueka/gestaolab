@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+var app = require('./app');
 var debug = require('debug')('gestaolab:server');
 var http = require('http');
 
@@ -28,6 +28,7 @@ var server = http.createServer(app);
 server.listen(port, () => {
   console.log('Application running at http://localhost:' + port);
 });
+
 server.on('error', onError);
 server.on('listening', onListening);
 
