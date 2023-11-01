@@ -11,3 +11,25 @@ function hideLoader() {
 }
 
 hideLoader();
+
+function openReportPage(item, page) {
+    item.addEventListener('click', () => {
+
+        window.location.href = `${window.location.origin}/${page}`;
+    });
+}
+
+const dashCards = document.querySelectorAll('.dash-card');
+
+const pages = [
+    'materiais',
+    'mesas',
+    'materiais?tipo=computador',
+    'materiais?tipo=computador&estado=danificado',
+    'materiais?type=computador&estado=rasoavel',
+    'materiais?type=computador&estado=bom'
+];
+
+dashCards.forEach((item, chave) => {
+    openReportPage(item, pages[chave])
+})

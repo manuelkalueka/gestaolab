@@ -1,175 +1,176 @@
-<%- include('./partials/header.ejs')%>
-    <%- include('./partials/sidebar.ejs')%>
+<%- include('./partials/header.ejs')%> <%- include('./partials/sidebar.ejs')%>
 
-        <main class="conteudo">
-            <h1 class="title">
-                <%= title %>
-            </h1>
-            <div class="top-elements">
-                <%if(usuario.tipo_conta=='Administrador'){%>
-                    <a href="/user/add" id="btn-novo" class="button is-info">Criar usuário</a>
-                    <%}else {%>
-                        <a href="#" id="btn-novo" class="button is-info" disabled>Criar usuário</a>
-                        <%}%>
+<main class="conteudo">
+  <h1 class="title"><%= title %></h1>
+  <div class="top-elements">
+    <%if(usuario.tipo_conta=='administrador'){%>
+    <a href="/user/add" id="btn-novo" class="button is-info">Criar usuário</a>
+    <%}else {%>
+    <a href="#" id="btn-novo" class="button is-info" disabled>Criar usuário</a>
+    <%}%>
 
-                            <form action="#" method="get">
-                                <span class="search-area">
-                                    <input type="search" name="pesquisa-registo" placeholder="Pesquisar registo..."
-                                        class="input-search">
-                                    <button type="submit" class="btn-search">
-                                        <i class="fa fa-search is-left icon"></i>
-                                    </button>
-                                </span>
-                            </form>
-            </div>
+    <form action="#" method="get">
+      <span class="search-area">
+        <input
+          type="search"
+          name="pesquisa-registo"
+          placeholder="Pesquisar registo..."
+          class="input-search"
+        />
+        <button type="submit" class="btn-search">
+          <i class="fa fa-search is-left icon"></i>
+        </button>
+      </span>
+    </form>
+  </div>
 
-            <div class="table-container">
+  <div class="table-container">
+    <table class="table is-striped is-hoverable is-fullwidth">
+      <thead class="grid-header">
+        <tr>
+          <th scope="col" class="grid-title">Nome Completo</th>
+          <th scope="col" class="grid-title">BI</th>
+          <th scope="col" class="grid-title">Genero</th>
+          <th scope="col" class="grid-title">Tipo Conta</th>
+          <th scope="col" class="grid-title">Estado</th>
+          <th scope="col" class="grid-title">Acções</th>
+        </tr>
+      </thead>
 
-                <table class="table is-striped is-hoverable is-fullwidth">
-                    <thead class="grid-header">
-                        <tr>
-                            <th scope="col" class="grid-title">Nome Completo</th>
-                            <th scope="col" class="grid-title">BI</th>
-                            <th scope="col" class="grid-title">Genero</th>
-                            <th scope="col" class="grid-title">Tipo Conta</th>
-                            <th scope="col" class="grid-title">Estado</th>
-                            <th scope="col" class="grid-title">Acções</th>
-                        </tr>
-                    </thead>
+      <tbody class="grid-body">
+        <% lista_usuarios.forEach((ListaUsuario)=> { %>
 
-                    <tbody class="grid-body">
+        <tr>
+          <td class="grid-data nome-in-table">
+            <%= ListaUsuario.nome_completo %>
+          </td>
 
-                        <% lista_usuarios.forEach((ListaUsuario)=> { %>
+          <td class="grid-data"><%= ListaUsuario.bi %></td>
+          <td class="grid-data"><%= ListaUsuario.genero %></td>
+          <td class="grid-data"><%= ListaUsuario.tipo_conta %></td>
+          <td class="grid-data"><%= ListaUsuario.estado %></td>
+          <td class="grid-data">
+            <span class="actions-list">
+              <%if(usuario.tipo_conta== 'administrador' &&
+              usuario.username!==ListaUsuario.username ){%>
+              <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"
+                ><i
+                  class="fa fa-eye"
+                  onclick="getUser('<%=ListaUsuario.id%>')"
+                ></i>
+              </a>
 
-                            <tr>
-                                <td class="grid-data nome-in-table">
-                                    <%= ListaUsuario.nome_completo %>
-                                </td>
+              <a
+                href="/usuarios/edit-user/<%=ListaUsuario.id%>"
+                class="btn-editar"
+                title="Editar Registo"
+              >
+                <i class="fa fa-edit"></i>
+              </a>
 
-                                <td class="grid-data">
-                                    <%= ListaUsuario.bi %>
-                                </td>
-                                <td class="grid-data">
-                                    <%= ListaUsuario.genero %>
-                                </td>
-                                <td class="grid-data">
-                                    <%= ListaUsuario.tipo_conta %>
-                                </td>
-                                <td class="grid-data">
-                                    <%= ListaUsuario.estado %>
-                                </td>
-                                <td class="grid-data">
+              <!-- Form Eliminar-->
+              <form
+                action="/usuarios/<%=ListaUsuario.id%>"
+                method="post"
+                class="deleteRegisto"
+              >
+                <input type="hidden" name="_method" value="delete" />
+                <button
+                  type="submit"
+                  class="btn-excluir"
+                  title="Excluir Registo"
+                >
+                  <i class="fa fa-trash"></i>
+                </button>
+              </form>
+              <!-- Fim Form Eliminar-->
+              <%}else {%>
+              <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"
+                ><i
+                  class="fa fa-eye"
+                  onclick="getUser('<%=ListaUsuario.id%>')"
+                ></i>
+              </a>
+              <%}%>
+            </span>
+          </td>
+        </tr>
 
-                                    <span class="actions-list">
-                                        <%if(usuario.tipo_conta== 'Administrador' ){%>
-                                            <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
-                                                    class="fa fa-eye" onclick="getUser('<%=ListaUsuario.id%>')"></i>
-                                            </a>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
 
-                                            <a href="/usuarios/edit-user/<%=ListaUsuario.id%>" class="btn-editar"
-                                                title="Editar Registo">
+  <nav class="pagination" role="navigation" aria-label="pagination">
+    <a class="pagination-previous" href="/usuarios?pagina=1"> Primeiro </a>
+    <a
+      class="pagination-previous"
+      href="/usuarios?pagina=<%= paginas.anterior %>"
+    >
+      Anterior
+    </a>
+    <a class="pagination-next" href="/usuarios?pagina=<%=paginas.proxima%>">
+      Próxima
+    </a>
+    <a class="pagination-next" href="/usuarios?pagina=<%=paginas.total%>">
+      Último
+    </a>
+    <ul class="pagination-list">
+      <li>
+        <a
+          class="pagination-link is-current"
+          aria-current="page"
+          href="/usuarios?pagina=<%=paginas.actual%>"
+        >
+          <%=paginas.actual%> de <%=paginas.total%>
+        </a>
+      </li>
+      <li>
+        <button type="button" id="btn-print" title="Imprimir <%=title%>">
+          <i class="fa fa-print"></i>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</main>
 
-                                                <i class="fa fa-edit"></i>
-                                            </a>
+<!-- Modal ver registo-->
+<div class="modal" id="modal-ver">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title ver-nome"></p>
+      <button class="delete" aria-label="close" id="close"></button>
+    </header>
 
-                                            <!-- Form Eliminar-->
-                                            <form action="/usuarios/<%=ListaUsuario.id%>" method="post"
-                                                class="deleteRegisto">
-                                                <input type="hidden" name="_method" value="delete">
-                                                <button type="submit" class="btn-excluir" title="Excluir Registo"><i
-                                                        class="fa fa-trash"></i></button>
-                                            </form>
-                                            <!-- Fim Form Eliminar-->
-                                            <%}else {%>
-                                                <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
-                                                        class="fa fa-eye" onclick="getUser('<%=ListaUsuario.id%>')"></i>
-                                                </a>
-                                                <%}%>
-
-                                    </span>
-
-                                </td>
-
-                            </tr>
-
-                            <% }) %>
-
-                    </tbody>
-
-                </table>
-            </div>
-
-            <nav class="pagination" role="navigation" aria-label="pagination">
-                <a class="pagination-previous" href="/usuarios?pagina=1">
-                    Primeiro
-                </a>
-                <a class="pagination-previous" href="/usuarios?pagina=<%= paginas.anterior %>">
-                    Anterior
-                </a>
-                <a class="pagination-next" href="/usuarios?pagina=<%=paginas.proxima%>">
-                    Próxima
-                </a>
-                <a class="pagination-next" href="/usuarios?pagina=<%=paginas.total%>">
-                    Último
-                </a>
-                <ul class="pagination-list">
-                    <li>
-                        <a class="pagination-link is-current" aria-current="page"
-                            href="/usuarios?pagina=<%=paginas.actual%>">
-                            <%=paginas.actual%> de <%=paginas.total%>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </main>
-
-        <!-- Modal ver registo-->
-        <div class="modal" id="modal-ver">
-            <div class="modal-background"></div>
-            <div class="modal-card">
-                <header class="modal-card-head">
-                    <p class="modal-card-title ver-nome"></p>
-                    <button class="delete" aria-label="close" id="close"></button>
-                </header>
-
-                <section class="modal-card-body">
-                    <div class="ver-body">
-                        <div class="foto-mesa">
-
-                        </div>
-                        <div class="descricao">
-                            <span class="desc-campo">
-                                BI:
-                                <span class="ver-bi">
-
-                                </span>
-                            </span>
-                            <span class="desc-campo">
-                                Genero:
-                                <span class="ver-genero">
-
-                                </span>
-                            </span>
-                            <span class="desc-campo">
-                                Tipo de Conta:
-                                <span class="ver-tipoConta">
-
-                                </span>
-                            </span>
-                            <span class="desc-campo">
-                                Estado:
-                                <span class="ver-estado">
-
-                                </span>
-                            </span>
-                        </div>
-                    </div>
-                </section>
-            </div>
+    <section class="modal-card-body">
+      <div class="ver-body">
+        <div class="foto-mesa"></div>
+        <div class="descricao">
+          <span class="desc-campo">
+            BI:
+            <span class="ver-bi"> </span>
+          </span>
+          <span class="desc-campo">
+            Genero:
+            <span class="ver-genero"> </span>
+          </span>
+          <span class="desc-campo">
+            Tipo de Conta:
+            <span class="ver-tipoConta"> </span>
+          </span>
+          <span class="desc-campo">
+            Estado:
+            <span class="ver-estado"> </span>
+          </span>
         </div>
-        <!-- Fim Modal ver registo-->
-        <script src="/javascripts/base.js"></script>
-        <script src="/javascripts/header.js"></script>
-        <script src="/javascripts/sidebar.js"></script>
-        <script src="/javascripts/usuarios.js" defer></script>
-        <%- include('./partials/footer.ejs')%>
+      </div>
+    </section>
+  </div>
+</div>
+<!-- Fim Modal ver registo-->
+<script src="/javascripts/base.js"></script>
+<script src="/javascripts/header.js"></script>
+<script src="/javascripts/sidebar.js"></script>
+<script src="/javascripts/usuarios.js" defer></script>
+<%- include('./partials/footer.ejs')%>

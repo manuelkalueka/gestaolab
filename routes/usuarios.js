@@ -7,7 +7,7 @@ const bcrypt = require('bcryptjs');
 
 router.get("/usuarios", async (req, res, next) => {
     try {
-        async function pagination(table) {
+        async function pagination(table) {//Função de Paginação
             const numeroPagina = (req.query.pagina) || 1; //pagina actual
             const registosPorPagina = 6;
             const deslocamento = registosPorPagina * (parseInt(numeroPagina) - 1);
@@ -70,7 +70,7 @@ router.post('/usuarios', (req, res, next) => {
 })
 
 router.get('/user/add', (req, res, next) => {
-    console.log("Estou caindo aqui");
+    // console.log("Estou caindo aqui");
     res.render('add-user', { title: 'Criar novo Usuário', usuario: req.user });
 });
 
@@ -83,6 +83,7 @@ router.post('/usuarios/add', async (req, res, next) => {
         password: bcrypt.hashSync(req.body.password),
         tipo_conta: req.body.tipo_conta
     }
+
     let schema = yup.object({
         nome_completo: yup.string().required("Preecha o campo nome"),
         bi: yup.string().max(14),
@@ -140,6 +141,8 @@ router.put('/usuarios/edit-user/:id', async (req, res, next) => {
         password: bcrypt.hashSync(req.body.password),
         tipo_conta: req.body.tipo_conta
     }
+
+    console.log(req.body.password);
     let schema = yup.object({
         nome_completo: yup.string().required("Preecha o campo nome"),
         bi: yup.string().max(14),
@@ -148,7 +151,7 @@ router.put('/usuarios/edit-user/:id', async (req, res, next) => {
         password: yup.string().required("Preecha a Palavra Passe").min(4)
     });
 
-    if (!schema.isValid(req.body)) {
+    if (!schema.isValid(reqDados)) {
 
         return res.status(400).render("edit-user",
             {
@@ -161,7 +164,7 @@ router.put('/usuarios/edit-user/:id', async (req, res, next) => {
                 usuario: req.user
             });
     }
-
+    //ToDo Melhorar o algoritmo de alterar a senha
     const { id } = req.params;
     await database('usuarios')
         .where('id', id)

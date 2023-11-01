@@ -5,7 +5,9 @@ if (formUserValidate) {
         const nomeCompleto = document.querySelector('#nome-completo');
         const username = document.querySelector('#username-add');
         const password = document.querySelector('#password');
+        const newPassword = document.querySelector('#new-password');
         const confPassword = document.querySelector('#conf-password');
+        const newConfPassword = document.querySelector('#new-conf-password');
         const bi = document.querySelector('#bi');
         const genero = document.querySelector('#genero');
         const nomeSemEspaco = nomeCompleto.value.trim();
@@ -23,19 +25,6 @@ if (formUserValidate) {
             evento.preventDefault();
             return;
         }
-        if (password.value == '') {
-            alert('Preecha uma senha valida');
-            password.focus();
-            evento.preventDefault();
-            return;
-        }
-
-        if (password.value.length < 4) {
-            alert('Senha muito curta, deve ter no minimo 4 caracteres');
-            password.focus();
-            evento.preventDefault();
-            return;
-        }
 
         if (bi.value == '') {
             alert('Informe um numero de BI ou outro documento válido');
@@ -50,19 +39,6 @@ if (formUserValidate) {
             evento.preventDefault();
             return;
         }
-        if (confPassword.value == '') {
-            alert("Deve confirmar a senha digitada!");
-            confPassword.focus();
-            evento.preventDefault();
-            return;
-        }
-
-        if (confPassword.value != password.value) {
-            alert("Os campos senha e confirmar senha devem ser iguais!");
-            confPassword.focus();
-            evento.preventDefault();
-            return;
-        }
 
         for (let i = 0; i < genero.length; i++) {
             if (genero[0].selected) {
@@ -72,6 +48,55 @@ if (formUserValidate) {
                 return;
             }
         }
-
+        newValidatePassword(newPassword, newConfPassword, evento)
+        validatePassword(password, confPassword, evento)
     });
+}
+
+function validatePassword(passwordElement, confirmarPasswordElement, evento) {
+    // if (confirmarPasswordElement.value.length == 0) {
+    //     alert("Deve confirmar a senha digitada!");
+    //     confirmarPasswordElement.focus();
+    //     evento.preventDefault();
+    //     return;
+    // }
+
+    if (passwordElement.value == '') {
+        alert('Preecha uma senha valida');
+        passwordElement.focus();
+        evento.preventDefault();
+        return;
+    }
+
+    if (passwordElement.value.length < 4) {
+        alert('Senha muito curta, deve ter no minimo 4 caracteres');
+        passwordElement.focus();
+        evento.preventDefault();
+        return;
+    }
+
+    if (confirmarPasswordElement.value != passwordElement.value) {
+        alert("Os campos senha e confirmar senha devem ser iguais!");
+        confirmarPasswordElement.focus();
+        evento.preventDefault();
+        return;
+    }
+
+}
+
+function newValidatePassword(passwordElement, confirmarPasswordElement, evento) {
+
+    if (passwordElement.value.length !== 0 && passwordElement.value.length < 4) {
+        alert('Senha muito curta, deve ter no minimo 4 caracteres');
+        passwordElement.focus();
+        evento.preventDefault();
+        return;
+    }
+
+    if (passwordElement.value.length !== 0 && confirmarPasswordElement.value != passwordElement.value) {
+        alert("Os campos senha e confirmar senha devem ser iguais!");
+        confirmarPasswordElement.focus();
+        evento.preventDefault();
+        return;
+    }
 }

@@ -7,7 +7,7 @@
             </h1>
 
             <div class="top-elements">
-                <% if (usuario.tipo_conta=='Administrador' ) { %>
+                <% if (usuario.tipo_conta=='administrador' ) { %>
                     <button type="button" id="btn-novo" class="button is-info">Novo
                         Material
                     </button>
@@ -75,7 +75,7 @@
                             </td>
                             <td class="grid-data">
 
-                                <% if (usuario.tipo_conta=='Administrador' ) { %>
+                                <% if (usuario.tipo_conta=='administrador' ) { %>
                                     <span class="actions-list">
                                         <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
                                                 class="fa fa-eye" onclick="getMaterial('<%=material.id%>')"></i>
@@ -130,10 +130,15 @@
                             <%=paginas.actual%> de <%=paginas.total%>
                         </a>
                     </li>
+                    <li>
+                         <button type="button" id="btn-print" title="Imprimir <%=title%>">
+                            <i class="fa fa-print"></i>
+                        </button>
+                    </li>
                 </ul>
             </nav>
 
-            <% if (usuario.tipo_conta=='Administrador' ) { %>
+            <% if (usuario.tipo_conta=='administrador' ) { %>
                 <form method="post" id="form-deleteAll">
                     <input type="hidden" name="_method" value="delete">
 
@@ -233,15 +238,15 @@
                             </label>
                             <div class="control">
                                 <input type="radio" class="radio n-estado" id="rd-danificado" name="estado"
-                                    value="Danificado">
+                                    value="danificado">
                                 <span>Danificado</span>
 
                                 <input type="radio" class="radio n-estado" id="rd-bom" name="estado" checked
-                                    value="Bom">
+                                    value="bom">
                                 <span>Bom</span>
 
                                 <input type="radio" class="radio n-estado" id="rd-rasoavel" name="estado"
-                                    value="Rasoável">
+                                    value="rasoavel">
                                 <span>Rasoável</span>
                             </div>
                         </div>
@@ -380,15 +385,15 @@
                             </label>
                             <div class="control">
                                 <input type="radio" class="radio edit-estado" id="edit-rd-danificado"
-                                    data-edit-radio="edit-estado" name="estado" value="Danificado">
+                                    data-edit-radio="edit-estado" name="estado" value="danificado">
                                 <span>Danificado</span>
 
                                 <input type="radio" class="radio edit-estado" id="edit-rd-bom"
-                                    data-edit-radio="edit-estado" name="estado" value="Bom">
+                                    data-edit-radio="edit-estado" name="estado" value="bom">
                                 <span>Bom</span>
 
                                 <input type="radio" class="radio edit-estado" id="edit-rd-rasoavel"
-                                    data-edit-radio="edit-estado" name="estado" value="Rasoável">
+                                    data-edit-radio="edit-estado" name="estado" value="rasoavel">
                                 <span>Rasoável</span>
                             </div>
                         </div>

@@ -556,6 +556,25 @@ span.block,
   animation: spin 1s infinite linear;
 }
 
+button#btn-print {
+  font-size: 1.2em;
+  padding: 0.5em;
+  outline: none;
+  border: none;
+  color: var(--color3);
+  border-radius: var(--border_rad);
+
+  background-color: transparent;
+
+  cursor: pointer;
+}
+
+.alterarSenha-title {
+  color: var(--color3);
+  font-weight: 700;
+  font-size: 1.5em;
+}
+
 /* Animação do loader */
 @keyframes spin {
   0% {
