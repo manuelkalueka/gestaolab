@@ -112,4 +112,4 @@ async function gerarRelatorio() {
 
 }
 
-gerarRelatorio().then(()=>console.log('funcionei')).catch(erro=>console.log(erro))
+gerarRelatorio()
