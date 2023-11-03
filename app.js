@@ -7,6 +7,7 @@ const methodOverride = require('method-override');
 const cors = require('cors');//função do Cors ToDo
 const session = require('express-session');
 var passport = require('passport');
+
 require('./passport');
 //Verificar autenticacao, caso sim continue, caso nao volta no login com falha
 function authenticationMiddleware(req, res, next) {
