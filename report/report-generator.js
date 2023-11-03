@@ -106,6 +106,7 @@ async function gerarRelatorio() {
         Document.image('./report-images/logo-cftu.jpg');
         Document.text(bodyHTML);
         console.log('escvreu')
+        Document.end()
     } catch (error) {
         console.log(error)
     }

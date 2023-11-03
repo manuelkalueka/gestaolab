@@ -132,17 +132,39 @@ router.get('/usuarios/edit-user/:id', async (req, res, next) => {
     }
 });
 
-router.put('/usuarios/edit-user/:id', async (req, res, next) => {
-    const reqDados = {
-        nome_completo: req.body.nome_completo,
-        bi: req.body.bi,
-        genero: req.body.genero,
-        username: req.body.username,
-        password: bcrypt.hashSync(req.body.password),
-        tipo_conta: req.body.tipo_conta
-    }
+function verificaAtributos(object) {
 
-    console.log(req.body.password);
+    if (!object.password) {
+        return {
+            nome_completo: object.nome_completo,
+            bi: object.bi,
+            genero: object.genero,
+            username: object.username,
+            tipo_conta: object.tipo_conta
+        }
+    } else {
+
+        return {
+            nome_completo: object.nome_completo,
+            bi: object.bi,
+            genero: object.genero,
+            username: object.username,
+            password: bcrypt.hashSync(object.password),
+            tipo_conta: object.tipo_conta
+        }
+    }
+}
+
+router.put('/usuarios/edit-user/:id', async (req, res, next) => {
+    // const reqDados = {
+    //     nome_completo: req.body.nome_completo,
+    //     bi: req.body.bi,
+    //     genero: req.body.genero,
+    //     username: req.body.username,
+    //     password: bcrypt.hashSync(req.body.password),
+    //     tipo_conta: req.body.tipo_conta
+    // }
+
     let schema = yup.object({
         nome_completo: yup.string().required("Preecha o campo nome"),
         bi: yup.string().max(14),
@@ -151,7 +173,7 @@ router.put('/usuarios/edit-user/:id', async (req, res, next) => {
         password: yup.string().required("Preecha a Palavra Passe").min(4)
     });
 
-    if (!schema.isValid(reqDados)) {
+    if (!schema.isValid(req.body)) {
 
         return res.status(400).render("edit-user",
             {
@@ -164,11 +186,14 @@ router.put('/usuarios/edit-user/:id', async (req, res, next) => {
                 usuario: req.user
             });
     }
+
     //ToDo Melhorar o algoritmo de alterar a senha
     const { id } = req.params;
+    const objectBody = req.body;
+
     await database('usuarios')
         .where('id', id)
-        .update(reqDados)
+        .update(verificaAtributos(objectBody))
         .then(result => {
             if (result == 0) {
                 return res.send(400)
