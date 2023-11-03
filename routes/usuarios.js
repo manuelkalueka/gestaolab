@@ -4,35 +4,14 @@ const TITLE = 'Usuários Cadastrados';
 const database = require('../database');
 const yup = require('yup');
 const bcrypt = require('bcryptjs');
+const pagination = require('./pagination')
 
 router.get("/usuarios", async (req, res, next) => {
     try {
-        async function pagination(table) {//Função de Paginação
-            const numeroPagina = (req.query.pagina) || 1; //pagina actual
-            const registosPorPagina = 6;
-            const deslocamento = registosPorPagina * (parseInt(numeroPagina) - 1);
-
-            const dadosTable = await database(table)
-                .limit(6)
-                .offset(deslocamento)
-                .orderBy('nome_completo', 'asc');
-            const [total] = await database(table)
-                .count('*', { as: 'total' });
-            const resultado = Math.ceil(parseInt(total.total) / registosPorPagina);
-
-            const totalPaginas = resultado == 0 ? 1 : resultado;
-            return {
-                dadosTable,
-                totalPaginas,
-                numeroPagina,
-                deslocamento,
-            }
-        }
-
-        const dadosPaginados = await pagination('usuarios');
+        const dadosPaginados = await pagination(database, 'usuarios', req, 'nome_completo');
 
         const paginas = {
-            actual: dadosPaginados.numeroPagina,
+            actual: parseInt(dadosPaginados.numeroPagina) > dadosPaginados.totalPaginas ? dadosPaginados.totalPaginas : dadosPaginados.numeroPagina,
             anterior: parseInt(dadosPaginados.numeroPagina) - 1 < 1 ? 1 : parseInt(dadosPaginados.numeroPagina) - 1,
             proxima: parseInt(dadosPaginados.numeroPagina) + 1 > parseInt(dadosPaginados.totalPaginas) ? parseInt(dadosPaginados.totalPaginas) : parseInt(dadosPaginados.numeroPagina) + 1,
             total: dadosPaginados.totalPaginas
