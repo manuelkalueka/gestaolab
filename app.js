@@ -15,8 +15,6 @@ function authenticationMiddleware(req, res, next) {
   res.redirect('/login');
 }
 
-//Data do Sistema
-
 //Rotas do Sistema
 const loginRouter = require('./routes/login');
 const dashboardRouter = require('./routes/dashboard');
@@ -27,6 +25,7 @@ const aboutRouter = require('./routes/about');
 const settingRouter = require('./routes/settings');
 const relatorioRouter = require('./routes/relatorio');
 const usuariosRouter = require('./routes/usuarios');
+const reportRouter = require('./routes/report')
 const router404 = require('./routes/404');
 //Fim Rotas do Sistema
 
@@ -75,6 +74,7 @@ app.use('/', authenticationMiddleware, settingRouter);
 app.use('/', authenticationMiddleware, relatorioRouter);
 app.use('/', authenticationMiddleware, aboutRouter);
 app.use('/', authenticationMiddleware, usuariosRouter);
+app.use('/', authenticationMiddleware, reportRouter);
 app.use('/', router404);//manter o erro de não encontrado em ultimo
 
 // catch 404 and forward to error handler

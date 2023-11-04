@@ -23,7 +23,7 @@
     "mysql2": "^3.2.0",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
-    "pdfkit": "^0.13.0",
+    "pdfmake": "^0.2.7",
     "yup": "^1.1.1"
   },
   "devDependencies": {
