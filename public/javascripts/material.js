@@ -383,7 +383,7 @@ const formDeleteAll = document.querySelector('#form-deleteAll');
 
 btnLimparTudo.addEventListener('click', () => {
     const confirmacao = confirm("Esta acção apagará todos os registos, Confirmar?");
-    formDeleteAll.addEventListener('submit', (evento) => {
+    formDeleteAll.addEventListener('submit', async (evento) => {
         if (!confirmacao) {
             evento.preventDefault();
             return;
@@ -394,7 +394,7 @@ btnLimparTudo.addEventListener('click', () => {
             return;
         }
 
-        fetch('/materiais', {
+       await fetch('/materiais', {
             method: 'DELETE'
         })
             .then(response => response.json())

@@ -4,35 +4,14 @@ const TITLE = 'Usuários Cadastrados';
 const database = require('../database');
 const yup = require('yup');
 const bcrypt = require('bcryptjs');
+const pagination = require('./pagination')
 
 router.get("/usuarios", async (req, res, next) => {
     try {
-        async function pagination(table) {
-            const numeroPagina = (req.query.pagina) || 1; //pagina actual
-            const registosPorPagina = 6;
-            const deslocamento = registosPorPagina * (parseInt(numeroPagina) - 1);
-
-            const dadosTable = await database(table)
-                .limit(6)
-                .offset(deslocamento)
-                .orderBy('nome_completo', 'asc');
-            const [total] = await database(table)
-                .count('*', { as: 'total' });
-            const resultado = Math.ceil(parseInt(total.total) / registosPorPagina);
-
-            const totalPaginas = resultado == 0 ? 1 : resultado;
-            return {
-                dadosTable,
-                totalPaginas,
-                numeroPagina,
-                deslocamento,
-            }
-        }
-
-        const dadosPaginados = await pagination('usuarios');
+        const dadosPaginados = await pagination(database, 'usuarios', req, 'nome_completo');
 
         const paginas = {
-            actual: dadosPaginados.numeroPagina,
+            actual: parseInt(dadosPaginados.numeroPagina) > dadosPaginados.totalPaginas ? dadosPaginados.totalPaginas : dadosPaginados.numeroPagina,
             anterior: parseInt(dadosPaginados.numeroPagina) - 1 < 1 ? 1 : parseInt(dadosPaginados.numeroPagina) - 1,
             proxima: parseInt(dadosPaginados.numeroPagina) + 1 > parseInt(dadosPaginados.totalPaginas) ? parseInt(dadosPaginados.totalPaginas) : parseInt(dadosPaginados.numeroPagina) + 1,
             total: dadosPaginados.totalPaginas
@@ -70,7 +49,7 @@ router.post('/usuarios', (req, res, next) => {
 })
 
 router.get('/user/add', (req, res, next) => {
-    console.log("Estou caindo aqui");
+    // console.log("Estou caindo aqui");
     res.render('add-user', { title: 'Criar novo Usuário', usuario: req.user });
 });
 
@@ -83,6 +62,7 @@ router.post('/usuarios/add', async (req, res, next) => {
         password: bcrypt.hashSync(req.body.password),
         tipo_conta: req.body.tipo_conta
     }
+
     let schema = yup.object({
         nome_completo: yup.string().required("Preecha o campo nome"),
         bi: yup.string().max(14),
@@ -131,15 +111,39 @@ router.get('/usuarios/edit-user/:id', async (req, res, next) => {
     }
 });
 
-router.put('/usuarios/edit-user/:id', async (req, res, next) => {
-    const reqDados = {
-        nome_completo: req.body.nome_completo,
-        bi: req.body.bi,
-        genero: req.body.genero,
-        username: req.body.username,
-        password: bcrypt.hashSync(req.body.password),
-        tipo_conta: req.body.tipo_conta
+function verificaAtributos(object) {
+
+    if (!object.password) {
+        return {
+            nome_completo: object.nome_completo,
+            bi: object.bi,
+            genero: object.genero,
+            username: object.username,
+            tipo_conta: object.tipo_conta
+        }
+    } else {
+
+        return {
+            nome_completo: object.nome_completo,
+            bi: object.bi,
+            genero: object.genero,
+            username: object.username,
+            password: bcrypt.hashSync(object.password),
+            tipo_conta: object.tipo_conta
+        }
     }
+}
+
+router.put('/usuarios/edit-user/:id', async (req, res, next) => {
+    // const reqDados = {
+    //     nome_completo: req.body.nome_completo,
+    //     bi: req.body.bi,
+    //     genero: req.body.genero,
+    //     username: req.body.username,
+    //     password: bcrypt.hashSync(req.body.password),
+    //     tipo_conta: req.body.tipo_conta
+    // }
+
     let schema = yup.object({
         nome_completo: yup.string().required("Preecha o campo nome"),
         bi: yup.string().max(14),
@@ -162,10 +166,13 @@ router.put('/usuarios/edit-user/:id', async (req, res, next) => {
             });
     }
 
+    //ToDo Melhorar o algoritmo de alterar a senha
     const { id } = req.params;
+    const objectBody = req.body;
+
     await database('usuarios')
         .where('id', id)
-        .update(reqDados)
+        .update(verificaAtributos(objectBody))
         .then(result => {
             if (result == 0) {
                 return res.send(400)

@@ -2,45 +2,26 @@ const express = require("express");
 const router = express.Router();
 const database = require('../database');
 const yup = require('yup');
-const moment = require('moment');
-
+const pagination = require('./pagination');
 const TITLE = "Materiais do Laboratório";
+
+const PDFPrinter = require('pdfmake');
+const fs = require('fs');
 
 router.get("/materiais", async (req, res, next) => {
     try {
 
         const dadosMesas = await database('mesas')
             .orderBy('nome', 'asc');
+
         const [user] = await database('usuarios')
             .where('username', req.user.username)
             .select('id');
 
-        async function pagination(table) {
-            const numeroPagina = (req.query.pagina) || 1; //pagina actual
-            const registosPorPagina = 6;
-            const deslocamento = registosPorPagina * (parseInt(numeroPagina) - 1);
-
-            const dadosTable = await database(table)
-                .limit(6)
-                .offset(deslocamento)
-                .orderBy('nome', 'asc');
-            const [total] = await database(table)
-                .count('*', { as: 'total' });
-            const resultado = Math.ceil(parseInt(total.total) / registosPorPagina);
-
-            const totalPaginas = resultado == 0 ? 1 : resultado;
-            return {
-                dadosTable,
-                totalPaginas,
-                numeroPagina,
-                deslocamento,
-            }
-        }
-
-        const dadosPaginados = await pagination('materiais');
+        const dadosPaginados = await pagination(database, 'materiais', req, 'nome');
 
         const paginas = {
-            actual: dadosPaginados.numeroPagina,
+            actual: parseInt(dadosPaginados.numeroPagina) > dadosPaginados.totalPaginas ? dadosPaginados.totalPaginas : dadosPaginados.numeroPagina,
             anterior: parseInt(dadosPaginados.numeroPagina) - 1 < 1 ? 1 : parseInt(dadosPaginados.numeroPagina) - 1,
             proxima: parseInt(dadosPaginados.numeroPagina) + 1 > parseInt(dadosPaginados.totalPaginas) ? parseInt(dadosPaginados.totalPaginas) : parseInt(dadosPaginados.numeroPagina) + 1,
             total: dadosPaginados.totalPaginas
@@ -160,5 +141,141 @@ router.delete('/materiais', async (req, res, next) => {
             res.redirect('/materiais');
         }, next);
 });
+
+router.get('/materiais/report', async (request, response) => {
+    response.end('Olá Kalueka')
+    // try {
+    //     const materiais = await database('materiais');
+    //     const user = request.user.nome_completo;
+
+    //     const body = [];
+    //     const imagePath = 'public/images/logo.png';
+    //     // console.log(imagePath)
+    //     const myLogo = fs.readFileSync(imagePath, 'base64');
+
+    //     for await (let material of materiais) {
+    //         const rows = [];
+    //         rows.push(material.nome)
+    //         rows.push(material.marca)
+    //         rows.push(material.estado)
+
+    //         body.push(rows);
+    //     }
+
+    //     const fonts = {
+    //         Times: {
+    //             normal: 'Times-Roman',
+    //             bold: 'Times-Bold',
+    //             italics: 'Times-Italic',
+    //             bolditalics: 'Times-BoldItalic'
+    //         }
+    //     };
+
+    //     const printer = new PDFPrinter(fonts) // configurar o pdf -- espera receber fonts
+
+    //     const docDefinition = {
+    //         defaultStyle: { font: 'Times', alignment: 'center' },
+    //         info: {
+    //             title: 'Relatório de Computadores no GestaoLab',
+    //             author: 'GestaoLab',
+    //             subject: 'Plano de Necessidades',
+    //         },
+    //         content: [
+    //             {
+    //                 image: `data:image/png;base64,${myLogo}`,
+    //                 width: 75,
+    //             },
+    //             {
+    //                 text: "Centro de Formação Tecnológico do Uíge\n\n\n".toUpperCase(),
+    //                 style: 'header'
+    //             },
+
+    //             {
+    //                 text: "Plano de Necessidades\n\n",
+    //                 style: 'header'
+    //             },
+
+    //             {
+    //                 table: {
+    //                     widths: ['40%', '30%', '30%'],
+    //                     heights: 10,
+    //                     body: [
+    //                         [{ text: "Designação", style: 'columnTitle' }, { text: "Marca", style: 'columnTitle' }, { text: "Estado", style: 'columnTitle' }], ...body]
+    //                 },
+    //                 style: 'text'
+    //             },
+    //             {
+    //                 text: `\n\nUíge, aos ${new Date().toLocaleDateString()}\n\n\n\n`,
+    //                 style: 'text'
+    //             },
+    //             {
+    //                 text: "O Responsável\n\n",
+    //                 style: 'text'
+    //             },
+    //             {
+    //                 text: `${user}`,
+    //                 style: 'textUSer'
+    //             },
+    //         ],
+    //         footer: [
+    //             {
+    //                 text: `Relatório Gerado pelo GestaoLab - Em: ${new Date().toLocaleString()}`, style: 'footer'
+    //             }
+    //         ],
+
+    //         styles: {
+    //             content: {
+    //                 alignment: "left"
+    //             },
+    //             header: {
+    //                 fontSize: 14,
+    //                 bold: true,
+    //             },
+    //             text: {
+    //                 fontSize: 12
+    //             },
+    //             textUSer: {
+    //                 fontSize: 12,
+    //                 italics: true
+    //             },
+    //             columnTitle: {
+    //                 bold: true,
+    //                 alignment: 'center'
+    //             },
+
+    //             footer: {
+    //                 fontSize: 10,
+    //                 italics: true,
+    //                 alignment: 'center'
+    //             },
+    //             imageStyle: {
+    //             }
+    //             // margin: {
+    //             //   margin: [2.5, 2, 2.5, 3]
+    //             // }
+    //         }
+    //     }
+
+    //     const pdfDoc = printer.createPdfKitDocument(docDefinition)// criar a definição do relatório
+    //     // pdfDoc.pipe(fs.createWriteStream("Relatorio.pdf")) Gravar o PDF
+
+    //     const chunks = []
+
+    //     pdfDoc.on('data', (chunk) => {// usar o chunk para iterar dentro do nosso relatorio
+    //         chunks.push(chunk)
+    //     })//pega o conteudo e trata ele
+
+    //     pdfDoc.end(); // termina a criação do relatório
+
+    //     pdfDoc.on('end', () => {
+    //         const result = Buffer.concat(chunks)
+    //         // response.end(result);
+    //     })
+
+    // } catch (error) {
+    //     console.log(error)
+    // }
+})
+
 
 module.exports = router;

@@ -10,7 +10,7 @@
             <div>
 
                 <div class="top-elements">
-                    <% if (usuario.tipo_conta=='Administrador' ) { %>
+                    <% if (usuario.tipo_conta=='administrador' ) { %>
                         <button type="button" id="btn-novo" class="button is-info">Nova
                             Mesa
                         </button>
@@ -58,7 +58,7 @@
                                     <%= mesa.estado %>
                                 </td>
                                 <td class="grid-data">
-                                    <% if (usuario.tipo_conta=='Administrador' ) { %>
+                                    <% if (usuario.tipo_conta=='administrador' ) { %>
                                         <span class="actions-list">
                                             <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
                                                     class="fa fa-eye" onclick="getMesa('<%=mesa.id%>')"></i></a>
@@ -110,6 +110,11 @@
                                 <%=paginas.actual%> de <%=paginas.total%>
                             </a>
                         </li>
+                        <li>
+                            <a href="/report/mesas" id="btn-print" title="Imprimir <%=title%>" target="_blank">
+                               <i class="fa fa-print"></i>
+                            </a>
+                       </li>
                     </ul>
                 </nav>
                 <!--
