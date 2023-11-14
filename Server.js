@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// para iniciar o seu servidor: npm run dev
 
 /**
  * Module dependencies.
