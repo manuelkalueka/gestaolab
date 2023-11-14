@@ -36,7 +36,7 @@ document.querySelector('.btnFogSenha').addEventListener('click', () => {
     backModal.classList.add('abrirModal');
     //Quando dar um click no back do Modal
     backModal.addEventListener('click', (e)=>{
-        if(e.target.id=='backModal'){
+        if(e.target.id=='backModal' || e.target.id=='btnCancelarRecup'){
             backModal.classList.remove('abrirModal')
         }
 
