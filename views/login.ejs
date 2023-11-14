@@ -50,6 +50,39 @@
         </section>
     </main>
 
+    <div id="backModal" class="backModal">
+        <div class="formulario">
+
+            <header class="headerModal">
+                <p class="paragrafoHeader">
+                     Recuperar senha
+                </p>
+            </header>
+
+            <main class="bodyModal">
+                <p>
+                    <label for="inputUserRecu" class="nameUserRecu">Nome de usuário* </label>
+                    <input type="text" placeholder="Digite o nome de  usuário" id="inputUserRecu" class="inputUserRecu">
+                </p>
+
+                <p>
+                    <label for="inputBIRecu" class="biRecu">Número do BI*</label>
+                    <input type="text" placeholder="Digite o número do BI" id="inputBIRecu" class="inputBIRecu" maxlength="14">
+                </p>
+
+            </main>
+
+            <footer class="footerModal">
+                <button type="submit" id="btnRecuperarSenha" class="btnRecuperarSenha">Recuperar</button>
+                <a href="#" class="btnCancelarRecup" id="btnCancelarRecup">Cancelar </a>
+
+            </footer>
+            
+
+        </div>
+    </div>
+
+
     <script src="/javascripts/login.js"></script>
     <script src="/javascripts/index.js" defer></script>
     <script>

@@ -25,7 +25,26 @@ document.querySelector('#username').addEventListener('blur', () => {
 const btnEntrar = document.querySelector('#btnEntrar');
 btnEntrar.addEventListener('click', validarSenha);
 
+
+
+//Abrindo uma janela modal quando clicar em esqueci minha senha
 document.querySelector('.btnFogSenha').addEventListener('click', () => {
-    alert("Para repor sua senha contacte o Administrador do Sistema!");
-    return;
+    const backModal = document.querySelector('#backModal');
+   /* alert("Para repor sua senha contacte o Administrador do Sistema!");
+    return; */
+    
+    backModal.classList.add('abrirModal');
+    //Quando dar um click no back do Modal
+    backModal.addEventListener('click', (e)=>{
+        if(e.target.id=='backModal'){
+            backModal.classList.remove('abrirModal')
+        }
+
+    })
+    
+
 })
+
+
+
+
