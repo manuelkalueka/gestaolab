@@ -11,10 +11,10 @@ router.get("/mesas", async (req, res, next) => {
     const dadosPaginados = await pagination(database, 'mesas', req, 'nome');
 
     const paginas = {
-        actual: parseInt(dadosPaginados.numeroPagina) > dadosPaginados.totalPaginas ? dadosPaginados.totalPaginas : dadosPaginados.numeroPagina,
-        anterior: parseInt(dadosPaginados.numeroPagina) - 1 < 1 ? 1 : parseInt(dadosPaginados.numeroPagina) - 1,
-        proxima: parseInt(dadosPaginados.numeroPagina) + 1 > parseInt(dadosPaginados.totalPaginas) ? parseInt(dadosPaginados.totalPaginas) : parseInt(dadosPaginados.numeroPagina) + 1,
-        total: dadosPaginados.totalPaginas
+      actual: parseInt(dadosPaginados.numeroPagina) > dadosPaginados.totalPaginas ? dadosPaginados.totalPaginas : dadosPaginados.numeroPagina,
+      anterior: parseInt(dadosPaginados.numeroPagina) - 1 < 1 ? 1 : parseInt(dadosPaginados.numeroPagina) - 1,
+      proxima: parseInt(dadosPaginados.numeroPagina) + 1 > parseInt(dadosPaginados.totalPaginas) ? parseInt(dadosPaginados.totalPaginas) : parseInt(dadosPaginados.numeroPagina) + 1,
+      total: dadosPaginados.totalPaginas
     }
 
     res.render("mesa", {

@@ -1,0 +1,27 @@
+<%- include('./partials/header.ejs') %>
+
+<main class="conteudo">
+  <div class="form-lab-container">
+
+    <% if (laboratorios.length==0) { %>
+        <form action="/laboratorios/cadastrar" method="post" id="form-lab">
+            <h1 class="title"><%=title = "Registar novo Laboratório"%></h1>
+          <label for="nome" class="label">Nome do Laboratório</label>
+          <input type="text" id="nome" name="nome" maxlength="180" required  placeholder="Digite o nome do Laboratório"/>
+         
+            <input type="hidden" name="responsavel" value=<%=usuario.id%>>
+
+          <button type="submit" class="button">Registar</button>
+        </form>
+      </div>
+    <% } else {%>
+        <p>Com laboratorio</p>
+
+        <% }%>
+   
+    </main>
+<script src="/javascripts/base.js"></script>
+<script src="/javascripts/header.js"></script>
+<script src="/javascripts/sidebar.js"></script>
+
+<%- include('./partials/footer.ejs') %>

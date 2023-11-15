@@ -575,6 +575,21 @@ span.block,
   font-size: 1.5em;
 }
 
+.section-laboratorio {
+  width: 100%;
+}
+
+/* .form-lab-container form {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  padding: .625rem;
+} */
+
+.form-lab-container label {
+  display: none;
+}
+
 /* Animação do loader */
 @keyframes spin {
   0% {

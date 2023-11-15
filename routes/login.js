@@ -7,14 +7,14 @@ router.get('/login', async (req, res, next) => {
     if (req.query.fail) {
         res.render('login', { message: 'Usuário e/ou senha incorretos!', title: title });
     } else if (req.isAuthenticated()) {
-        res.redirect('/dashboard');
+        res.redirect('/laboratorios');
     } else {
         res.render('login', { message: null, title: title });
     }
 });
 
 router.post('/login', passport.authenticate('local', {
-    successRedirect: '/dashboard',
+    successRedirect: '/laboratorios',
     failureRedirect: '/login?fail=true',
 }));
 
