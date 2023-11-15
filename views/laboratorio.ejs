@@ -8,6 +8,8 @@
             <h1 class="title"><%=title = "Registar novo Laboratório"%></h1>
           <label for="nome" class="label">Nome do Laboratório</label>
           <input type="text" id="nome" name="nome" maxlength="180" required  placeholder="Digite o nome do Laboratório"/>
+          <label for="nome" class="label">Nome do Laboratório</label>
+          <input type="text" id="descricao" name="descricao" maxlength="180" required  placeholder="Descreve as Actividades do Laboratório..."/>
          
             <input type="hidden" name="responsavel" value=<%=usuario.id%>>
 
@@ -15,7 +17,26 @@
         </form>
       </div>
     <% } else {%>
-        <p>Com laboratorio</p>
+       <section>
+        <% laboratorios.forEach(laboratorio => { %>
+          <div class="card">
+            <header class="card-header">
+              <p class="card-header-title">
+                <%=laboratorio.nome%>
+              </p>
+            </header>
+            <div class="card-content">
+              <div class="content"> <%=laboratorio.descricao%>              
+              </div>
+            </div>
+            <footer class="card-footer">
+              <a href="#" class="card-footer-item">Ver Resumo</a>
+              <a href="/dashboard/<%=laboratorio.id%>" class="card-footer-item">Acessar Laboratório</a>
+              <a href="#" class="card-footer-item">Editar Informações</a>
+            </footer>
+          </div>
+        <% }) %>
+       </section>
 
         <% }%>
    

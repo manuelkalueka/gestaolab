@@ -18,7 +18,7 @@ router.get("/materiais", async (req, res, next) => {
             .where('username', req.user.username)
             .select('id');
 
-        const dadosPaginados = await pagination(database, 'materiais', req, 'nome');
+        const dadosPaginados = await pagination(database, 'materiais', req, 'nome', 4);
 
         const paginas = {
             actual: parseInt(dadosPaginados.numeroPagina) > dadosPaginados.totalPaginas ? dadosPaginados.totalPaginas : dadosPaginados.numeroPagina,

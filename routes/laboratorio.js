@@ -5,7 +5,8 @@ const database = require('../database')
 router.get('/laboratorios', async (req, res) => {
 
     try {
-        const laboratorios = await database('laboratorios');
+        const laboratorios = await database('laboratorios')
+        .where('responsavel', req.user.id);
         const responsaveis = await database('usuarios');
 
         res.render("laboratorio", {

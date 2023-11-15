@@ -3,24 +3,30 @@ const router = express.Router();
 const TITULO_PAGE = 'Dashboard';
 const database = require('../database');
 
-router.get('/dashboard', async (req, res, next) => {
+router.get('/dashboard/:id', async (req, res, next) => {
     try {
+        const idLab = parseInt(req.params.id);
+
         const [mesas] = await database('mesas').count('*', { as: 'total_mesas' });
+
         const [PC] = await database('materiais')
-            .where('tipo_material', 'pc')
+            .where({ tipo_material: 'pc', laboratorio: idLab })
             .count('*', { as: 'total_pc' });
 
         const [PC_avariados] = await database('materiais')
-            .where({ tipo_material: 'pc', estado: 'Danificado' })
+            .where({ tipo_material: 'pc', estado: 'Danificado', laboratorio: idLab })
             .count('*', { as: 'total_pc_avariados' });
 
         const [Pc_incompleto] = await database('materiais')
-            .where({ tipo_material: 'pc', estado: 'Rasoável' })
+            .where({ tipo_material: 'pc', estado: 'Rasoável', laboratorio: idLab })
             .count('*', { as: 'total_pc_incompleto' });
+
         const [total_materiais] = await database('materiais')
+            .where('laboratorio', idLab)
             .count('*', { as: 'total_materiais' });
+
         const [pc_bons] = await database('materiais')
-            .where({ tipo_material: 'pc', estado: 'Bom' })
+            .where({ tipo_material: 'pc', estado: 'Bom', laboratorio: idLab })
             .count('*', { as: 'total_pc_bons' });
 
         res.render('dashboard', {
