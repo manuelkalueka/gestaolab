@@ -65,25 +65,8 @@
                 class="btn-editar"
                 title="Editar Registo"
               >
-                <i class="fa fa-edit"></i>
+                <i class="fa fa-edit"></i> 
               </a>
-
-              <!-- Form Eliminar-->
-              <form
-                action="/usuarios/<%=ListaUsuario.id%>"
-                method="post"
-                class="deleteRegisto"
-              >
-                <input type="hidden" name="_method" value="delete" />
-                <button
-                  type="submit"
-                  class="btn-excluir"
-                  title="Excluir Registo"
-                >
-                  <i class="fa fa-trash"></i>
-                </button>
-              </form>
-              <!-- Fim Form Eliminar-->
               <%}else {%>
               <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"
                 ><i
