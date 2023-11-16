@@ -1,4 +1,8 @@
-<%- include('./partials/header.ejs') %>
+<%if(!laboratorioSelecionado){%>
+  <%- include('./partials/header-minimal.ejs')%>
+  <%}else{ %>
+      <%- include('./partials/header.ejs')%>
+      <%}%>
 
 <main class="conteudo">
   <div class="form-lab-container">

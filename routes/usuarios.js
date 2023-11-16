@@ -4,7 +4,8 @@ const TITLE = 'Usuários Cadastrados';
 const database = require('../database');
 const yup = require('yup');
 const bcrypt = require('bcryptjs');
-const pagination = require('../addional/pagination')
+const pagination = require('../addional/pagination');
+const {getSelectedLab} = require('../middlewares/laboratorio');
 
 router.get("/usuarios", async (req, res, next) => {
     try {
@@ -105,6 +106,7 @@ router.get('/usuarios/edit-user/:id', async (req, res, next) => {
             title: 'Editar Usuário',
             usuario: req.user,
             usuarioEditar: usuarioEditar,
+            laboratorioSelecionado:getSelectedLab()
         });
     } catch (erro) {
         console.log(erro.message);

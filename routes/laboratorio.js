@@ -1,7 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const database = require("../database");
-const { labMiddleware, setSelectedLab } = require("../middlewares/laboratorio");
+const {
+  labMiddleware,
+  setSelectedLab,
+  getSelectedLab,
+} = require("../middlewares/laboratorio");
 
 router.use(labMiddleware); // usa o middleware antes de todas as outras rotas
 
@@ -17,10 +21,16 @@ router.get("/laboratorios", async (req, res) => {
       sessao: req.session,
       usuario: req.user,
       laboratorios,
+      laboratorioSelecionado: getSelectedLab(),
     });
   } catch (error) {
     console.log(error);
   }
+});
+
+router.get("/laboratorios/close", (req, res) => {
+  //ToDo Eliminar o laboratorio na Selecao, para assim evitar voltar sem logar novamente
+  res.redirect("/laboratorios");
 });
 
 router.get("/laboratorios/:id", async (req, res, next) => {

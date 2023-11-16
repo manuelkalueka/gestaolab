@@ -153,7 +153,8 @@ router.delete("/materiais/:id", async (req, res, next) => {
 //apaga todos os registos da BD
 router.delete("/materiais", async (req, res, next) => {
   await database("materiais")
-    .truncate()
+  .where('laboratorio', getSelectedLab())
+    .delete()
     .then(() => {
       res.redirect("/materiais");
     }, next);

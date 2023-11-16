@@ -1,5 +1,9 @@
 <%- include('./partials/header.ejs')%>
-    <%- include('./partials/sidebar.ejs')%>
+<%if(!laboratorioSelecionado){%>
+    <%- include('./partials/sidebar-minimal.ejs')%>
+    <%}else{ %>
+        <%- include('./partials/sidebar.ejs')%>
+        <%}%>
 
         <main class="conteudo">
             <h1 class="title">
