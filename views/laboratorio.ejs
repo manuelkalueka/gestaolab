@@ -32,7 +32,7 @@
             <footer class="card-footer">
               <a href="#" class="card-footer-item">Ver Resumo</a>
               <a href="/dashboard/<%=laboratorio.id%>" class="card-footer-item">Acessar Laboratório</a>
-              <a href="#" class="card-footer-item">Editar Informações</a>
+              <a href="#" class="card-footer-item btn-editar" onclick="getDadosForEdition('<%=laboratorio.id%>')">Editar Informações</a>
             </footer>
           </div>
         <% }) %>
@@ -40,7 +40,43 @@
 
         <% }%>
    
+                  <!-- Modal editar registo-->
+                  <div class="modal" id="modal-editar">
+                    <div class="modal-background"></div>
+                    <div class="modal-card">
+                        <header class="modal-card-head">
+                            <p class="modal-card-title">Editar Laboratório</p>
+                            <button class="delete" aria-label="close" id="close"></button>
+                        </header>
+                        <section class="modal-card-body">
+                            <div class="message-alert hide">
+                                <span id="edit-msg"></span>
+                            </div>
+                            <!-- Form de Edicao de laboratorio-->
+                            <form id="edit-form-validate-lab" method="post">
+                              <input type="hidden" name="_method" value="put">
+                              <input type="hidden" id="edit-lab-id" value="">
+        
+                                <div class="field">
+                                  <input type="text" id="edit-nome" name="nome" maxlength="180"class="input"  required  placeholder="Digite o nome do Laboratório"/>
+                                
+                                 <div class="field">
+                                  <input type="text" id="edit-descricao" name="descricao" maxlength="180" class="input" required  placeholder="Descreve as Actividades do Laboratório..."/>
+                                 </div>
+                                    <footer class="modal-card-foot">
+                                        <button type="submit" class="button is-primary" id="btnSalvar">Salvar
+                                            alterações</button>
+                                        <a href="/laboratorios" class="button" id="btnCancelar">Cancelar</a>
+                                    </footer>
+                                </div>
+                            </form>
+                            <!-- Form de Edicao de laboratorio-->
+                        </section>
+                    </div>
+                </div>
+                <!-- Fim Modal editar registo-->
     </main>
+<script src="/javascripts/laboratorio.js"></script>
 <script src="/javascripts/base.js"></script>
 <script src="/javascripts/header.js"></script>
 <script src="/javascripts/sidebar.js"></script>

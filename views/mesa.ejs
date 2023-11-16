@@ -60,8 +60,9 @@
                                 <td class="grid-data">
                                     <% if (usuario.tipo_conta=='administrador' ) { %>
                                         <span class="actions-list">
-                                            <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
-                                                    class="fa fa-eye" onclick="getMesa('<%=mesa.id%>')"></i></a>
+                                            <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo">
+                                                <i class="fa fa-eye" onclick="getMesa('<%=mesa.id%>')"></i>
+                                            </a>
                                             <a href="#" class="btn-editar" title="Editar Registo"
                                                 onclick="getDadosForEdition('<%=mesa.id%>')">
                                                 <i class="fa fa-edit"></i>
@@ -149,6 +150,7 @@
                     </div>
 
                     <form action="/mesas/cadastrar" method="post" id="form-validate-mesa">
+                        <input type="hidden" name="laboratorio">
                         <div class="field">
                             <label for="nome-mesa" class="label">
                                 Nome *
