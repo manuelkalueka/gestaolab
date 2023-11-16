@@ -24,7 +24,7 @@ router.get("/usuarios", async (req, res, next) => {
             lista_usuarios: dadosPaginados.dadosTable,
             paginas: paginas,
         });
-
+        
     } catch (erro) {
         console.log(erro);
     }

@@ -4,13 +4,17 @@ const database = require("../database");
 const yup = require("yup");
 const pagination = require("../addional/pagination");
 const TITLE = "Materiais do Laboratório";
+const { getSelectedLab } = require("../middlewares/laboratorio");
 
 // const PDFPrinter = require('pdfmake');
 // const fs = require('fs');
 
 router.get("/materiais", async (req, res, next) => {
   try {
-    const dadosMesas = await database("mesas").orderBy("nome", "asc");
+    const laboratorioSelecionado = getSelectedLab();
+    const dadosMesas = await database("mesas")
+      .where("laboratorio", laboratorioSelecionado)
+      .orderBy("nome", "asc");
 
     const [user] = await database("usuarios")
       .where("username", req.user.username)
@@ -21,7 +25,7 @@ router.get("/materiais", async (req, res, next) => {
       "materiais",
       req,
       "nome",
-      4
+      laboratorioSelecionado
     );
 
     const paginas = {
@@ -50,6 +54,7 @@ router.get("/materiais", async (req, res, next) => {
       sessao: req.session,
       usuario: req.user, //objecto com os dados do usuario
       userId: user.id,
+      laboratorioSelecionado
     });
   } catch (erro) {
     console.log(erro);

@@ -31,7 +31,10 @@
             </div>
             <footer class="card-footer">
               <a href="#" class="card-footer-item">Ver Resumo</a>
-              <a href="/dashboard/<%=laboratorio.id%>" class="card-footer-item">Acessar Laboratório</a>
+              <form action="/laboratorios" method="post">
+                <input type="hidden" name="laboratorioId" value="<%=laboratorio.id%>">
+                <button type="submit" class="card-footer-item">Acessar Laboratório</button>
+              </form>
               <a href="#" class="card-footer-item btn-editar" onclick="getDadosForEdition('<%=laboratorio.id%>')">Editar Informações</a>
             </footer>
           </div>
@@ -39,7 +42,6 @@
        </section>
 
         <% }%>
-   
                   <!-- Modal editar registo-->
                   <div class="modal" id="modal-editar">
                     <div class="modal-background"></div>

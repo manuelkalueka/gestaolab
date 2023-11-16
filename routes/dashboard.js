@@ -2,11 +2,16 @@ const express = require("express");
 const router = express.Router();
 const TITULO_PAGE = "Dashboard";
 const database = require("../database");
+const { getSelectedLab } = require("../middlewares/laboratorio");
 
-router.get("/dashboard/:id", async (req, res, next) => {
+router.get("/dashboard", async (req, res) => {
+  const laboratorioSelecionado = getSelectedLab();
+  res.redirect("/dashboard/" + laboratorioSelecionado);
+});
+
+router.get("/dashboard/:idLab", async (req, res, next) => {
   try {
-    const idLab = parseInt(req.params.id);
-
+    const { idLab } = req.params;
     const [mesas] = await database("mesas")
       .where("laboratorio", idLab)
       .count("*", { as: "total_mesas" });
@@ -31,8 +36,7 @@ router.get("/dashboard/:id", async (req, res, next) => {
       .where({ tipo_material: "pc", estado: "Bom", laboratorio: idLab })
       .count("*", { as: "total_pc_bons" });
 
-
-      //ToDo - Fazer estatística de "materiais diversos"
+    //ToDo - Fazer estatística de "materiais diversos"
     const [total_outros] = await database("materiais").count("*", {
       as: "total_outros",
     });

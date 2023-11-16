@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const database = require("../database");
+const { labMiddleware, setSelectedLab } = require("../middlewares/laboratorio");
+
+router.use(labMiddleware); // usa o middleware antes de todas as outras rotas
 
 router.get("/laboratorios", async (req, res) => {
   try {
@@ -8,14 +11,12 @@ router.get("/laboratorios", async (req, res) => {
       "responsavel",
       req.user.id
     );
-    const responsaveis = await database("usuarios");
 
     res.render("laboratorio", {
       title: "Visão Geral sobre os Laboratórios",
       sessao: req.session,
       usuario: req.user,
       laboratorios,
-      responsaveis,
     });
   } catch (error) {
     console.log(error);
@@ -31,6 +32,16 @@ router.get("/laboratorios/:id", async (req, res, next) => {
     } else {
       return res.json(result);
     }
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.post("/laboratorios", async (req, res) => {
+  try {
+    const { laboratorioId } = req.body;
+    setSelectedLab(laboratorioId);
+    res.redirect("/dashboard/" + laboratorioId);
   } catch (error) {
     console.log(error);
   }
