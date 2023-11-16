@@ -4,7 +4,7 @@ const TITLE = "Mesas do Laborário";
 const yup = require('yup');
 
 const database = require('../database');
-const pagination = require('./pagination')
+const pagination = require('../addional/pagination')
 
 router.get("/mesas", async (req, res, next) => {
   try {

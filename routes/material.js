@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const database = require('../database');
 const yup = require('yup');
-const pagination = require('./pagination');
+const pagination = require('../addional/pagination');
 const TITLE = "Materiais do Laboratório";
 
 // const PDFPrinter = require('pdfmake');

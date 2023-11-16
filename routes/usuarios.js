@@ -4,12 +4,12 @@ const TITLE = 'Usuários Cadastrados';
 const database = require('../database');
 const yup = require('yup');
 const bcrypt = require('bcryptjs');
-const pagination = require('./pagination')
+const pagination = require('../addional/pagination')
 
 router.get("/usuarios", async (req, res, next) => {
     try {
         const dadosPaginados = await pagination(database, 'usuarios', req, 'nome_completo');
-
+        console.log(dadosPaginados);
         const paginas = {
             actual: parseInt(dadosPaginados.numeroPagina) > dadosPaginados.totalPaginas ? dadosPaginados.totalPaginas : dadosPaginados.numeroPagina,
             anterior: parseInt(dadosPaginados.numeroPagina) - 1 < 1 ? 1 : parseInt(dadosPaginados.numeroPagina) - 1,
@@ -26,7 +26,7 @@ router.get("/usuarios", async (req, res, next) => {
         });
 
     } catch (erro) {
-        console.log(erro.message);
+        console.log(erro);
     }
 });
 
