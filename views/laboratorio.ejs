@@ -34,7 +34,7 @@
               </div>
             </div>
             <footer class="card-footer">
-              <a href="#" class="card-footer-item btn-resumo">Ver Resumo</a>
+              <a href="#" class="card-footer-item btn-resumo" onclick="showResume('<%=laboratorio.id%>')">Ver Resumo</a>
               <form action="/laboratorios" method="post">
                 <input type="hidden" name="laboratorioId" value="<%=laboratorio.id%>">
                 <button type="submit" class="card-footer-item">Acessar Laboratório</button>
@@ -82,7 +82,7 @@
                 <!-- Fim Modal editar registo-->
 
                  <!-- Modal Ver Resumo-->
-                 <div class="modal is-active" id="modal-resumo">
+                 <div class="modal" id="modal-resumo">
                   <div class="modal-background"></div>
                   <div class="modal-card">
                       <header class="modal-card-head">
@@ -96,43 +96,35 @@
                           <div>
                             <ul class="lab-elements">
                                   <li class="lab-item">
-                                    <span class="item-title">Total de Materiais</span>
-                                    <span class="item-content">
-                                      <%laboratorios.forEach(laboratorio=>{%>
-                                        <% total_mesas.forEach(mesa=> { %>
-                                         <%if(laboratorio.id ==mesa.laboratorio ){%>
-                                          
-                                          <%}else{%>
-                                            <%}%>
-                                        <% }) %>
-                                     <% })%>
-                                    </span>
+                                    <span class="item-title">Mesas</span>
+                                    <span class="item-content"></span>
                                   </li>
                                   <li class="lab-item">
-                                    <span class="item-title">Total de Mesas</span>
-                                    <span class="item-content">0</span>
+                                    <span class="item-title">Mesas Cheias</span>
+                                    <span class="item-content"></span>
                                   </li>
                                   <li class="lab-item">
-                                    <span class="item-title">Total de Mesas Cheias</span>
-                                    <span class="item-content">0</span>
+                                    <span class="item-title">Mesas com Espaço Livres</span>
+                                    <span class="item-content"></span>
                                   </li>
                                   <li class="lab-item">
-                                    <span class="item-title">Total de Mesas com Espaço Livres</span>
-                                    <span class="item-content">0</span>
+                                    <span class="item-title">Materiais</span>
+                                    <span class="item-content"></span>
                                   </li>
                                   <li class="lab-item">
-                                    <span class="item-title">Total de Materiais Bons</span>
-                                    <span class="item-content">0</span>
+                                    <span class="item-title">Materiais Bons</span>
+                                    <span class="item-content"></span>
                                   </li>
                                   <li class="lab-item">
-                                    <span class="item-title">Total de Materiais Danificado</span>
-                                    <span class="item-content">0</span>
+                                    <span class="item-title">Materiais Danificado</span>
+                                    <span class="item-content"></span>
                                   </li>
                                   <li class="lab-item">
-                                    <span class="item-title">Total de Materiais Incompletos</span>
-                                    <span class="item-content">0</span>
+                                    <span class="item-title">Materiais Incompletos</span>
+                                    <span class="item-content"></span>
                                   </li>
                             </ul>
+                            <p style="font-style: italic;color: #8f8f8f;text-align: center; text-decoration: underline;">Para Gerir Esses dados acesse o Laboratório</p>
                           </div>
                       </section>
                   </div>

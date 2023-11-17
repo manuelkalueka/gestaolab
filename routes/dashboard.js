@@ -21,11 +21,11 @@ router.get("/dashboard/:idLab", async (req, res, next) => {
       .count("*", { as: "total_pc" });
 
     const [PC_avariados] = await database("materiais")
-      .where({ tipo_material: "pc", estado: "Danificado", laboratorio: idLab })
+      .where({ tipo_material: "pc", estado: "danificado", laboratorio: idLab })
       .count("*", { as: "total_pc_avariados" });
 
     const [Pc_incompleto] = await database("materiais")
-      .where({ tipo_material: "pc", estado: "Rasoável", laboratorio: idLab })
+      .where({ tipo_material: "pc", estado: "rasoavel", laboratorio: idLab })
       .count("*", { as: "total_pc_incompleto" });
 
     const [total_materiais] = await database("materiais")

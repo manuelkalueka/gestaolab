@@ -25,7 +25,7 @@ document.querySelectorAll(".btn-resumo").forEach((btnResumo, posicao) => {
     const nomeLaboratorio =
       document.querySelectorAll(".card-header-title")[posicao].innerText;
     document.querySelectorAll(".modal-card-title")[1].textContent =
-      nomeLaboratorio;
+      "Resumo para " + nomeLaboratorio;
   });
 });
 
@@ -50,8 +50,30 @@ async function getDadosForEdition(id) {
   }
 }
 
-function SalvarEdicaoLab(id) {//Manda os dados para rota PUT para salvar na BD
+function SalvarEdicaoLab(id) {
+  //Manda os dados para rota PUT para salvar na BD
   document
     .querySelector("#edit-form-validate-lab")
     .setAttribute("action", "/laboratorios/" + id);
+}
+
+async function showResume(laboratorioId) {
+  //Mostra os totais do laboratorio vindo da rota /laboratorios/resume/:id para o modal
+  const url = "/laboratorios/resume/" + laboratorioId;
+  const response = await fetch(url);
+  const totais = await response.json();
+  setTotalsToModal(totais);
+}
+
+function setTotalsToModal(totais) {
+  document.querySelectorAll(".item-content")[0].textContent =
+    totais.total_mesas.total_mesas; //seta os totais da mesa
+  document.querySelectorAll(".item-content")[1].textContent =
+    totais.total_mesa_cheia.total_mesa_cheia;
+    document.querySelectorAll(".item-content")[2].textContent =
+    totais.total_mesa_com_espaco.total_mesa_com_espaco;
+    document.querySelectorAll(".item-content")[3].textContent =totais.total_materiais.total_materiais;
+    document.querySelectorAll(".item-content")[4].textContent =totais.total_materiais_bons.total_materiais_bons;
+    document.querySelectorAll(".item-content")[5].textContent =totais.total_materiais_avariados.total_materiais_avariados;
+    document.querySelectorAll(".item-content")[6].textContent =totais.total_materiais_incompleto.total_materiais_incompleto;
 }
