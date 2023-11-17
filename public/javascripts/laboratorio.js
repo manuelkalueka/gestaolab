@@ -1,19 +1,33 @@
-//Abrir Editar Laboratório
-document.querySelectorAll(".btn-editar").forEach((btnEditar) => {
-  btnEditar.addEventListener("click", abrirModalEditar);
-});
+function abrirModal(idModal, targetButton) {
+  targetButton = document.querySelector("#" + idModal);
 
-function abrirModalEditar() {
-  const modalEditar = document.querySelector("#modal-editar");
+  targetButton.classList.add("is-active");
 
-  modalEditar.classList.add("is-active");
-
-  modalEditar.addEventListener("click", (evento) => {
-    if (evento.target.id == "close" || evento.target.id == "modal-editar") {
-      modalEditar.classList.remove("is-active");
+  targetButton.addEventListener("click", (evento) => {
+    if (evento.target.id == "close" || evento.target.id == idModal) {
+      targetButton.classList.remove("is-active");
     }
   });
 }
+
+//Abrir Editar Laboratório
+document.querySelectorAll(".btn-editar").forEach((btnEditar) => {
+  btnEditar.addEventListener("click", () => {
+    abrirModal("modal-editar", btnEditar);
+  });
+});
+
+// Mostra o Modal Ver Resumo e Coloca Titulo no Modal
+document.querySelectorAll(".btn-resumo").forEach((btnResumo, posicao) => {
+  btnResumo.addEventListener("click", () => {
+    abrirModal("modal-resumo", btnResumo);
+    //Colocar Titulo
+    const nomeLaboratorio =
+      document.querySelectorAll(".card-header-title")[posicao].innerText;
+    document.querySelectorAll(".modal-card-title")[1].textContent =
+      nomeLaboratorio;
+  });
+});
 
 //pega dados para editar
 async function getDadosForEdition(id) {
@@ -36,7 +50,7 @@ async function getDadosForEdition(id) {
   }
 }
 
-function SalvarEdicaoLab(id) {
+function SalvarEdicaoLab(id) {//Manda os dados para rota PUT para salvar na BD
   document
     .querySelector("#edit-form-validate-lab")
     .setAttribute("action", "/laboratorios/" + id);

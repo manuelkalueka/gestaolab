@@ -579,15 +579,36 @@ span.block,
   width: 100%;
 }
 
-/* .form-lab-container form {
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  padding: .625rem;
-} */
-
 .form-lab-container label {
   display: none;
+}
+
+.form-lab-container .input {
+  display: inline-block;
+  margin-bottom: 1em;
+}
+
+li.lab-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+li.lab-item:not(:first-child) {
+  border-top: 1px solid #15151521;
+}
+
+span.item-title {
+  max-width: 250px;
+  width: 50%;
+}
+
+span.item-content {
+  width: 50%;
+  text-align: right;
+  color: #a6a6a6;
 }
 
 /* Animação do loader */
