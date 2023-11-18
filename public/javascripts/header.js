@@ -33,3 +33,24 @@ function updateDate() {
     document.querySelector('.date-display-info').innerHTML = times;
 }
 setInterval(updateDate, 1000);
+
+
+//Se a page atual for de nome laboratórios então um display none para o button profile
+
+//header.ejs > h1 of className h3Lab
+const h3Lab = document.querySelector('#h3Lab');
+
+//laboratorio.ejs > h1 of className h1Lab
+const h1Lab = document.querySelector('#h1Lab');
+
+//Atribundo o valor recebindo no arquivo laboratorio.ejs for o fille header.ejs
+h3Lab.innerText = h1Lab.innerText;
+
+const buttonProfile = document.querySelector('#buttonProfile');
+
+if(h3Lab.innerText == h1Lab.innerText ){
+    buttonProfile.style.display = 'none';
+}
+else{
+    //nothing
+}

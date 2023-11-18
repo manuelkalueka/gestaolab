@@ -1,23 +1,26 @@
 <%- include('./partials/header.ejs') %>
 
-<main class="conteudo">
+<main class="conteudo" id="ConteudoLaboratorio">
+  <h1 class="h1Lab" id="h1Lab">laboratorios</h1>
   <div class="form-lab-container">
 
     <% if (laboratorios.length==0) { %>
-        <form action="/laboratorios/cadastrar" method="post" id="form-lab">
+        <form action="/laboratorios/cadastrar" method="post" id="form-lab" class="MainLaboratorioRegistado">
             <h1 class="title"><%=title = "Registar novo Laboratório"%></h1>
           <label for="nome" class="label">Nome do Laboratório</label>
-          <input type="text" id="nome" name="nome" maxlength="180" required  placeholder="Digite o nome do Laboratório"/>
+          <input type="text" id="nome" name="nome" maxlength="180" required  placeholder="Digite o nome do Laboratório" class="inputnameLoratorio"/> <br>
           <label for="nome" class="label">Nome do Laboratório</label>
-          <input type="text" id="descricao" name="descricao" maxlength="180" required  placeholder="Descreve as Actividades do Laboratório..."/>
+          <input type="text" id="descricao" name="descricao" maxlength="180" required  placeholder="Descreve as Actividades do Laboratório..." class="inputDescrition"/> <br>
          
             <input type="hidden" name="responsavel" value=<%=usuario.id%>>
 
-          <button type="submit" class="button">Registar</button>
+          <p class="buttonRegistar">
+            <button type="submit" class="button" >Registar</button>
+          </p>
         </form>
       </div>
     <% } else {%>
-       <section>
+       <section class="MainLaboratorioRegistado"> 
         <% laboratorios.forEach(laboratorio => { %>
           <div class="card">
             <header class="card-header">
