@@ -12,6 +12,11 @@ const { getSelectedLab } = require("../middlewares/laboratorio");
 router.get("/materiais", async (req, res, next) => {
   try {
     const laboratorioSelecionado = getSelectedLab();
+    const labName = await database("laboratorios")
+      .where({ id: laboratorioSelecionado })
+      .select("nome")
+      .first();
+      
     const dadosMesas = await database("mesas")
       .where("laboratorio", laboratorioSelecionado)
       .orderBy("nome", "asc");
@@ -54,7 +59,8 @@ router.get("/materiais", async (req, res, next) => {
       sessao: req.session,
       usuario: req.user, //objecto com os dados do usuario
       userId: user.id,
-      laboratorioSelecionado
+      laboratorioSelecionado,
+      labName: labName.nome,
     });
   } catch (erro) {
     console.log(erro);
@@ -153,7 +159,7 @@ router.delete("/materiais/:id", async (req, res, next) => {
 //apaga todos os registos da BD
 router.delete("/materiais", async (req, res, next) => {
   await database("materiais")
-  .where('laboratorio', getSelectedLab())
+    .where("laboratorio", getSelectedLab())
     .delete()
     .then(() => {
       res.redirect("/materiais");

@@ -10,6 +10,11 @@ const pagination = require("../addional/pagination");
 router.get("/mesas", async (req, res, next) => {
   try {
     const laboratorioSelecionado = getSelectedLab();
+    const labName = await database("laboratorios")
+    .where({ id: laboratorioSelecionado })
+    .select("nome")
+    .first();
+
     const dadosPaginados = await pagination(
       database,
       "mesas",
@@ -43,6 +48,7 @@ router.get("/mesas", async (req, res, next) => {
       sessao: req.session,
       usuario: req.user,
       laboratorioSelecionado,
+      labName: labName.nome,
     });
   } catch (erro) {
     console.log(erro.message);

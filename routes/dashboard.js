@@ -12,6 +12,11 @@ router.get("/dashboard", async (req, res) => {
 router.get("/dashboard/:idLab", async (req, res, next) => {
   try {
     const { idLab } = req.params;
+    const labName = await database("laboratorios")
+      .where({ id: idLab })
+      .select("nome")
+      .first();
+
     const [mesas] = await database("mesas")
       .where("laboratorio", idLab)
       .count("*", { as: "total_mesas" });
@@ -51,6 +56,7 @@ router.get("/dashboard/:idLab", async (req, res, next) => {
       total_pc_bons: pc_bons.total_pc_bons,
       sessao: req.session,
       usuario: req.user,
+      labName: labName.nome,
     });
   } catch (erro) {
     console.log(erro.message);

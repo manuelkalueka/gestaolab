@@ -67,13 +67,6 @@
                                                 onclick="getDadosForEdition('<%=mesa.id%>')">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <!-- Form Eliminar-->
-                                            <form action="/mesas/<%=mesa.id%>" method="post" class="deleteRegisto">
-                                                <input type="hidden" name="_method" value="delete">
-                                                <button type="submit" class="btn-excluir" title="Excluir Registo"><i
-                                                        class="fa fa-trash"></i></button>
-                                            </form>
-                                            <!-- Fim Form Eliminar-->
                                         </span>
                                         <% } else { %>
                                             <span class="actions-list">

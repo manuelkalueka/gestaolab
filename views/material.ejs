@@ -280,11 +280,15 @@
                             <label for="mesa" class="label">Nº Mesa *</label>
                             <div class="control select">
                                 <select id="mesa" name="mesa">
+                               <%if(mesas.length==0){%>
+                                    <option>Sem mesas cadastradas</option>
+                                <%}else{%>
                                     <% mesas.forEach((mesa)=> { %>
                                         <option value="<%= mesa.id%>">
                                             <%= mesa.nome%>
                                         </option>
                                         <%})%>
+                                        <%}%>
                                 </select>
                             </div>
                         </div>
@@ -427,11 +431,15 @@
                             <label for="edit-mesa" class="label">Nº Mesa</label>
                             <div class="control select">
                                 <select id="edit-mesa" name="mesa">
-                                    <% mesas.forEach((mesa)=> { %>
-                                        <option value="<%= mesa.id%>">
-                                            <%= mesa.nome%>
-                                        </option>
-                                        <%})%>
+                                    <%if(mesas.length==0){%>
+                                        <option>Sem mesas cadastradas</option>
+                                    <%}else{%>
+                                        <% mesas.forEach((mesa)=> { %>
+                                            <option value="<%= mesa.id%>">
+                                                <%= mesa.nome%>
+                                            </option>
+                                            <%})%>
+                                            <%}%>
                                 </select>
                             </div>
                         </div>

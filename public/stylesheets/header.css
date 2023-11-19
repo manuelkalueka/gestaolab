@@ -88,7 +88,8 @@ header {
   cursor: default;
 }
 
-.date-display {
+.date-display,
+.lab-display {
   color: #a2a4a5;
   padding-left: 10px;
   padding-right: 10px;

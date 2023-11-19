@@ -1,4 +1,9 @@
-<%- include('./partials/header.ejs')%>
+<%if(!laboratorioSelecionado){%>
+    <%- include('./partials/header-minimal.ejs')%> <%# renderiza laboratorio para trocar %>
+    <%}else{ %>
+        <%- include('./partials/header.ejs')%>
+        <%}%>
+
 <%if(!laboratorioSelecionado){%>
     <%- include('./partials/sidebar-minimal.ejs')%>
     <%}else{ %>
@@ -8,7 +13,6 @@
             <h1 class="title">
                 <%= title %>
             </h1>
-
 
             <div class="columns div_centro">
                 <div class="column">
