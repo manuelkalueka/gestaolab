@@ -9,6 +9,7 @@ const { getSelectedLab } = require("../middlewares/laboratorio");
 
 router.get("/usuarios", async (req, res, next) => {
   try {
+    const { pesquisa } = req.query;
     let labName;
 
     if (!getSelectedLab()) {
@@ -26,7 +27,7 @@ router.get("/usuarios", async (req, res, next) => {
       req,
       "nome_completo"
     );
-    console.log(dadosPaginados);
+
     const paginas = {
       actual:
         parseInt(dadosPaginados.numeroPagina) > dadosPaginados.totalPaginas

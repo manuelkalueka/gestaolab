@@ -11,6 +11,7 @@ const { getSelectedLab } = require("../middlewares/laboratorio");
 
 router.get("/materiais", async (req, res, next) => {
   try {
+    const queryPesquisa = req.query.pesquisa;
     const laboratorioSelecionado = getSelectedLab();
     const labName = await database("laboratorios")
       .where({ id: laboratorioSelecionado })
@@ -30,7 +31,8 @@ router.get("/materiais", async (req, res, next) => {
       "materiais",
       req,
       "nome",
-      laboratorioSelecionado
+      laboratorioSelecionado,
+      queryPesquisa
     );
 
     const paginas = {

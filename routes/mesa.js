@@ -9,18 +9,20 @@ const pagination = require("../addional/pagination");
 
 router.get("/mesas", async (req, res, next) => {
   try {
+    const { pesquisa } = req.query;
     const laboratorioSelecionado = getSelectedLab();
     const labName = await database("laboratorios")
-    .where({ id: laboratorioSelecionado })
-    .select("nome")
-    .first();
+      .where({ id: laboratorioSelecionado })
+      .select("nome")
+      .first();
 
     const dadosPaginados = await pagination(
       database,
       "mesas",
       req,
       "nome",
-      laboratorioSelecionado
+      laboratorioSelecionado,
+      pesquisa
     );
 
     const paginas = {

@@ -49,7 +49,7 @@ router.get("/laboratorios/:id", async (req, res, next) => {
 
 router.get("/laboratorios/resume/:id", async (req, res) => {
   try {
-    const id = req.params.id;//pega o id do laboratorio
+    const id = req.params.id; //pega o id do laboratorio
     // Função para obter os totais de um laboratório
     async function obterTotaisLab(id) {
       const [total_mesas] = await database("mesas")
@@ -59,8 +59,11 @@ router.get("/laboratorios/resume/:id", async (req, res) => {
         .where({ laboratorio: id, estado: "Cheia" })
         .count("*", { as: "total_mesa_cheia" });
       const [total_mesa_com_espaco] = await database("mesas")
-        .where({ laboratorio: id, estado: "Espaço Livre" || "Vazia"})
+        .where({ laboratorio: id, estado: "Espaço Livre" })
         .count("*", { as: "total_mesa_com_espaco" });
+      const [total_mesa_vazia] = await database("mesas")
+        .where({ laboratorio: id, estado: "Vazia" })
+        .count("*", { as: "total_mesa_vazia" });
 
       const [total_materiais_avariados] = await database("materiais")
         .where({ estado: "danificado", laboratorio: id })
@@ -75,10 +78,12 @@ router.get("/laboratorios/resume/:id", async (req, res) => {
         .where({ estado: "Bom", laboratorio: id })
         .count("*", { as: "total_materiais_bons" });
 
-      return {//retorna os totais
+      return {
+        //retorna os totais
         total_mesas,
         total_mesa_cheia,
         total_mesa_com_espaco,
+        total_mesa_vazia,
         total_materiais,
         total_materiais_bons,
         total_materiais_avariados,

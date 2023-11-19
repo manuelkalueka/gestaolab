@@ -4,18 +4,24 @@ const database = require("../database");
 const PDFPrinter = require("pdfmake");
 const fs = require("fs");
 const { getSelectedLab } = require("../middlewares/laboratorio");
+const pagination = require("../addional/pagination");
 
 router.get("/report/materiais", async (req, res) => {
   //relatorio de materiais
   try {
+    const { pesquisa } = req.query;
     const [nomeLaboratorioSelecionado] = await database("laboratorios")
       .where("id", getSelectedLab())
       .select("nome");
-    console.log("object :>> ", nomeLaboratorioSelecionado);
-    const materiais = await database("materiais").where(
-      "laboratorio",
-      getSelectedLab()
+    const { dadosTable } = await pagination(
+      database,
+      "materiais",
+      req,
+      "nome",
+      getSelectedLab(),
+      pesquisa
     );
+
     const user = req.user.nome_completo;
 
     const body = [];
@@ -23,7 +29,7 @@ router.get("/report/materiais", async (req, res) => {
     // console.log(imagePath)
     const myLogo = fs.readFileSync(imagePath, "base64");
 
-    for await (let material of materiais) {
+    for await (let material of dadosTable) {
       const rows = [];
       rows.push(material.nome);
       rows.push(material.marca);
@@ -214,10 +220,7 @@ router.get("/report/mesas", async (req, res) => {
         },
 
         {
-          text:
-            "Plano de Necessidades para o " +
-            nomeLaboratorioSelecionado.nome +
-            "\n\n",
+          text: "Mesas do " + nomeLaboratorioSelecionado.nome + "\n\n",
           style: "header",
         },
 

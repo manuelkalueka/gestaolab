@@ -10,7 +10,7 @@ header {
 }
 
 .left-area h3 {
-  color: white;
+  color: var(--light);
   text-transform: uppercase;
   font-size: 1.375em;
   font-weight: 900;

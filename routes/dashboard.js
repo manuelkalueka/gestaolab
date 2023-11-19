@@ -41,10 +41,13 @@ router.get("/dashboard/:idLab", async (req, res, next) => {
       .where({ tipo_material: "pc", estado: "Bom", laboratorio: idLab })
       .count("*", { as: "total_pc_bons" });
 
-    //ToDo - Fazer estatística de "materiais diversos"
-    const [total_outros] = await database("materiais").count("*", {
-      as: "total_outros",
-    });
+    const [total_outros] = await database("materiais")
+      .whereNot({ tipo_material: "pc" }) // listar Materiais que não são PC
+      .count("*", {
+        as: "total_outros",
+      });
+
+    console.log(total_outros);
 
     res.render("dashboard", {
       title: TITULO_PAGE,
@@ -54,6 +57,7 @@ router.get("/dashboard/:idLab", async (req, res, next) => {
       total_pc_incompleto: Pc_incompleto.total_pc_incompleto,
       total_materiais: total_materiais.total_materiais,
       total_pc_bons: pc_bons.total_pc_bons,
+      total_outros: total_outros.total_outros,
       sessao: req.session,
       usuario: req.user,
       labName: labName.nome,

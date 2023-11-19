@@ -70,10 +70,16 @@ function setTotalsToModal(totais) {
     totais.total_mesas.total_mesas; //seta os totais da mesa
   document.querySelectorAll(".item-content")[1].textContent =
     totais.total_mesa_cheia.total_mesa_cheia;
-    document.querySelectorAll(".item-content")[2].textContent =
-    totais.total_mesa_com_espaco.total_mesa_com_espaco;
-    document.querySelectorAll(".item-content")[3].textContent =totais.total_materiais.total_materiais;
-    document.querySelectorAll(".item-content")[4].textContent =totais.total_materiais_bons.total_materiais_bons;
-    document.querySelectorAll(".item-content")[5].textContent =totais.total_materiais_avariados.total_materiais_avariados;
-    document.querySelectorAll(".item-content")[6].textContent =totais.total_materiais_incompleto.total_materiais_incompleto;
+  document.querySelectorAll(".item-content")[2].textContent = Number(
+    totais.total_mesa_com_espaco.total_mesa_com_espaco +
+      totais.total_mesa_vazia.total_mesa_vazia
+  );
+  document.querySelectorAll(".item-content")[3].textContent =
+    totais.total_materiais.total_materiais;
+  document.querySelectorAll(".item-content")[4].textContent =
+    totais.total_materiais_bons.total_materiais_bons;
+  document.querySelectorAll(".item-content")[5].textContent =
+    totais.total_materiais_avariados.total_materiais_avariados;
+  document.querySelectorAll(".item-content")[6].textContent =
+    totais.total_materiais_incompleto.total_materiais_incompleto;
 }
