@@ -1,10 +1,18 @@
-<%- include('./partials/header.ejs')%>
-    <%- include('./partials/sidebar.ejs')%>
-        <main class="conteudo">
+<%if(!laboratorioSelecionado){%>
+    <%- include('./partials/header-minimal.ejs')%> <%# renderiza laboratorio para trocar %>
+    <%}else{ %>
+        <%- include('./partials/header.ejs')%>
+        <%}%>
+
+<%if(!laboratorioSelecionado){%>
+    <%- include('./partials/sidebar-minimal.ejs')%>
+    <%}else{ %>
+        <%- include('./partials/sidebar.ejs')%>
+        <%}%>
+            <main class="conteudo">
             <h1 class="title">
                 <%= title %>
             </h1>
-
 
             <div class="columns div_centro">
                 <div class="column">

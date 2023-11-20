@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= title %></title>
-    <h3 id="h3Lab" class="h3Lab"></h3>
 
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <!--- Meter Favicon nas Paginas -->
@@ -33,18 +32,12 @@
             </div> -->
 
         <h3>Gestão <span>LAB</span></h3>
-
       </div>
 
       <div class="right-area">
-        <span class="lab-display">
-          <span><i class="fa-solid fa-flask-vial"></i> </span>
-          <span class="lab-display-info"> <%=labName%></span>
-        </span>
-        <span>|</span>
         <span class="date-display">
           <span><i class="fa fa-calendar"></i></span>
-          <span class="date-display-info"></span>
+          <span class="date-display-info"> </span>
         </span>
 
         <span class="account btn-account">
@@ -56,21 +49,12 @@
                 <span class="username"> <%= usuario.username%> </span>
               </li>
 
-              <li class="account-element link" id="buttonProfile">
+              <li class="account-element link">
                 <a href="/perfil">
                   <span class="icone icon">
                     <i class="fa-solid fa-user"></i>
                   </span>
                   <span class="text-link"> Perfil </span>
-                </a>
-              </li>
-
-              <li class="account-element link">
-                <a href="/laboratorios/close">
-                  <span class="icone icon">
-                    <i class="fa-solid fa-repeat"></i>
-                  </span>
-                  <span class="text-link"> Trocar de Laboratório </span>
                 </a>
               </li>
 

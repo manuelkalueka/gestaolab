@@ -22,7 +22,7 @@
 
                                 <form action="#" method="get">
                                     <span class="search-area">
-                                        <input type="search" name="pesquisa-registo" placeholder="Pesquisar registo..."
+                                        <input type="search" name="pesquisa" placeholder="Pesquisar registo..."
                                             class="input-search">
                                         <button type="submit" class="btn-search">
                                             <i class="fa fa-search is-left icon"></i>
@@ -42,50 +42,49 @@
                     </thead>
 
                     <tbody class="grid-body">
-
-                        <% mesas.forEach((mesa)=> { %>
-
+                        <%if(mesas.length == 0){%>
                             <tr>
-                                <td class="grid-data nome-in-table">
-                                    <%= mesa.nome %>
-                                </td>
-
-                                <td class="grid-data">
-                                    <%= mesa.num_maximo_pc %>
-                                </td>
-
-                                <td class="grid-data">
-                                    <%= mesa.estado %>
-                                </td>
-                                <td class="grid-data">
-                                    <% if (usuario.tipo_conta=='administrador' ) { %>
-                                        <span class="actions-list">
-                                            <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
-                                                    class="fa fa-eye" onclick="getMesa('<%=mesa.id%>')"></i></a>
-                                            <a href="#" class="btn-editar" title="Editar Registo"
-                                                onclick="getDadosForEdition('<%=mesa.id%>')">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
-                                            <!-- Form Eliminar-->
-                                            <form action="/mesas/<%=mesa.id%>" method="post" class="deleteRegisto">
-                                                <input type="hidden" name="_method" value="delete">
-                                                <button type="submit" class="btn-excluir" title="Excluir Registo"><i
-                                                        class="fa fa-trash"></i></button>
-                                            </form>
-                                            <!-- Fim Form Eliminar-->
-                                        </span>
-                                        <% } else { %>
-                                            <span class="actions-list">
-                                                <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
-                                                        class="fa fa-eye" onclick="getMesa('<%=mesa.id%>')"></i></a>
-                                            </span>
-                                            <%}%>
-                                </td>
-
+                                <td colspan="100%" style="color: rgb(148, 112, 23);">Sem Registos...</td>
                             </tr>
+                            <%}else{%>
+                                <% mesas.forEach((mesa)=> { %>
 
-                            <% }) %>
-
+                                    <tr>
+                                        <td class="grid-data nome-in-table">
+                                            <%= mesa.nome %>
+                                        </td>
+        
+                                        <td class="grid-data">
+                                            <%= mesa.num_maximo_pc %>
+                                        </td>
+        
+                                        <td class="grid-data">
+                                            <%= mesa.estado %>
+                                        </td>
+                                        <td class="grid-data">
+                                            <% if (usuario.tipo_conta=='administrador' ) { %>
+                                                <span class="actions-list">
+                                                    <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo">
+                                                        <i class="fa fa-eye" onclick="getMesa('<%=mesa.id%>')"></i>
+                                                    </a>
+                                                    <a href="#" class="btn-editar" title="Editar Registo"
+                                                        onclick="getDadosForEdition('<%=mesa.id%>')">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                </span>
+                                                <% } else { %>
+                                                    <span class="actions-list">
+                                                        <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
+                                                                class="fa fa-eye" onclick="getMesa('<%=mesa.id%>')"></i></a>
+                                                    </span>
+                                                    <%}%>
+                                        </td>
+        
+                                    </tr>
+        
+                                    <% }) %>
+        
+                                <%}%>
                     </tbody>
 
                 </table>
@@ -149,6 +148,7 @@
                     </div>
 
                     <form action="/mesas/cadastrar" method="post" id="form-validate-mesa">
+                        <input type="hidden" name="laboratorio" value="<%=laboratorioSelecionado%>">
                         <div class="field">
                             <label for="nome-mesa" class="label">
                                 Nome *

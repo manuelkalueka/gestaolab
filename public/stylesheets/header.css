@@ -10,7 +10,7 @@ header {
 }
 
 .left-area h3 {
-  color: white;
+  color: var(--light);
   text-transform: uppercase;
   font-size: 1.375em;
   font-weight: 900;
@@ -88,7 +88,8 @@ header {
   cursor: default;
 }
 
-.date-display {
+.date-display,
+.lab-display {
   color: #a2a4a5;
   padding-left: 10px;
   padding-right: 10px;

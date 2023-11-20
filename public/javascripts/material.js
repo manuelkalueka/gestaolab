@@ -8,6 +8,7 @@ if (formValidate) {
         const estados = document.querySelectorAll('.n-estado');
         const tipoMaterial = document.querySelector('#tipo-material');
         const observacoes = document.querySelector('#observacoes');
+        const mesaSelected = parseInt(document.querySelector('select[id=mesa] option').value);
 
         if (tipoMaterial[0].selected) {
 
@@ -69,6 +70,15 @@ if (formValidate) {
                     }
                 }
             });
+
+            if(mesaSelected == isNaN(mesaSelected)) {
+                evento.preventDefault();
+                const msgContainer = document.querySelector('.message-alert');
+                msgContainer.classList.add('alert-err');
+                msgContainer.classList.remove('hide');
+                document.querySelector('#msg').textContent = 'Selecione uma mesa!';
+                return;
+            }
         }
 
     })

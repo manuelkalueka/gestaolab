@@ -1,4 +1,8 @@
-<%- include('./partials/header.ejs') %>
+<%if(!laboratorioSelecionado){%>
+  <%- include('./partials/header-minimal.ejs')%> <%# renderiza laboratorio para trocar %>
+  <%}else{ %>
+      <%- include('./partials/header.ejs')%>
+      <%}%>
 
 <main class="conteudo" id="ConteudoLaboratorio">
   <h1 class="h1Lab" id="h1Lab">laboratorios</h1>
@@ -20,7 +24,7 @@
         </form>
       </div>
     <% } else {%>
-       <section class="MainLaboratorioRegistado"> 
+       <section>
         <% laboratorios.forEach(laboratorio => { %>
           <div class="card">
             <header class="card-header">
@@ -33,17 +37,134 @@
               </div>
             </div>
             <footer class="card-footer">
-              <a href="#" class="card-footer-item">Ver Resumo</a>
-              <a href="/dashboard/<%=laboratorio.id%>" class="card-footer-item">Acessar Laboratório</a>
-              <a href="#" class="card-footer-item">Editar Informações</a>
+              <a href="#" class="card-footer-item btn-resumo" onclick="showResume('<%=laboratorio.id%>')">Ver Resumo</a>
+              <form action="/laboratorios" method="post">
+                <input type="hidden" name="laboratorioId" value="<%=laboratorio.id%>">
+                <button type="submit" class="card-footer-item">Acessar Laboratório</button>
+              </form>
+              <a href="#" class="card-footer-item btn-editar" onclick="getDadosForEdition('<%=laboratorio.id%>')">Editar Informações</a>
             </footer>
           </div>
         <% }) %>
        </section>
-
         <% }%>
-   
+                  <!-- Modal editar registo-->
+                  <div class="modal" id="modal-editar">
+                    <div class="modal-background"></div>
+                    <div class="modal-card">
+                        <header class="modal-card-head">
+                            <p class="modal-card-title">Editar Laboratório</p>
+                            <button class="delete" aria-label="close" id="close"></button>
+                        </header>
+                        <section class="modal-card-body">
+                            <div class="message-alert hide">
+                                <span id="edit-msg"></span>
+                            </div>
+                            <!-- Form de Edicao de laboratorio-->
+                            <form id="edit-form-validate-lab" method="post">
+                              <input type="hidden" name="_method" value="put">
+                              <input type="hidden" id="edit-lab-id" value="">
+        
+                                <div class="field">
+                                  <input type="text" id="edit-nome" name="nome" maxlength="180"class="input"  required  placeholder="Digite o nome do Laboratório"/>
+                                
+                                 <div class="field">
+                                  <input type="text" id="edit-descricao" name="descricao" maxlength="180" class="input" required  placeholder="Descreve as Actividades do Laboratório..."/>
+                                 </div>
+                                    <footer class="modal-card-foot">
+                                        <button type="submit" class="button is-primary" id="btnSalvar">Salvar
+                                            alterações</button>
+                                        <a href="/laboratorios" class="button" id="btnCancelar">Cancelar</a>
+                                    </footer>
+                                </div>
+                            </form>
+                            <!-- Form de Edicao de laboratorio-->
+                        </section>
+                    </div>
+                </div>
+                <!-- Fim Modal editar registo-->
+
+                 <!-- Modal Ver Resumo-->
+                 <div class="modal" id="modal-resumo">
+                  <div class="modal-background"></div>
+                  <div class="modal-card">
+                      <header class="modal-card-head">
+                          <p class="modal-card-title"></p>
+                          <button class="delete" aria-label="close" id="close"></button>
+                      </header>
+                      <section class="modal-card-body">
+                          <div class="message-alert hide">
+                              <span id="edit-msg"></span>
+                          </div>
+                          <div>
+                            <ul class="lab-elements">
+                                  <li class="lab-item">
+                                    <span class="item-title">Mesas</span>
+                                    <span class="item-content"></span>
+                                  </li>
+                                  <li class="lab-item">
+                                    <span class="item-title">Mesas Cheias</span>
+                                    <span class="item-content"></span>
+                                  </li>
+                                  <li class="lab-item">
+                                    <span class="item-title">Mesas com Espaço Livres</span>
+                                    <span class="item-content"></span>
+                                  </li>
+                                  <li class="lab-item">
+                                    <span class="item-title">Materiais</span>
+                                    <span class="item-content"></span>
+                                  </li>
+                                  <li class="lab-item">
+                                    <span class="item-title">Materiais Bons</span>
+                                    <span class="item-content"></span>
+                                  </li>
+                                  <li class="lab-item">
+                                    <span class="item-title">Materiais Danificado</span>
+                                    <span class="item-content"></span>
+                                  </li>
+                                  <li class="lab-item">
+                                    <span class="item-title">Materiais Incompletos</span>
+                                    <span class="item-content"></span>
+                                  </li>
+                            </ul>
+                            <p style="font-style: italic;color: #8f8f8f;text-align: center; text-decoration: underline;">Para Gerir Esses dados acesse o Laboratório</p>
+                          </div>
+                      </section>
+                  </div>
+              </div>
+              <!-- Fim Modal Resumo-->
+
+              <div class="modal" id="modal-novoLab">
+                <div class="modal-background"></div>
+                <div class="modal-card">
+                    <header class="modal-card-head">
+                        <p class="modal-card-title"><%=title = "Registar novo Laboratório"%></p>
+                        <button class="delete" aria-label="close" id="close"></button>
+                    </header>
+                    <section class="modal-card-body">
+                        <div class="message-alert hide">
+                            <span id="edit-msg"></span>
+                        </div>
+                        <div>
+                          <form action="/laboratorios/cadastrar" method="post" id="form-lab">
+                            <div class="field">
+                              <label for="nome" class="label">Nome do Laboratório</label>
+                              <input type="text" id="nome" class="input" name="nome" maxlength="180" required   placeholder="Digite o nome do Laboratório"/>
+                            </div>
+                            <div class="field">
+                              <label for="nome" class="label">Nome do Laboratório</label>
+                              <input type="text" id="descricao" class="input" name="descricao" maxlength="180" required  placeholder="Descreve as Actividades do Laboratório..."/>
+                            </div>
+                            <input type="hidden" name="responsavel" value=<%=usuario.id%>>
+                          <button type="submit" class="button is-primary">Registar</button>
+                        </form>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
     </main>
+<script src="/javascripts/laboratorio.js"></script>
 <script src="/javascripts/base.js"></script>
 <script src="/javascripts/header.js"></script>
 <script src="/javascripts/sidebar.js"></script>

@@ -13,7 +13,7 @@
       <span class="search-area">
         <input
           type="search"
-          name="pesquisa-registo"
+          name="pesquisa"
           placeholder="Pesquisar registo..."
           class="input-search"
         />
@@ -38,65 +38,53 @@
       </thead>
 
       <tbody class="grid-body">
-        <% lista_usuarios.forEach((ListaUsuario)=> { %>
-
-        <tr>
-          <td class="grid-data nome-in-table">
-            <%= ListaUsuario.nome_completo %>
-          </td>
-
-          <td class="grid-data"><%= ListaUsuario.bi %></td>
-          <td class="grid-data"><%= ListaUsuario.genero %></td>
-          <td class="grid-data"><%= ListaUsuario.tipo_conta %></td>
-          <td class="grid-data"><%= ListaUsuario.estado %></td>
-          <td class="grid-data">
-            <span class="actions-list">
-              <%if(usuario.tipo_conta== 'administrador' &&
-              usuario.username!==ListaUsuario.username ){%>
-              <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"
-                ><i
-                  class="fa fa-eye"
-                  onclick="getUser('<%=ListaUsuario.id%>')"
-                ></i>
-              </a>
-
-              <a
-                href="/usuarios/edit-user/<%=ListaUsuario.id%>"
-                class="btn-editar"
-                title="Editar Registo"
-              >
-                <i class="fa fa-edit"></i>
-              </a>
-
-              <!-- Form Eliminar-->
-              <form
-                action="/usuarios/<%=ListaUsuario.id%>"
-                method="post"
-                class="deleteRegisto"
-              >
-                <input type="hidden" name="_method" value="delete" />
-                <button
-                  type="submit"
-                  class="btn-excluir"
-                  title="Excluir Registo"
-                >
-                  <i class="fa fa-trash"></i>
-                </button>
-              </form>
-              <!-- Fim Form Eliminar-->
-              <%}else {%>
-              <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"
-                ><i
-                  class="fa fa-eye"
-                  onclick="getUser('<%=ListaUsuario.id%>')"
-                ></i>
-              </a>
-              <%}%>
-            </span>
-          </td>
-        </tr>
-
-        <% }) %>
+        <%if(lista_usuarios.length == 0){%>
+          <tr>
+              <td colspan="100%" style="color: rgb(148, 112, 23);">Sem Registos...</td>
+          </tr>
+          <%}else{%>
+            <% lista_usuarios.forEach((ListaUsuario)=> { %>
+              <tr>
+                <td class="grid-data nome-in-table">
+                  <%= ListaUsuario.nome_completo %>
+                </td>
+      
+                <td class="grid-data"><%= ListaUsuario.bi %></td>
+                <td class="grid-data"><%= ListaUsuario.genero %></td>
+                <td class="grid-data"><%= ListaUsuario.tipo_conta %></td>
+                <td class="grid-data"><%= ListaUsuario.estado %></td>
+                <td class="grid-data">
+                  <span class="actions-list">
+                    <%if(usuario.tipo_conta== 'administrador' &&
+                    usuario.username!==ListaUsuario.username ){%>
+                    <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"
+                      ><i
+                        class="fa fa-eye"
+                        onclick="getUser('<%=ListaUsuario.id%>')"
+                      ></i>
+                    </a>
+      
+                    <a
+                      href="/usuarios/edit-user/<%=ListaUsuario.id%>"
+                      class="btn-editar"
+                      title="Editar Registo"
+                    >
+                      <i class="fa fa-edit"></i> 
+                    </a>
+                    <%}else {%>
+                    <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"
+                      ><i
+                        class="fa fa-eye"
+                        onclick="getUser('<%=ListaUsuario.id%>')"
+                      ></i>
+                    </a>
+                    <%}%>
+                  </span>
+                </td>
+              </tr>
+      
+              <% }) %>
+            <%}%>
       </tbody>
     </table>
   </div>

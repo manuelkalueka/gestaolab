@@ -17,7 +17,7 @@
                         </button>
                         <%}%>
 
-                            <form method="get">
+                            <form method="get" action="/materiais">
                                 <span class="search-area">
                                     <input type="search" name="pesquisa" placeholder="Pesquisar registo..."
                                         class="input-search">
@@ -43,68 +43,74 @@
                 </thead>
 
                 <tbody class="grid-body">
-
-                    <% materiais.forEach((material)=> { %>
-                        <!--<h3 class="table-empty">Não tem dados para listar!</h3>-->
-                        <tr id="lista-dados">
-                            <td class="grid-data nome-in-table">
-                                <%= material.nome %>
-                            </td>
-                            <td class="grid-data">
-                                <%= material.marca %>
-                            </td>
-                            <td class="grid-data">
-                                <%= material.modelo %>
-                            </td>
-                            <td class="grid-data">
-                                <% for( let i=0; i < mesas.length; i++ ) { %>
-                                    <% if (material.mesa===mesas[i].id) { %>
-                                        <%= mesas[i].nome%>
-                                            <% } %>
+                <%if(materiais.length == 0){%>
+                    <tr>
+                        <td colspan="100%" style="color: rgb(148, 112, 23);">Sem Registos...</td>
+                    </tr>
+                    <%}else{%>
+                        <% materiais.forEach((material)=> { %>
+                            <!--<h3 class="table-empty">Não tem dados para listar!</h3>-->
+                            <tr id="lista-dados">
+                                <td class="grid-data nome-in-table">
+                                    <%= material.nome %>
+                                </td>
+                                <td class="grid-data">
+                                    <%= material.marca %>
+                                </td>
+                                <td class="grid-data">
+                                    <%= material.modelo %>
+                                </td>
+                                <td class="grid-data">
+                                    <% for( let i=0; i < mesas.length; i++ ) { %>
+                                        <% if (material.mesa===mesas[i].id) { %>
+                                            <%= mesas[i].nome%>
                                                 <% } %>
-
-                            </td>
-                            <td class="grid-data">
-                                <%= material.capacidade %>
-                            </td>
-                            <td class="grid-data">
-                                <%= material.tem_programas %>
-                            </td>
-                            <td class="grid-data">
-                                <%= material.estado %>
-                            </td>
-                            <td class="grid-data">
-
-                                <% if (usuario.tipo_conta=='administrador' ) { %>
-                                    <span class="actions-list">
-                                        <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
-                                                class="fa fa-eye" onclick="getMaterial('<%=material.id%>')"></i>
-                                        </a>
-
-                                        <a href="#" class="btn-editar" title="Editar Registo"
-                                            onclick="getDadosForEdition('<%=material.id%>')">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-
-                                        <!-- Form Eliminar-->
-                                        <form action="/materiais/<%=material.id%>" method="post" class="deleteRegisto">
-                                            <input type="hidden" name="_method" value="delete">
-                                            <button type="submit" class="btn-excluir" title="Excluir Registo"><i
-                                                    class="fa fa-trash"></i></button>
-                                        </form>
-                                        <!-- Fim Form Eliminar-->
-                                    </span>
-                                    <% } else { %>
+                                                    <% } %>
+    
+                                </td>
+                                <td class="grid-data">
+                                    <%= material.capacidade %>
+                                </td>
+                                <td class="grid-data">
+                                    <%= material.tem_programas %>
+                                </td>
+                                <td class="grid-data">
+                                    <%= material.estado %>
+                                </td>
+                                <td class="grid-data">
+    
+                                    <% if (usuario.tipo_conta=='administrador' ) { %>
                                         <span class="actions-list">
                                             <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
-                                                    class="fa fa-eye" onclick="getMaterial('<%=material.id%>')"></i></a>
+                                                    class="fa fa-eye" onclick="getMaterial('<%=material.id%>')"></i>
+                                            </a>
+    
+                                            <a href="#" class="btn-editar" title="Editar Registo"
+                                                onclick="getDadosForEdition('<%=material.id%>')">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+    
+                                            <!-- Form Eliminar-->
+                                            <form action="/materiais/<%=material.id%>" method="post" class="deleteRegisto">
+                                                <input type="hidden" name="_method" value="delete">
+                                                <button type="submit" class="btn-excluir" title="Excluir Registo"><i
+                                                        class="fa fa-trash"></i></button>
+                                            </form>
+                                            <!-- Fim Form Eliminar-->
                                         </span>
-                                        <%}%>
-                            </td>
-
-                        </tr>
-
-                        <% }) %>
+                                        <% } else { %>
+                                            <span class="actions-list">
+                                                <a href="#" class="btn-ver" id="btnVer" title="Visualizar Registo"><i
+                                                        class="fa fa-eye" onclick="getMaterial('<%=material.id%>')"></i></a>
+                                            </span>
+                                            <%}%>
+                                </td>
+    
+                            </tr>
+    
+                            <% }) %>
+                        <%}%>
+                                    
 
                 </tbody>
 
@@ -179,6 +185,7 @@
                     </div>
 
                     <form action="/materiais/cadastrar" method="post" id="form-validate" class="form-cadastro">
+                        <input type="hidden" name="laboratorio" value="<%=laboratorioSelecionado%>">
                         <div class="field">
                             <label for="nome-material" class="label">
                                 Nome *
@@ -279,11 +286,15 @@
                             <label for="mesa" class="label">Nº Mesa *</label>
                             <div class="control select">
                                 <select id="mesa" name="mesa">
+                               <%if(mesas.length==0){%>
+                                    <option>Sem mesas cadastradas</option>
+                                <%}else{%>
                                     <% mesas.forEach((mesa)=> { %>
                                         <option value="<%= mesa.id%>">
                                             <%= mesa.nome%>
                                         </option>
                                         <%})%>
+                                        <%}%>
                                 </select>
                             </div>
                         </div>
@@ -426,11 +437,15 @@
                             <label for="edit-mesa" class="label">Nº Mesa</label>
                             <div class="control select">
                                 <select id="edit-mesa" name="mesa">
-                                    <% mesas.forEach((mesa)=> { %>
-                                        <option value="<%= mesa.id%>">
-                                            <%= mesa.nome%>
-                                        </option>
-                                        <%})%>
+                                    <%if(mesas.length==0){%>
+                                        <option>Sem mesas cadastradas</option>
+                                    <%}else{%>
+                                        <% mesas.forEach((mesa)=> { %>
+                                            <option value="<%= mesa.id%>">
+                                                <%= mesa.nome%>
+                                            </option>
+                                            <%})%>
+                                            <%}%>
                                 </select>
                             </div>
                         </div>
