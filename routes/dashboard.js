@@ -42,12 +42,11 @@ router.get("/dashboard/:idLab", async (req, res, next) => {
       .count("*", { as: "total_pc_bons" });
 
     const [total_outros] = await database("materiais")
-      .whereNot({ tipo_material: "pc" }) // listar Materiais que não são PC
+      .where({ laboratorio: idLab })
+      .andWhereNot({ tipo_material: "pc" }) // listar Materiais que não são PC
       .count("*", {
         as: "total_outros",
       });
-
-    console.log(total_outros);
 
     res.render("dashboard", {
       title: TITULO_PAGE,
