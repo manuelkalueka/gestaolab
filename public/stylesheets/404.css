@@ -70,13 +70,13 @@ p {
 }
 
 #btn-index {
-    color: var(--color5);
-    text-decoration: none;
-    transition: all 1s ease-out;
+  color: var(--color5);
+  text-decoration: none;
+  transition: all 1s ease-out;
 }
 
 #btn-index:hover {
-    color: var(--color3);
-    opacity: .8;
-    text-decoration: underline;
+  color: var(--color3);
+  opacity: 0.8;
+  text-decoration: underline;
 }

@@ -627,6 +627,11 @@ span.item-content {
   margin-bottom: 1.5em;
 }
 
+.conteudo#ConteudoLaboratorio {
+  overflow-y: visible;
+  height: auto;
+}
+
 /* Animação do loader */
 @keyframes spin {
   0% {

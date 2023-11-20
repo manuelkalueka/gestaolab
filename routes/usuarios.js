@@ -25,7 +25,7 @@ router.get("/usuarios", async (req, res, next) => {
       database,
       "usuarios",
       req,
-      "nome_completo"
+      "nome_completo",
     );
 
     const paginas = {

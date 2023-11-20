@@ -51,7 +51,7 @@ async function pagination(
       };
     }
   } else {
-
+//Serve para tabela Usuarios
     const dadosTable = await database(table)
       .limit(6)
       .offset(deslocamento)
