@@ -21,6 +21,9 @@
         </form>
       </div>
     <% } else {%>
+      <section>
+        <button type="button" class="btn-novoLab" >Adicionar Laboratório</button>
+      </section>
        <section>
         <% laboratorios.forEach((laboratorio) => { %>
           <div class="card">
@@ -130,6 +133,36 @@
                   </div>
               </div>
               <!-- Fim Modal Resumo-->
+
+              <div class="modal" id="modal-novoLab">
+                <div class="modal-background"></div>
+                <div class="modal-card">
+                    <header class="modal-card-head">
+                        <p class="modal-card-title"><%=title = "Registar novo Laboratório"%></p>
+                        <button class="delete" aria-label="close" id="close"></button>
+                    </header>
+                    <section class="modal-card-body">
+                        <div class="message-alert hide">
+                            <span id="edit-msg"></span>
+                        </div>
+                        <div>
+                          <form action="/laboratorios/cadastrar" method="post" id="form-lab">
+                            <div class="field">
+                              <label for="nome" class="label">Nome do Laboratório</label>
+                              <input type="text" id="nome" class="input" name="nome" maxlength="180" required   placeholder="Digite o nome do Laboratório"/>
+                            </div>
+                            <div class="field">
+                              <label for="nome" class="label">Nome do Laboratório</label>
+                              <input type="text" id="descricao" class="input" name="descricao" maxlength="180" required  placeholder="Descreve as Actividades do Laboratório..."/>
+                            </div>
+                            <input type="hidden" name="responsavel" value=<%=usuario.id%>>
+                          <button type="submit" class="button is-primary">Registar</button>
+                        </form>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
     </main>
 <script src="/javascripts/laboratorio.js"></script>
 <script src="/javascripts/base.js"></script>

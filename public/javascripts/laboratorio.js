@@ -10,6 +10,10 @@ function abrirModal(idModal, targetButton) {
   });
 }
 
+document.querySelector(".btn-novoLab").addEventListener("click", () => {
+  abrirModal("modal-novoLab", this);
+});
+
 //Abrir Editar Laboratório
 document.querySelectorAll(".btn-editar").forEach((btnEditar) => {
   btnEditar.addEventListener("click", () => {
