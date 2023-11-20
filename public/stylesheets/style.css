@@ -611,6 +611,22 @@ span.item-content {
   color: #a6a6a6;
 }
 
+.lab-card-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  overflow-y: visible;
+}
+
+.lab-card-container .card {
+  width: 100%;
+  margin-bottom: 1.5em;
+}
+
 /* Animação do loader */
 @keyframes spin {
   0% {

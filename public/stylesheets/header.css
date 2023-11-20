@@ -155,3 +155,7 @@ header {
 .buttonRegistar{
   text-align: center;
 }
+
+.btn-novoLab{
+  margin-bottom: 2em;
+}

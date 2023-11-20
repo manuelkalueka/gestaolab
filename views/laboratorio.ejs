@@ -14,21 +14,21 @@
           <label for="nome" class="label">Nome do Laboratório</label>
           <input type="text" id="nome" name="nome" maxlength="180" required  placeholder="Digite o nome do Laboratório" class="inputnameLoratorio"/> <br>
           <label for="nome" class="label">Nome do Laboratório</label>
-          <input type="text" id="descricao" name="descricao" maxlength="180" required  placeholder="Descreve as Actividades do Laboratório..." class="inputDescrition"/> <br>
+          <textarea  id="descricao" name="descricao" maxlength="180" required  placeholder="Descreve as Actividades do Laboratório..." class="inputDescrition"> </textarea> <br>
          
             <input type="hidden" name="responsavel" value=<%=usuario.id%>>
 
           <p class="buttonRegistar">
-            <button type="submit" class="button" >Registar</button>
+            <button type="submit" class="button is-primary"  >Registar</button>
           </p>
         </form>
       </div>
     <% } else {%>
       <section>
-        <button type="button" class="btn-novoLab" >Adicionar Laboratório</button>
+        <button type="button" class="button btn-novoLab is-primary" >Adicionar Laboratório</button>
       </section>
       
-       <section>
+       <section class="lab-card-container">
         <% laboratorios.forEach(laboratorio => { %>
           <div class="card">
             <header class="card-header">
@@ -41,12 +41,12 @@
               </div>
             </div>
             <footer class="card-footer">
-              <a href="#" class="card-footer-item btn-resumo" onclick="showResume('<%=laboratorio.id%>')">Ver Resumo</a>
+              <a href="#" class="card-footer-item btn-resumo button is-link is-inverted" onclick="showResume('<%=laboratorio.id%>')">Ver Resumo</a>
               <form action="/laboratorios" method="post">
                 <input type="hidden" name="laboratorioId" value="<%=laboratorio.id%>">
-                <button type="submit" class="card-footer-item">Acessar Laboratório</button>
+                <button type="submit" class="card-footer-item button is-link is-inverted">Acessar Laboratório</button>
               </form>
-              <a href="#" class="card-footer-item btn-editar" onclick="getDadosForEdition('<%=laboratorio.id%>')">Editar Informações</a>
+              <a href="#" class="card-footer-item btn-editar button is-link is-inverted" onclick="getDadosForEdition('<%=laboratorio.id%>')">Editar Informações</a>
             </footer>
           </div>
         <% }) %>
@@ -73,7 +73,7 @@
                                   <input type="text" id="edit-nome" name="nome" maxlength="180"class="input"  required  placeholder="Digite o nome do Laboratório"/>
                                 
                                  <div class="field">
-                                  <input type="text" id="edit-descricao" name="descricao" maxlength="180" class="input" required  placeholder="Descreve as Actividades do Laboratório..."/>
+                                  <textarea  id="edit-descricao" name="descricao" maxlength="180" class="input" required  placeholder="Descreve as Actividades do Laboratório..."></textarea>
                                  </div>
                                     <footer class="modal-card-foot">
                                         <button type="submit" class="button is-primary" id="btnSalvar">Salvar
@@ -156,8 +156,8 @@
                               <input type="text" id="nome" class="input" name="nome" maxlength="180" required   placeholder="Digite o nome do Laboratório"/>
                             </div>
                             <div class="field">
-                              <label for="nome" class="label">Nome do Laboratório</label>
-                              <input type="text" id="descricao" class="input" name="descricao" maxlength="180" required  placeholder="Descreve as Actividades do Laboratório..."/>
+                              <label for="nome" class="label">descricao do Lab</label>
+                              <textarea id="descricao" class="input" name="descricao" maxlength="180" required  placeholder="Descreve as Actividades do Laboratório..."></textarea>
                             </div>
                             <input type="hidden" name="responsavel" value=<%=usuario.id%>>
                           <button type="submit" class="button is-primary">Registar</button>
